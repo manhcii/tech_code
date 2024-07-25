@@ -2,14 +2,17 @@
     <div class="child-footer d-flex">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-12">
-                    <h4 class="title-menu">
+                <div class="col-lg-3 col-12">
+                    <a href="{{ route('frontend.home') }}" class="logo">  
+                        <img width="170" height="43" src="{{ $web_information->image->logo_footer ?? '' }}" alt="Ngân hoa">
+                      </a>
+                      <br>
+                      {{-- <h4 class="title-menu">
                         <span>
                             {{ $web_information->information->site_name ?? '' }}
                         </span>
-                    </h4>
+                    </h4> --}}
                     <ul>
-                        <li>Copyright@ 2024 {{ $web_information->information->site_name ?? '' }}</li>
                         <li>Địa chỉ: {{ $web_information->information->address ?? '' }}</li>
                         <li>Điện thoại: <a class="fone"
                                 href="tel:{{ $web_information->information->phone ?? '' }}">{{ $web_information->information->phone ?? '' }}</a>
@@ -18,7 +21,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-4 col-12">
+          
+                <div class="col-lg-3 col-12">
                     <h4 class="title-menu">
                         <span>
                             Liên kết & Chính sách
@@ -61,7 +65,7 @@
                         @endisset
                     </ul>
                 </div>
-                <div class="col-lg-4 col-12">
+                <div class="col-lg-3 col-12">
                     <h4 class="title-menu">
                         <span>
                             Nhận tin khuyến mãi
@@ -113,9 +117,12 @@
                     </div>
 
                 </div>
-
+                <div class="col-lg-3 col-12">
+                    <div class="footer-element">
+                        <iframe src="{{ $web_information->source_code->map??"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0349105566534!2d105.783171!3d21.0312891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab92b21e3beb%3A0x4c9549d1df6c5d0b!2zNzggUC4gRHV5IFTDom4sIEThu4tjaCBW4buNbmcgSOG6rXUsIEPhuqd1IEdp4bqleSwgSMOgIE7hu5lp!5e0!3m2!1svi!2s!4v1719131906051!5m2!1svi!2s" }}" width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
             </div>
-
         </div>
 
     </div>
@@ -123,8 +130,9 @@
         <div class="container">
             <div class="inner">
                 <div class="row tablet">
-                    <div id="copyright" class="col-lg-6 col-md-6 col-12">
-                        <div class="wsp">
+                    <div id="copyright" class="col-lg-12 col-md-12 col-12">
+                        <div class="wsp text-center">
+                            Copyright@ 2024 {{ $web_information->information->site_name ?? '' }}
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,8 @@
     @php
       $title = $item->json_params->title->{$locale} ?? $item->title;
       $brief = $item->json_params->brief->{$locale} ?? $item->brief;
-      $alias_category = App\Helpers::generateRoute(App\Consts::TAXONOMY['product'], $title, $item->id);
+      // $alias_category = App\Helpers::generateRoute(App\Consts::TAXONOMY['product'], $title, $item->id);
+      $alias_category = App\Helpers::generateRoute($item->taxonomy, $item->alias ?? $item->title, $item->id);
       $image_background = $item->json_params->image_background != '' ? $item->json_params->image_background : $web_information->image->Image_home_sidebar ?? '';
     @endphp
       <section class="section_tech">
@@ -42,7 +43,7 @@
                         $params['taxonomy_id'] = $item->id;
                     }
                     $rows = App\Http\Services\ContentService::getCmsPost($params)
-                        ->limit(6)
+                        ->limit(8)
                         ->get();
                   @endphp
                   @if($rows)

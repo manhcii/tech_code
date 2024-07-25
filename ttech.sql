@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th7 17, 2024 lúc 08:19 AM
--- Phiên bản máy phục vụ: 10.6.17-MariaDB-cll-lve
--- Phiên bản PHP: 8.1.28
+-- Host: localhost
+-- Generation Time: Jul 19, 2024 at 12:01 PM
+-- Server version: 5.7.44-log
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,25 +18,25 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `tte76400_database`
+-- Database: `tech`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admins`
+-- Table structure for table `admins`
 --
 
 CREATE TABLE `admins` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` int(11) NOT NULL,
-  `json_information` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `is_super_admin` tinyint(1) NOT NULL DEFAULT 0,
-  `status` varchar(20) NOT NULL DEFAULT 'active',
-  `remember_token` varchar(100) DEFAULT NULL,
+  `json_information` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `is_super_admin` tinyint(1) NOT NULL DEFAULT '0',
+  `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -44,42 +44,42 @@ CREATE TABLE `admins` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `admins`
+-- Dumping data for table `admins`
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `password`, `role`, `json_information`, `is_super_admin`, `status`, `remember_token`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
 (1, 'TuanDev', 'admin1@gmail.com', '$2y$10$PXsxVSpG0ZFrax.23p.KAeZk7U3kzsCRMqZejfV1KMO3iyWvNcNb.', 2, NULL, 1, 'active', NULL, NULL, NULL, '2021-09-24 08:48:18', '2024-01-30 04:09:08'),
-(3, 'Đăng Thuận', 'admin@gmail.com', '$2y$10$fh.Ivs05.tHL./MVw1UzSeXoHRagyTrl3NUY.5K9AdbOHQkixWTiq', 2, NULL, 0, 'active', NULL, NULL, NULL, '2022-12-31 04:55:34', '2024-04-08 09:26:48');
+(3, 'ADMIN', 'admin@gmail.com', '$2y$10$DzD4QVqu4rmlpgoneKmzsOBrBYK9CJWafz8z1oyiuKZ2B8I9L1mra', 2, NULL, 1, 'active', NULL, NULL, NULL, '2022-12-31 04:55:34', '2024-04-08 09:26:48');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -117,30 +117,30 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_admin_menus`
+-- Table structure for table `tb_admin_menus`
 --
 
 CREATE TABLE `tb_admin_menus` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
-  `name` varchar(255) NOT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `url_link` varchar(255) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) DEFAULT 'active',
-  `toolbar` varchar(255) DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'active',
+  `toolbar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -148,7 +148,7 @@ CREATE TABLE `tb_admin_menus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_admin_menus`
+-- Dumping data for table `tb_admin_menus`
 --
 
 INSERT INTO `tb_admin_menus` (`id`, `parent_id`, `name`, `icon`, `url_link`, `iorder`, `status`, `toolbar`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -186,21 +186,21 @@ INSERT INTO `tb_admin_menus` (`id`, `parent_id`, `name`, `icon`, `url_link`, `io
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_affiliate_historys`
+-- Table structure for table `tb_affiliate_historys`
 --
 
 CREATE TABLE `tb_affiliate_historys` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `is_type` varchar(255) DEFAULT NULL,
+  `is_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
   `order_id` bigint(20) DEFAULT NULL,
-  `order_total_money` double(20,2) NOT NULL DEFAULT 0.00,
-  `affiliate_percent` double(20,2) NOT NULL DEFAULT 0.00,
+  `order_total_money` double(20,2) NOT NULL DEFAULT '0.00',
+  `affiliate_percent` double(20,2) NOT NULL DEFAULT '0.00',
   `affiliate_point` double(20,2) DEFAULT NULL,
   `affiliate_money` double(20,2) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'pending',
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -208,7 +208,7 @@ CREATE TABLE `tb_affiliate_historys` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_affiliate_historys`
+-- Dumping data for table `tb_affiliate_historys`
 --
 
 INSERT INTO `tb_affiliate_historys` (`id`, `is_type`, `user_id`, `order_id`, `order_total_money`, `affiliate_percent`, `affiliate_point`, `affiliate_money`, `description`, `json_params`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -226,16 +226,16 @@ INSERT INTO `tb_affiliate_historys` (`id`, `is_type`, `user_id`, `order_id`, `or
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_affiliate_payments`
+-- Table structure for table `tb_affiliate_payments`
 --
 
 CREATE TABLE `tb_affiliate_payments` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `money` double(20,2) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -243,7 +243,7 @@ CREATE TABLE `tb_affiliate_payments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_affiliate_payments`
+-- Dumping data for table `tb_affiliate_payments`
 --
 
 INSERT INTO `tb_affiliate_payments` (`id`, `user_id`, `money`, `description`, `json_params`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -256,18 +256,18 @@ INSERT INTO `tb_affiliate_payments` (`id`, `user_id`, `money`, `description`, `j
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_blocks`
+-- Table structure for table `tb_blocks`
 --
 
 CREATE TABLE `tb_blocks` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
-  `block_code` varchar(255) NOT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `is_config` tinyint(1) NOT NULL DEFAULT 1,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `block_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `is_config` tinyint(1) NOT NULL DEFAULT '1',
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -275,7 +275,7 @@ CREATE TABLE `tb_blocks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_blocks`
+-- Dumping data for table `tb_blocks`
 --
 
 INSERT INTO `tb_blocks` (`id`, `name`, `description`, `block_code`, `json_params`, `is_config`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -294,26 +294,26 @@ INSERT INTO `tb_blocks` (`id`, `name`, `description`, `block_code`, `json_params
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_block_contents`
+-- Table structure for table `tb_block_contents`
 --
 
 CREATE TABLE `tb_block_contents` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
-  `title` varchar(255) NOT NULL,
-  `brief` text DEFAULT NULL,
-  `content` longtext DEFAULT NULL,
-  `block_code` varchar(255) NOT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `image_background` varchar(255) DEFAULT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `url_link` varchar(255) DEFAULT NULL,
-  `url_link_title` varchar(255) DEFAULT NULL,
-  `position` varchar(255) DEFAULT NULL,
-  `system_code` varchar(255) DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `brief` text COLLATE utf8mb4_unicode_ci,
+  `content` longtext COLLATE utf8mb4_unicode_ci,
+  `block_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_background` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url_link_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `position` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `system_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -321,7 +321,7 @@ CREATE TABLE `tb_block_contents` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_block_contents`
+-- Dumping data for table `tb_block_contents`
 --
 
 INSERT INTO `tb_block_contents` (`id`, `parent_id`, `title`, `brief`, `content`, `block_code`, `json_params`, `image`, `image_background`, `icon`, `url_link`, `url_link_title`, `position`, `system_code`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -329,7 +329,7 @@ INSERT INTO `tb_block_contents` (`id`, `parent_id`, `title`, `brief`, `content`,
 (74, NULL, 'Khối hình ảnh banner đầu trang', NULL, NULL, 'banner', '{\"layout\":\"slide\",\"style\":null}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'active', 1, 1, '2022-03-18 17:50:28', '2024-01-04 02:52:01'),
 (94, NULL, 'Khối hiển thị nội dung chính', NULL, NULL, 'main', '{\"layout\":null,\"style\":null}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'active', 1, 1, '2022-06-02 11:24:21', '2022-12-19 09:33:10'),
 (326, NULL, 'Khối banner tĩnh', NULL, NULL, 'banner', '{\"layout\":\"static\",\"style\":null}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, 'delete', 1, 1, '2022-12-29 03:03:07', '2023-03-06 08:05:59'),
-(331, 74, '#1', NULL, NULL, 'header', '{\"layout\":null,\"style\":null}', '/data/cms-image/banner/logo d (2).png', NULL, NULL, NULL, NULL, NULL, NULL, 4, 'active', 1, 1, '2023-02-01 04:59:40', '2024-01-31 07:36:46'),
+(331, 74, '#1', NULL, NULL, 'header', '{\"layout\":null,\"style\":null}', '/data/cms-image/banner/24_Jan0f30da34dcbd96f8ef0a22590787a883.webp', NULL, NULL, NULL, NULL, NULL, NULL, 4, 'active', 1, 3, '2023-02-01 04:59:40', '2024-07-18 15:29:01'),
 (332, 74, '#2', NULL, NULL, 'header', '{\"layout\":null,\"style\":null}', 'https://haycafe.vn/wp-content/uploads/2022/01/Hinh-anh-cau-thang-gia-go-dep-800x533.jpg', NULL, NULL, NULL, NULL, NULL, NULL, 3, 'delete', 1, 1, '2023-02-01 05:00:27', '2023-02-06 02:45:03'),
 (333, NULL, 'Khối video', NULL, NULL, 'cms_resource', '{\"layout\":null,\"style\":null}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'delete', 1, 1, '2023-02-01 06:45:55', '2023-03-06 08:06:04'),
 (334, 333, 'Cầu thang kính 01', NULL, NULL, 'banner', '{\"layout\":null,\"style\":null}', NULL, NULL, NULL, 'https://www.youtube.com/embed/Z5TeoXCGoMs', NULL, NULL, NULL, NULL, 'delete', 1, 1, '2023-02-01 06:52:00', '2023-02-04 01:43:24'),
@@ -339,7 +339,7 @@ INSERT INTO `tb_block_contents` (`id`, `parent_id`, `title`, `brief`, `content`,
 (338, 326, 'TINH THẦN TRÁCH NHIỆM', NULL, 'Mỗi người thợ khi được giao công việc đều phải có tâm và có tầm để công trình đên tay khách hàng được hài lòng nhất', 'banner', '{\"layout\":null,\"style\":null}', NULL, NULL, 'icon-like', NULL, NULL, NULL, NULL, 3, 'delete', 1, 1, '2023-02-01 08:19:55', '2023-02-28 03:55:40'),
 (339, 326, 'UY TÍN TẠO NÊN THƯƠNG HIỆU', NULL, 'Mục tiệu hàng đầu là giữ vững niềm tin của khách hàng để tạo nên 1 thương hiệu bền chắc và vững mạnh.', 'banner', '{\"layout\":null,\"style\":null}', NULL, NULL, 'icon-money', NULL, NULL, NULL, NULL, 4, 'delete', 1, 1, '2023-02-01 08:19:55', '2023-02-28 03:55:40'),
 (340, 326, 'CÔNG NGHỆ MỚI HIỆN ĐẠI', 'fgs', 'Muốn làm ra những sản phẩm bền vững yếu tố máy móc quyết định rất quan trong trong việc hình thành sản phẩm đó', 'banner', '{\"layout\":null,\"style\":null}', NULL, NULL, 'icon-magnet', NULL, NULL, NULL, NULL, 2, 'delete', 1, 1, '2023-02-01 08:19:55', '2023-02-28 03:55:40'),
-(341, 74, '#3', NULL, NULL, 'banner', '{\"layout\":null,\"style\":null}', '/data/cms-image/banner/logo d (2).png', NULL, NULL, NULL, NULL, NULL, NULL, 2, 'active', 1, 1, '2023-02-03 02:44:08', '2024-01-31 07:37:25'),
+(341, 74, '#3', NULL, NULL, 'banner', '{\"layout\":null,\"style\":null}', '/data/cms-image/banner/24_Jan0f30da34dcbd96f8ef0a22590787a883.webp', NULL, NULL, NULL, NULL, NULL, NULL, 2, 'active', 1, 3, '2023-02-03 02:44:08', '2024-07-18 15:28:42'),
 (342, 340, 'thanh an l', 'sdfgv', NULL, 'custom', '{\"layout\":\"about_client\",\"style\":null}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'delete', 1, 1, '2023-02-28 03:05:27', '2023-02-28 08:32:33'),
 (343, NULL, 'Danh mục sản phẩm', NULL, NULL, 'custom', '{\"layout\":\"about_us\",\"style\":null}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'active', 1, 1, '2023-03-06 04:06:13', '2024-01-04 03:18:33'),
 (344, NULL, 'Danh mục nổi bật', NULL, NULL, 'custom', '{\"layout\":\"about_client\",\"style\":null}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'active', 1, 1, '2023-03-06 08:44:57', '2024-01-04 04:41:13'),
@@ -349,24 +349,24 @@ INSERT INTO `tb_block_contents` (`id`, `parent_id`, `title`, `brief`, `content`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_bookings`
+-- Table structure for table `tb_bookings`
 --
 
 CREATE TABLE `tb_bookings` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `customer_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `customer_note` text DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_note` text COLLATE utf8mb4_unicode_ci,
   `department_id` bigint(20) UNSIGNED DEFAULT NULL,
   `doctor_id` bigint(20) UNSIGNED DEFAULT NULL,
   `booking_date` date DEFAULT NULL,
-  `booking_time` varchar(255) DEFAULT NULL,
-  `admin_note` text DEFAULT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'new',
+  `booking_time` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `admin_note` text COLLATE utf8mb4_unicode_ci,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'new',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -376,22 +376,22 @@ CREATE TABLE `tb_bookings` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_branchs`
+-- Table structure for table `tb_branchs`
 --
 
 CREATE TABLE `tb_branchs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `is_type` varchar(255) DEFAULT NULL,
-  `is_featured` tinyint(1) DEFAULT 0,
-  `name` text DEFAULT NULL,
-  `city` varchar(255) DEFAULT NULL,
-  `district` varchar(255) DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `fax` varchar(255) DEFAULT NULL,
-  `map` text DEFAULT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `is_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_featured` tinyint(1) DEFAULT '0',
+  `name` text COLLATE utf8mb4_unicode_ci,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `district` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fax` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `map` text COLLATE utf8mb4_unicode_ci,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -399,7 +399,7 @@ CREATE TABLE `tb_branchs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_branchs`
+-- Dumping data for table `tb_branchs`
 --
 
 INSERT INTO `tb_branchs` (`id`, `is_type`, `is_featured`, `name`, `city`, `district`, `address`, `phone`, `fax`, `map`, `json_params`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -414,31 +414,31 @@ INSERT INTO `tb_branchs` (`id`, `is_type`, `is_featured`, `name`, `city`, `distr
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_cms_posts`
+-- Table structure for table `tb_cms_posts`
 --
 
 CREATE TABLE `tb_cms_posts` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `taxonomy_id` bigint(20) UNSIGNED DEFAULT NULL,
   `resources_id` int(11) DEFAULT NULL,
-  `is_type` varchar(255) DEFAULT 'post',
-  `title` varchar(255) NOT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `image_thumb` varchar(255) DEFAULT NULL,
-  `is_featured` tinyint(1) NOT NULL DEFAULT 0,
-  `count_visited` int(11) NOT NULL DEFAULT 0,
+  `is_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'post',
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_thumb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_featured` tinyint(1) NOT NULL DEFAULT '0',
+  `count_visited` int(11) NOT NULL DEFAULT '0',
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `alias` varchar(255) DEFAULT NULL
+  `alias` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_cms_posts`
+-- Dumping data for table `tb_cms_posts`
 --
 
 INSERT INTO `tb_cms_posts` (`id`, `taxonomy_id`, `resources_id`, `is_type`, `title`, `json_params`, `image`, `image_thumb`, `is_featured`, `count_visited`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`, `alias`) VALUES
@@ -553,7 +553,7 @@ INSERT INTO `tb_cms_posts` (`id`, `taxonomy_id`, `resources_id`, `is_type`, `tit
 (475, 81, NULL, 'product', 'CPU AMD RYZEN 5 8600G 4.3GHZ UPTO 5.0GHZ | 22MB | 6 CORES| 12 THREADS | 65W | SOCKET AM5', '{\"price\":\"6699000\",\"price_old\":\"7599000\",\"brief\":{\"vi\":\"<ul id=\\\"js-tskt-item\\\">\\r\\n\\t<li>S\\u1ed1 nh\\u00e2n, s\\u1ed1 lu\\u1ed3ng: 6 nh\\u00e2n 12 lu\\u1ed3ng<\\/li>\\r\\n\\t<li>Xung nh\\u1ecbp CPU: 4.3 \\u2013 5.0 GHz<\\/li>\\r\\n\\t<li>B\\u1ed9 nh\\u1edb Cache (L2+L3): 22 MB<\\/li>\\r\\n\\t<li>TDP: 65W<\\/li>\\r\\n\\t<li>Ki\\u1ebfn tr\\u00fac: Zen 4<\\/li>\\r\\n\\t<li>Bus RAM: Up to 5200MT\\/s<\\/li>\\r\\n\\t<li>Card \\u0111\\u1ed3 h\\u1ecda: T\\u00edch h\\u1ee3p s\\u1eb5n AMD Radeon\\u2122 760M<\\/li>\\r\\n<\\/ul>\"},\"content\":{\"vi\":\"<h2>Th\\u00f4ng s\\u1ed1 k\\u1ef9 thu\\u1eadt<\\/h2>\\r\\n\\r\\n<table width=\\\"985\\\">\\r\\n\\t<tbody>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">H\\u00e3ng s\\u1ea3n xu\\u1ea5t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">AMD<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Lo\\u1ea1i CPU<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">D\\u00e0nh cho m\\u00e1y b\\u00e0n<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Th\\u1ebf h\\u1ec7<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">Ryzen 5 8000 Series<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">T\\u00ean g\\u1ecdi<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">AMD Ryzen 5 8600G<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\" width=\\\"985\\\">CHI TI\\u1ebeT<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Socket<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">AM5<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">S\\u1ed1 nh\\u00e2n<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">6 Cores<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">S\\u1ed1 lu\\u1ed3ng<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">12 Cores<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">T\\u1ed1c \\u0111\\u1ed9 c\\u01a1 b\\u1ea3n<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">4.3GHz Upto 5.0GHz<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Cache<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">6MB (L2) + 16MB (L3)&nbsp;<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">H\\u1ed7 tr\\u1ee3 b\\u1ed9 nh\\u1edb<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">Max Memory Speed<br \\/>\\r\\n\\t\\t\\t2x1R:DDR5-5200<br \\/>\\r\\n\\t\\t\\t2x2R: DDR5-5200<br \\/>\\r\\n\\t\\t\\t4X1R: DDR5-3600<br \\/>\\r\\n\\t\\t\\t4x2R: DDR5-3600<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Nh\\u00e2n \\u0111\\u1ed3 h\\u1ecda<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\"><br \\/>\\r\\n\\t\\t\\tAMD Radeon\\u2122 760M<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Phi\\u00ean b\\u1ea3n PCI Express<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">PCIe 4.0<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">TDP<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">65W<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Ti\\u1ebfn tr\\u00ecnh s\\u1ea3n xu\\u1ea5t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">TSMC 4nm<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t<\\/tbody>\\r\\n<\\/table>\\r\\n\\r\\n<hr \\/>\\r\\n<p>\\u0110\\u01b0\\u1ee3c thi\\u1ebft k\\u1ebf \\u0111\\u1ec3 nh\\u1eafm v\\u00e0o th\\u1ecb tr\\u01b0\\u1eddng ph\\u1ed5 th\\u00f4ng nh\\u01b0ng ch\\u1ea5t l\\u01b0\\u1ee3ng m\\u00e0&nbsp;b\\u1ed9 vi x\\u1eed l\\u00fd&nbsp;AMD Ryzen 5 8600G th\\u1eadt s\\u1ef1 s\\u1ebd khi\\u1ebfn b\\u1ea1n ph\\u1ea3i kinh ng\\u1ea1c&nbsp;b\\u1edfi hi\\u1ec7u n\\u0103ng m\\u00e0 n\\u00f3 c\\u00f3 th\\u1ec3 \\u0111em l\\u1ea1i cho m\\u00e1y t\\u00ednh \\u0111\\u1ec3 b\\u00e0n l\\u00e0 v\\u01b0\\u1ee3t qua k\\u1ef3 v\\u1ecdng trong t\\u1ea7m gi\\u00e1. H\\u00e3y c\\u00f9ng t\\u00ecm hi\\u1ec3u k\\u1ef9 h\\u01a1n v\\u1ec1 s\\u1ea3n ph\\u1ea9m n\\u00e0y ngay sau \\u0111\\u00e2y.<\\/p>\\r\\n\\r\\n<h3><strong>Th\\u00f4ng s\\u1ed1 cho hi\\u1ec7u n\\u0103ng m\\u1ea1nh m\\u1ebd&nbsp;<\\/strong><\\/h3>\\r\\n\\r\\n<p>B\\u1ed9 vi x\\u1eed l\\u00fd AMD Ryzen 5 8600G s\\u1edf h\\u1eefu cho m\\u00ecnh nh\\u1eefng th\\u00f4ng s\\u1ed1 s\\u1ea3n ph\\u1ea9m kh\\u00e1 t\\u1ed1t&nbsp;b\\u1ea1n n\\u00ean bi\\u1ebft. chi\\u1ebfc CPU n\\u00e0y&nbsp;l\\u00e0 m\\u1ed9t b\\u1ed9 x\\u1eed l\\u00fd \\u0111a nh\\u00e2n (6 nh\\u00e2n) v\\u00e0 \\u0111a lu\\u1ed3ng (12 lu\\u1ed3ng Multithreading) \\u0111\\u01b0\\u1ee3c s\\u1ea3n xu\\u1ea5t b\\u1edfi AMD kh\\u00f4ng nh\\u1eefng th\\u1ebf n\\u00f3 c\\u00f2n h\\u1ed7 tr\\u1ee3&nbsp;b\\u1ed9 nh\\u1edb&nbsp;DDR5 v\\u1edbi t\\u1ed1c \\u0111\\u1ed9 t\\u1ed1i \\u0111a \\u0111\\u1ea1t 5200 MT\\/s. S\\u1ee9c m\\u1ea1nh \\u0111a nhi\\u1ec7m c\\u1ee7a CPU n\\u00e0y b\\u00ean n\\u00f3 th\\u00e0nh m\\u1ed9t&nbsp;linh ki\\u1ec7n m\\u00e1y t\\u00ednh&nbsp;c\\u00f3 kh\\u1ea3 n\\u0103ng x\\u1eed l\\u00fd&nbsp;nhi\\u1ec1u t\\u00e1c v\\u1ee5 c\\u00f9ng m\\u1ed9t l\\u00fac m\\u1ed9t c\\u00e1ch hi\\u1ec7u qu\\u1ea3.&nbsp;<\\/p>\\r\\n\\r\\n<p>Max Boost Clock l\\u00e0 t\\u1ea7n s\\u1ed1 t\\u1ed1i \\u0111a m\\u00e0 CPU c\\u00f3 th\\u1ec3 \\u0111\\u1ea1t \\u0111\\u01b0\\u1ee3c khi ho\\u1ea1t \\u0111\\u1ed9ng \\u1edf \\u0111i\\u1ec1u ki\\u1ec7n t\\u1ed1i \\u01b0u, trong tr\\u01b0\\u1eddng h\\u1ee3p n\\u00e0y l\\u00e0 5.0GHz. Base Clock l\\u00e0 t\\u1ea7n s\\u1ed1 c\\u01a1 b\\u1ea3n m\\u00e0 CPU ho\\u1ea1t \\u0111\\u1ed9ng &nbsp;khi kh\\u00f4ng c\\u00f3 y\\u00eau c\\u1ea7u hi\\u1ec7u su\\u1ea5t cao , trong tr\\u01b0\\u1eddng h\\u1ee3p n\\u00e0y l\\u00e0 4.3GHz. \\u0110i\\u1ec1u n\\u00e0y gi\\u00fap CPU ho\\u1ea1t \\u0111\\u1ed9ng m\\u1ea1nh m\\u1ebd trong nhi\\u1ec1u t\\u00ecnh hu\\u1ed1ng s\\u1eed d\\u1ee5ng, t\\u1eeb c\\u00f4ng vi\\u1ec7c v\\u0103n ph\\u00f2ng \\u0111\\u1ebfn gi\\u1ea3i tr\\u00ed \\u0111a ph\\u01b0\\u01a1ng ti\\u1ec7n.<\\/p>\\r\\n\\r\\n<h3><strong>Kh\\u1ea3 n\\u0103ng h\\u1ed7 tr\\u1ee3&nbsp;<\\/strong><\\/h3>\\r\\n\\r\\n<p>\\u0110\\u01b0\\u1ee3c trang b\\u1ecb&nbsp;c\\u00f4ng ngh\\u1ec7 AMD Ryzen AI, bao g\\u1ed3m c\\u00f4ng ngh\\u1ec7 NPU \\u0111\\u1ea7u ti\\u00ean tr\\u00ean b\\u1ed9 x\\u1eed l\\u00fd&nbsp;m\\u00e1y t\\u00ednh \\u0111\\u1ec3 b\\u00e0n. N\\u00f3 c\\u00f3 th\\u1ec3 t\\u0103ng t\\u1ed1c \\u0111\\u1ed9 ch\\u1ea1y ph\\u1ea7n m\\u1ec1m AI tr\\u00ean m\\u00e1y t\\u00ednh m\\u1ed9t c\\u00e1ch nhanh ch\\u00f3ng v\\u00e0 \\u0111a nhi\\u1ec7m. T\\u1ed1i \\u01b0u h\\u00f3a kh\\u1ed1i l\\u01b0\\u1ee3ng c\\u00f4ng vi\\u1ec7c AI, c\\u1ea3i thi\\u1ec7n hi\\u1ec7u su\\u1ea5t x\\u1eed l\\u00fd AI v\\u00e0 m\\u1edf kh\\u00f3a nh\\u1eefng tr\\u1ea3i nghi\\u1ec7m nh\\u01b0 kh\\u1eed ti\\u1ebfng \\u1ed3n do AI cung c\\u1ea5p.<\\/p>\\r\\n\\r\\n<p>T\\u00f3m l\\u1ea1i,&nbsp;b\\u1ed9 vi x\\u1eed l\\u00fd AMD Ryzen 5 8600G&nbsp;k\\u1ebft h\\u1ee3p s\\u1ee9c m\\u1ea1nh x\\u1eed l\\u00fd hi\\u1ec7u qu\\u1ea3 v\\u1edbi kh\\u1ea3 n\\u0103ng \\u0111\\u1ed3 h\\u1ecda \\u1ea5n t\\u01b0\\u1ee3ng, khi\\u1ebfn n\\u00f3 tr\\u1edf th\\u00e0nh s\\u1ef1 l\\u1ef1a ch\\u1ecdn tuy\\u1ec7t v\\u1eddi khi build PC \\u0111\\u1ed3 h\\u1ecda, PC v\\u0103n ph\\u00f2ng th\\u1eadm ch\\u00ed gaming \\u0111\\u00f2i h\\u1ecfi \\u0111a d\\u1ea1ng t\\u00e1c v\\u1ee5.<\\/p>\"},\"seo_title\":\"CPU AMD RYZEN 5 8600G 4.3GHZ UPTO 5.0GHZ | 22MB | 6 CORES| 12 THREADS | 65W | SOCKET AM5\",\"seo_keyword\":\"CPU AMD RYZEN 5 8600G 4.3GHZ UPTO 5.0GHZ | 22MB | 6 CORES| 12 THREADS | 65W | SOCKET AM5\",\"seo_description\":\"b\\u1ed9 vi x\\u1eed l\\u00fd AMD Ryzen 5 8600G\\u00a0k\\u1ebft h\\u1ee3p s\\u1ee9c m\\u1ea1nh x\\u1eed l\\u00fd hi\\u1ec7u qu\\u1ea3 v\\u1edbi kh\\u1ea3 n\\u0103ng \\u0111\\u1ed3 h\\u1ecda \\u1ea5n t\\u01b0\\u1ee3ng, khi\\u1ebfn n\\u00f3 tr\\u1edf th\\u00e0nh s\\u1ef1 l\\u1ef1a ch\\u1ecdn tuy\\u1ec7t v\\u1eddi khi build PC \\u0111\\u1ed3 h\\u1ecda, PC v\\u0103n ph\\u00f2ng th\\u1eadm ch\\u00ed gaming \\u0111\\u00f2i h\\u1ecfi \\u0111a d\\u1ea1ng t\\u00e1c v\\u1ee5.\"}', '/data/cms-image/TTECHBNCPUAMD -AM5 RYZEN 5 8600G.jpg', '/data/cms-image/TTECHBNCPUAMD -AM5 RYZEN 5 8600G.jpg', 0, 23, NULL, 'active', 3, 3, '2024-05-15 09:18:19', '2024-07-09 21:56:25', 'cpu-amd-ryzen-5-8600g-43ghz-upto-50ghz-22mb-6-cores-12-threads-65w-socket-am5');
 INSERT INTO `tb_cms_posts` (`id`, `taxonomy_id`, `resources_id`, `is_type`, `title`, `json_params`, `image`, `image_thumb`, `is_featured`, `count_visited`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`, `alias`) VALUES
 (476, 81, NULL, 'product', 'CPU AMD RYZEN 7 7700X | 4.5 GHZ UPTO 5.4GHZ | 40MB | 8 CORES| 16 THREADS | 105W | SOCKET AM5', '{\"price\":\"9999000\",\"price_old\":\"10999000\",\"brief\":{\"vi\":\"<ul id=\\\"js-tskt-item\\\">\\r\\n\\t<li>S\\u1ed1 nh\\u00e2n: 8 nh\\u00e2n<\\/li>\\r\\n\\t<li>S\\u1ed1 lu\\u1ed3ng: 16 lu\\u1ed3ng<\\/li>\\r\\n\\t<li>Xung nh\\u1ecbp boost t\\u1ed1i \\u0111a: 5.4 GHz<\\/li>\\r\\n\\t<li>H\\u1ed7 tr\\u1ee3 PCI-e 5.0<\\/li>\\r\\n\\t<li>C\\u00f3 h\\u1ed7 tr\\u1ee3 \\u00e9p xung<\\/li>\\r\\n<\\/ul>\"},\"content\":{\"vi\":\"<table width=\\\"609\\\">\\r\\n\\t<tbody>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\">\\r\\n\\t\\t\\t<p><strong><em>TH\\u00d4NG S\\u1ed0 C\\u01a0 B\\u1ea2N<\\/em><\\/strong><\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>H\\u00e3ng s\\u1ea3n xu\\u1ea5t<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>AMD<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>Lo\\u1ea1i CPU<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>D\\u00e0nh cho m\\u00e1y b\\u00e0n<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>Th\\u1ebf h\\u1ec7<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>Ryzen 7 7000 Series<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>T\\u00ean g\\u1ecdi<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>AMD&nbsp;Ryzen 7 7700X<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\">\\r\\n\\t\\t\\t<p><strong>CHI TI\\u1ebeT<\\/strong><\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>Socket<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>AM5<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>S\\u1ed1 nh\\u00e2n<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>8<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>S\\u1ed1 lu\\u1ed3ng<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>16<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>T\\u1ed1c \\u0111\\u1ed9 c\\u01a1 b\\u1ea3n<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>4.5GHz Upto 5.4GHz<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>Cache<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>512KB (L1) + 8MB (L2) +32MB (L3)<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>H\\u1ed7 tr\\u1ee3 b\\u1ed9 nh\\u1edb<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>DDR5 5200 MHz \\/ 3600 MHz<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>Phi\\u00ean b\\u1ea3n PCI Express<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>PCIe 5.0<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>TDP<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>105W<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>Ti\\u1ebfn tr\\u00ecnh s\\u1ea3n xu\\u1ea5t<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>TSMC 5nm<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t<\\/tbody>\\r\\n<\\/table>\\r\\n\\r\\n<hr \\/>\\r\\n<h3>N\\u00e2ng c\\u1ea5p s\\u1ee9c m\\u1ea1nh cho game th\\u1ee7<\\/h3>\\r\\n\\r\\n<p>Ryzen 7 7700X cung c\\u1ea5p s\\u1ee9c m\\u1ea1nh cho c\\u00e1c game \\u0111\\u00f2i h\\u1ecfi kh\\u1eaft khe v\\u1ec1 hi\\u1ec7u su\\u1ea5t, mang \\u0111\\u1ebfn m\\u1ed9t tr\\u1ea3i nghi\\u1ec7m nh\\u1eadp vai c\\u00f3 m\\u1ed9t kh\\u00f4ng hai v\\u00e0 th\\u1ed1ng tr\\u1ecb m\\u1ecdi t\\u00e1c v\\u1ee5 \\u0111a lu\\u1ed3ng nh\\u01b0 3D v\\u00e0 k\\u1ebft xu\\u1ea5t video c\\u0169ng nh\\u01b0 bi\\u00ean d\\u1ecbch ph\\u1ea7n m\\u1ec1m.<\\/p>\\r\\n\\r\\n<h3>C\\u1ea5u tr\\u00fac Zen 4 th\\u1ebf h\\u1ec7 m\\u1edbi<\\/h3>\\r\\n\\r\\n<p>\\u0110\\u01b0\\u1ee3c thi\\u1ebft k\\u1ebf v\\u1edbi ki\\u1ebfn tr\\u00fac \\\"Zen 4\\\" l\\u00e0 thi\\u1ebft k\\u1ebf th\\u1ebf h\\u1ec7 m\\u1edbi v\\u1edbi ti\\u1ebfn tr\\u00ecnh 5nm FinFET. \\u0110\\u01b0\\u1ee3c trang b\\u1ecb nh\\u1eefng c\\u1ea3i ti\\u1ebfn v\\u1ec1 thi\\u1ebft k\\u1ebf t\\u1eeb \\u0111\\u1ea7u \\u0111\\u1ebfn cu\\u1ed1i, Zen 4 c\\u1ee7a Ryzen 7 7700X mang \\u0111\\u1ebfn hi\\u1ec7u su\\u1ea5t c\\u1ef1c cao, gi\\u00fap ti\\u1ebft ki\\u1ec7m n\\u0103ng l\\u01b0\\u1ee3ng v\\u00e0 gi\\u1ea3m \\u0111\\u1ed9 tr\\u1ec5, \\u0111\\u00f3 l\\u00e0 c\\u1ed1t l\\u00f5i m\\u00e0 b\\u1ed9 vi x\\u1eed l\\u00fd mu\\u1ed1n mang \\u0111\\u1ebfn \\u0111\\u1ec3 b\\u1ea1n c\\u00f3 \\u0111\\u01b0\\u1ee3c tr\\u1ea3i nghi\\u1ec7m ch\\u01a1i game ho\\u00e0n h\\u1ea3o nh\\u1ea5t.<\\/p>\\r\\n\\r\\n<h3>C\\u1ea3i thi\\u1ec7n hi\\u1ec7u su\\u1ea5t<\\/h3>\\r\\n\\r\\n<p>CPU AMD Ryzen 7000 Series c\\u1ea3i thi\\u1ec7n hi\\u1ec7u su\\u1ea5t CPU v\\u1edbi xung c\\u00f3 th\\u1ec3 l\\u00ean \\u0111\\u1ebfn 5.7GHz gi\\u00fap c\\u1ea3i thi\\u1ec7n hi\\u1ec7u su\\u1ea5t nh\\u00e2n \\u0111\\u01a1n l\\u00ean \\u0111\\u1ebfn 29% so v\\u1edbi th\\u1ebf h\\u1ec7 CPU 5000 Series.<\\/p>\"},\"seo_title\":\"CPU AMD RYZEN 7 7700X | 4.5 GHZ UPTO 5.4GHZ | 40MB | 8 CORES| 16 THREADS | 105W | SOCKET AM5\",\"seo_keyword\":\"CPU AMD RYZEN 7 7700X | 4.5 GHZ UPTO 5.4GHZ | 40MB | 8 CORES| 16 THREADS | 105W | SOCKET AM5\",\"seo_description\":\"CPU AMD Ryzen 7000 Series c\\u1ea3i thi\\u1ec7n hi\\u1ec7u su\\u1ea5t CPU v\\u1edbi xung c\\u00f3 th\\u1ec3 l\\u00ean \\u0111\\u1ebfn 5.7GHz gi\\u00fap c\\u1ea3i thi\\u1ec7n hi\\u1ec7u su\\u1ea5t nh\\u00e2n \\u0111\\u01a1n l\\u00ean \\u0111\\u1ebfn 29% so v\\u1edbi th\\u1ebf h\\u1ec7 CPU 5000 Series.\"}', '/data/cms-image/TTECHBNCPUAMD -AM5 RYZEN 7 7700X.jpg', '/data/cms-image/TTECHBNCPUAMD -AM5 RYZEN 7 7700X.jpg', 0, 34, NULL, 'active', 3, 3, '2024-05-15 09:24:20', '2024-07-15 01:24:10', 'cpu-amd-ryzen-7-7700x-45-ghz-upto-54ghz-40mb-8-cores-16-threads-105w-socket-am5'),
-(477, 81, NULL, 'product', 'CPU AMD RYZEN 7 7800X3D | 4.2GHZ UP TO 5.0GHZ|105MB|8 CORES 16 THREADS|120W|SOCKET AM5', '{\"price\":\"10799000\",\"price_old\":\"13999000\",\"brief\":{\"vi\":\"<ul id=\\\"js-tskt-item\\\">\\r\\n\\t<li>CPU AMD Ryzen 7000 X3D Series m\\u1edbi<\\/li>\\r\\n\\t<li>S\\u1ed1 nh\\u00e2n: 8 nh\\u00e2n<\\/li>\\r\\n\\t<li>S\\u1ed1 lu\\u1ed3ng: 16 lu\\u1ed3ng<\\/li>\\r\\n\\t<li>Xung nh\\u1ecbp: 4.2Ghz (boost t\\u1ed1i \\u0111a 5.0 GHz)<\\/li>\\r\\n\\t<li>Total Cache: 104MB<\\/li>\\r\\n\\t<li>TDP: 120W<\\/li>\\r\\n\\t<li>H\\u1ed7 tr\\u1ee3 PCI-e 5.0<\\/li>\\r\\n\\t<li>C\\u00f3 h\\u1ed7 tr\\u1ee3 \\u00e9p xung<\\/li>\\r\\n\\t<li>C\\u00f4ng ngh\\u1ec7 h\\u1ed7 tr\\u1ee3: AMD \\\"Zen 4\\\" Core Architecture<\\/li>\\r\\n<\\/ul>\"},\"content\":{\"vi\":\"<table width=\\\"537\\\">\\r\\n\\t<tbody>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\" width=\\\"537\\\">TH\\u00d4NG S\\u1ed0 C\\u01a0 B\\u1ea2N<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">H\\u00e3ng s\\u1ea3n xu\\u1ea5t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">AMD<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Lo\\u1ea1i CPU<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">D\\u00e0nh cho m\\u00e1y b\\u00e0n<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Th\\u1ebf h\\u1ec7<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">Ryzen 7 7000 Series<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">T\\u00ean g\\u1ecdi<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">AMD&nbsp;Ryzen 7 7800X3D<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\" width=\\\"537\\\">CHI TI\\u1ebeT<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Socket<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">AM5<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">S\\u1ed1 nh\\u00e2n<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">8<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">S\\u1ed1 lu\\u1ed3ng<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">15<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">T\\u1ed1c \\u0111\\u1ed9 c\\u01a1 b\\u1ea3n<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">4.2GHz Upto 5.0GHz<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Cache<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">512KB (L1) + 8MB (L2) + 96MB (L3)<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">H\\u1ed7 tr\\u1ee3 b\\u1ed9 nh\\u1edb<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">DDR5 5200 MHz \\/ 3600 MHz<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Phi\\u00ean b\\u1ea3n PCI Express<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">PCIe 5.0<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">TDP<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">120W<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Ti\\u1ebfn tr\\u00ecnh s\\u1ea3n xu\\u1ea5t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">TSMC 5nm<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>T\\u1ed1c \\u0111\\u1ed9 GPU<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">Graphics Model: AMD Radeon\\u2122 Graphics<br \\/>\\r\\n\\t\\t\\tGraphics Core Count: 2<br \\/>\\r\\n\\t\\t\\tGraphics Frequency: 2200 MHz<br \\/>\\r\\n\\t\\t\\tGPU Base: 400 MHz<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t<\\/tbody>\\r\\n<\\/table>\\r\\n\\r\\n<hr \\/>\\r\\n<p>Th\\u1ebf h\\u1ec7&nbsp;Ryzen 7000 Series&nbsp;t\\u00e2n ti\\u1ebfn t\\u1eeb AMD s\\u1edf h\\u1eefu cho m\\u00ecnh nh\\u1eefng c\\u00e1i t\\u00ean c\\u1ef1c k\\u00ec ch\\u1ea5t l\\u01b0\\u1ee3ng d\\u00e0nh cho kh\\u1ea3 n\\u0103ng x\\u1eed l\\u00fd m\\u1ea1nh m\\u1ebd khi c\\u1ea1nh tranh tr\\u1ef1c ti\\u1ebfp v\\u1edbi \\u201c\\u0111\\u1ed1i th\\u1ee7\\u201d&nbsp;Intel Gen 13. V\\u00e0 v\\u1edbi nhu c\\u1ea7u s\\u1eed d\\u1ee5ng cho c\\u00f4ng vi\\u1ec7c \\u0111\\u1ed3 h\\u1ecda 3D th\\u00ec&nbsp;<strong>Ryzen 7 7800X3D<\\/strong>&nbsp;th\\u1ec3 hi\\u1ec7n s\\u1ee9c m\\u1ea1nh tuy\\u1ec7t v\\u1eddi, bi\\u1ebfn m\\u00ecnh tr\\u1edf th\\u00e0nh m\\u1ed9t trong nh\\u1eefng l\\u1ef1a ch\\u1ecdn t\\u1ed1t nh\\u1ea5t cho PC \\u0111\\u1ed3 h\\u1ecda.<\\/p>\\r\\n\\r\\n<p><strong>C\\u1ea5u h\\u00ecnh m\\u1ea1nh m\\u1ebd cho m\\u1ecdi t\\u00e1c v\\u1ee5<\\/strong><\\/p>\\r\\n\\r\\n<p>Trang b\\u1ecb tr\\u00ean m\\u00ecnh 8 nh\\u00e2n 16 lu\\u1ed3ng v\\u1edbi xung nh\\u1ecbp t\\u1ed1i \\u0111a \\u0111\\u1ea1t m\\u1ee9c con s\\u1ed1 5.0GHz, AMD Ryzen 7 7800X3D \\u0111\\u1ee7 s\\u1ee9c \\u0111\\u1ea3m nhi\\u1ec7m kh\\u1ea3 n\\u0103ng x\\u1eed l\\u00fd l\\u00fd t\\u01b0\\u1edfng cho m\\u1ecdi c\\u00f4ng vi\\u1ec7c \\u0111\\u01b0\\u1ee3c giao. T\\u1eeb nh\\u1eefng t\\u00e1c v\\u1ee5 chuy\\u00ean nghi\\u1ec7p li\\u00ean quan \\u0111\\u1ebfn \\u0111\\u1ed3 h\\u1ecda nh\\u01b0 render \\u0111\\u1ebfn kh\\u1ea3 n\\u0103ng gi\\u1ea3i tr\\u00ed c\\u00f9ng nh\\u1eefng t\\u1ef1a game AAA \\u0111\\u1ec1u \\u0111\\u01b0\\u1ee3c&nbsp;CPU AMD&nbsp;x\\u1eed tr\\u00ed g\\u1ecdn g\\u00e0ng v\\u00e0 t\\u1ed1c \\u0111\\u1ed9, t\\u1ea1o n\\u00ean m\\u1ed9t combo ho\\u00e0n h\\u1ea3o t\\u1ea1o n\\u00ean nh\\u1eefng b\\u1ed9&nbsp;PC AMD&nbsp;hay&nbsp;m\\u00e1y t\\u00ednh \\u0111\\u1ed3 h\\u1ecda&nbsp;l\\u00fd t\\u01b0\\u1edfng nh\\u1ea5t \\u0111\\u1ebfn v\\u1edbi ng\\u01b0\\u1eddi d\\u00f9ng.<\\/p>\\r\\n\\r\\n<h3><strong>S\\u1edf h\\u1eefu nh\\u1eefng c\\u00f4ng ngh\\u1ec7 t\\u00e2n ti\\u1ebfn<\\/strong><\\/h3>\\r\\n\\r\\n<p>V\\u1edbi n\\u1ec1n t\\u1ea3ng l\\u00e0 ki\\u1ebfn tr\\u00fac TSMC 5nm FinFET, AMD Ryzen 7 7800X3D s\\u1edf h\\u1eefu cho m\\u00ecnh nh\\u1eefng c\\u00f4ng ngh\\u1ec7 x\\u1eed l\\u00fd \\u0111\\u1ec9nh cao.&nbsp;AMD EXPO&nbsp;c\\u00f9ng kh\\u1ea3 n\\u0103ng t\\u0103ng c\\u01b0\\u1eddng hi\\u1ec7u qu\\u1ea3 khi \\u00e9p xung, \\u0111\\u1ea9y m\\u1ee9c hi\\u1ec7u n\\u0103ng x\\u1eed l\\u00fd l\\u00ean t\\u1ed1i \\u0111a c\\u00f9ng nh\\u1eefng kit&nbsp;RAM&nbsp;cao c\\u1ea5p. Hay \\u0111\\u00f3 ch\\u00ednh l\\u00e0 kh\\u1ea3 n\\u0103ng x\\u1eed l\\u00fd v\\u00e0 \\u0111\\u1ed3ng b\\u1ed9 h\\u00f3a tuy\\u1ec7t v\\u1eddi c\\u00f9ng nh\\u1eefng linh ki\\u1ec7n m\\u00e1y t\\u00ednh AMD nh\\u01b0&nbsp;CPU,&nbsp;card m\\u00e0n h\\u00ecnh. V\\u00e0 kh\\u00f4ng k\\u00e9m ph\\u1ea7n \\u0111\\u1ec9nh cao c\\u00f9ng AMD 3D V-Cache gi\\u00fap cho AMD Ryzen 7 7800X3D t\\u1ef1 tin th\\u00eam ph\\u1ea7n x\\u1eed l\\u00fd nh\\u1eefng t\\u00e1c v\\u1ee5 \\u0111\\u1ec9nh cao c\\u00f9ng n\\u1ec1n \\u0111\\u1ed3 h\\u1ecda ph\\u00e1t tri\\u1ec3n hi\\u1ec7n nay.<\\/p>\\r\\n\\r\\n<h3><strong>T\\u01b0\\u01a1ng th\\u00edch c\\u00f9ng nh\\u1eefng linh ki\\u1ec7n ti\\u00ean ti\\u1ebfn<\\/strong><\\/h3>\\r\\n\\r\\n<p>\\u0110\\u1ec3 t\\u01b0\\u01a1ng x\\u1ee9ng c\\u00f9ng s\\u1ee9c m\\u1ea1nh \\u0111\\u00e1ng m\\u01a1 \\u01b0\\u1edbc c\\u1ee7a m\\u00ecnh, AMD Ryzen 7 7800X3D c\\u00f9ng n\\u1ec1n t\\u1ea3ng ti\\u00ean ti\\u1ebfn t\\u1ea1o n\\u00ean kh\\u1ea3 n\\u0103ng k\\u1ebft h\\u1ee3p tuy\\u1ec7t v\\u1eddi. Socket AM5 t\\u1ea1o n\\u00ean \\u201cc\\u00e1nh c\\u1ed5ng 2 chi\\u1ec1u\\u201d c\\u00f9ng nh\\u1eefng&nbsp;mainboard&nbsp;cao c\\u1ea5p nh\\u01b0&nbsp;B650,&nbsp;X670&nbsp;\\u0111\\u1ec3 khai th\\u00e1c to\\u00e0n b\\u1ed9 hi\\u1ec7u n\\u0103ng cho to\\u00e0n b\\u1ed9 d\\u00e0n PC. Hay \\u0111\\u00f3 l\\u00e0 kh\\u1ea3 n\\u0103ng t\\u01b0\\u01a1ng th\\u00edch v\\u1edbi kh\\u1ea3 n\\u0103ng \\u0111a t\\u00e1c v\\u1ee5 t\\u1eeb th\\u1ebf h\\u1ec7&nbsp;RAM DDR5&nbsp;si\\u00eau c\\u1ea5p. T\\u1ea5t c\\u1ea3 c\\u00f9ng nhau t\\u1ea1o n\\u00ean nh\\u1eefng c\\u1ea5u h\\u00ecnh m\\u00e1y t\\u00ednh \\u0111\\u1ed3 hay&nbsp;PC Gaming&nbsp;m\\u1ea1nh m\\u1ebd nh\\u1ea5t c\\u00f9ng AMD.<\\/p>\"},\"seo_title\":\"CPU AMD RYZEN 7 7800X3D | 4.2GHZ UP TO 5.0GHZ|105MB|8 CORES 16 THREADS|120W|SOCKET AM5\",\"seo_keyword\":\"CPU AMD RYZEN 7 7800X3D | 4.2GHZ UP TO 5.0GHZ|105MB|8 CORES 16 THREADS|120W|SOCKET AM5\",\"seo_description\":\"Ryzen 7 7800X3D\\u00a0th\\u1ec3 hi\\u1ec7n s\\u1ee9c m\\u1ea1nh tuy\\u1ec7t v\\u1eddi, bi\\u1ebfn m\\u00ecnh tr\\u1edf th\\u00e0nh m\\u1ed9t trong nh\\u1eefng l\\u1ef1a ch\\u1ecdn t\\u1ed1t nh\\u1ea5t cho PC \\u0111\\u1ed3 h\\u1ecda.\"}', '/data/cms-image/TTECHBNCPUAMD -AM5 RYZEN 7 7800X3D.jpg', '/data/cms-image/TTECHBNCPUAMD -AM5 RYZEN 7 7800X3D.jpg', 0, 42, NULL, 'active', 3, 3, '2024-05-15 09:27:23', '2024-07-17 00:52:06', 'cpu-amd-ryzen-7-7800x3d-42ghz-up-to-50ghz105mb8-cores-16-threads120wsocket-am5'),
+(477, 81, NULL, 'product', 'CPU AMD RYZEN 7 7800X3D | 4.2GHZ UP TO 5.0GHZ|105MB|8 CORES 16 THREADS|120W|SOCKET AM5', '{\"price\":\"10799000\",\"price_old\":\"13999000\",\"brief\":{\"vi\":\"<ul id=\\\"js-tskt-item\\\">\\r\\n\\t<li>CPU AMD Ryzen 7000 X3D Series m\\u1edbi<\\/li>\\r\\n\\t<li>S\\u1ed1 nh\\u00e2n: 8 nh\\u00e2n<\\/li>\\r\\n\\t<li>S\\u1ed1 lu\\u1ed3ng: 16 lu\\u1ed3ng<\\/li>\\r\\n\\t<li>Xung nh\\u1ecbp: 4.2Ghz (boost t\\u1ed1i \\u0111a 5.0 GHz)<\\/li>\\r\\n\\t<li>Total Cache: 104MB<\\/li>\\r\\n\\t<li>TDP: 120W<\\/li>\\r\\n\\t<li>H\\u1ed7 tr\\u1ee3 PCI-e 5.0<\\/li>\\r\\n\\t<li>C\\u00f3 h\\u1ed7 tr\\u1ee3 \\u00e9p xung<\\/li>\\r\\n\\t<li>C\\u00f4ng ngh\\u1ec7 h\\u1ed7 tr\\u1ee3: AMD \\\"Zen 4\\\" Core Architecture<\\/li>\\r\\n<\\/ul>\"},\"content\":{\"vi\":\"<table width=\\\"537\\\">\\r\\n\\t<tbody>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\" width=\\\"537\\\">TH\\u00d4NG S\\u1ed0 C\\u01a0 B\\u1ea2N<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">H\\u00e3ng s\\u1ea3n xu\\u1ea5t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">AMD<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Lo\\u1ea1i CPU<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">D\\u00e0nh cho m\\u00e1y b\\u00e0n<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Th\\u1ebf h\\u1ec7<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">Ryzen 7 7000 Series<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">T\\u00ean g\\u1ecdi<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">AMD&nbsp;Ryzen 7 7800X3D<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\" width=\\\"537\\\">CHI TI\\u1ebeT<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Socket<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">AM5<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">S\\u1ed1 nh\\u00e2n<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">8<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">S\\u1ed1 lu\\u1ed3ng<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">15<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">T\\u1ed1c \\u0111\\u1ed9 c\\u01a1 b\\u1ea3n<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">4.2GHz Upto 5.0GHz<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Cache<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">512KB (L1) + 8MB (L2) + 96MB (L3)<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">H\\u1ed7 tr\\u1ee3 b\\u1ed9 nh\\u1edb<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">DDR5 5200 MHz \\/ 3600 MHz<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Phi\\u00ean b\\u1ea3n PCI Express<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">PCIe 5.0<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">TDP<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">120W<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Ti\\u1ebfn tr\\u00ecnh s\\u1ea3n xu\\u1ea5t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">TSMC 5nm<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>T\\u1ed1c \\u0111\\u1ed9 GPU<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">Graphics Model: AMD Radeon\\u2122 Graphics<br \\/>\\r\\n\\t\\t\\tGraphics Core Count: 2<br \\/>\\r\\n\\t\\t\\tGraphics Frequency: 2200 MHz<br \\/>\\r\\n\\t\\t\\tGPU Base: 400 MHz<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t<\\/tbody>\\r\\n<\\/table>\\r\\n\\r\\n<hr \\/>\\r\\n<p>Th\\u1ebf h\\u1ec7&nbsp;Ryzen 7000 Series&nbsp;t\\u00e2n ti\\u1ebfn t\\u1eeb AMD s\\u1edf h\\u1eefu cho m\\u00ecnh nh\\u1eefng c\\u00e1i t\\u00ean c\\u1ef1c k\\u00ec ch\\u1ea5t l\\u01b0\\u1ee3ng d\\u00e0nh cho kh\\u1ea3 n\\u0103ng x\\u1eed l\\u00fd m\\u1ea1nh m\\u1ebd khi c\\u1ea1nh tranh tr\\u1ef1c ti\\u1ebfp v\\u1edbi \\u201c\\u0111\\u1ed1i th\\u1ee7\\u201d&nbsp;Intel Gen 13. V\\u00e0 v\\u1edbi nhu c\\u1ea7u s\\u1eed d\\u1ee5ng cho c\\u00f4ng vi\\u1ec7c \\u0111\\u1ed3 h\\u1ecda 3D th\\u00ec&nbsp;<strong>Ryzen 7 7800X3D<\\/strong>&nbsp;th\\u1ec3 hi\\u1ec7n s\\u1ee9c m\\u1ea1nh tuy\\u1ec7t v\\u1eddi, bi\\u1ebfn m\\u00ecnh tr\\u1edf th\\u00e0nh m\\u1ed9t trong nh\\u1eefng l\\u1ef1a ch\\u1ecdn t\\u1ed1t nh\\u1ea5t cho PC \\u0111\\u1ed3 h\\u1ecda.<\\/p>\\r\\n\\r\\n<p><strong>C\\u1ea5u h\\u00ecnh m\\u1ea1nh m\\u1ebd cho m\\u1ecdi t\\u00e1c v\\u1ee5<\\/strong><\\/p>\\r\\n\\r\\n<p>Trang b\\u1ecb tr\\u00ean m\\u00ecnh 8 nh\\u00e2n 16 lu\\u1ed3ng v\\u1edbi xung nh\\u1ecbp t\\u1ed1i \\u0111a \\u0111\\u1ea1t m\\u1ee9c con s\\u1ed1 5.0GHz, AMD Ryzen 7 7800X3D \\u0111\\u1ee7 s\\u1ee9c \\u0111\\u1ea3m nhi\\u1ec7m kh\\u1ea3 n\\u0103ng x\\u1eed l\\u00fd l\\u00fd t\\u01b0\\u1edfng cho m\\u1ecdi c\\u00f4ng vi\\u1ec7c \\u0111\\u01b0\\u1ee3c giao. T\\u1eeb nh\\u1eefng t\\u00e1c v\\u1ee5 chuy\\u00ean nghi\\u1ec7p li\\u00ean quan \\u0111\\u1ebfn \\u0111\\u1ed3 h\\u1ecda nh\\u01b0 render \\u0111\\u1ebfn kh\\u1ea3 n\\u0103ng gi\\u1ea3i tr\\u00ed c\\u00f9ng nh\\u1eefng t\\u1ef1a game AAA \\u0111\\u1ec1u \\u0111\\u01b0\\u1ee3c&nbsp;CPU AMD&nbsp;x\\u1eed tr\\u00ed g\\u1ecdn g\\u00e0ng v\\u00e0 t\\u1ed1c \\u0111\\u1ed9, t\\u1ea1o n\\u00ean m\\u1ed9t combo ho\\u00e0n h\\u1ea3o t\\u1ea1o n\\u00ean nh\\u1eefng b\\u1ed9&nbsp;PC AMD&nbsp;hay&nbsp;m\\u00e1y t\\u00ednh \\u0111\\u1ed3 h\\u1ecda&nbsp;l\\u00fd t\\u01b0\\u1edfng nh\\u1ea5t \\u0111\\u1ebfn v\\u1edbi ng\\u01b0\\u1eddi d\\u00f9ng.<\\/p>\\r\\n\\r\\n<h3><strong>S\\u1edf h\\u1eefu nh\\u1eefng c\\u00f4ng ngh\\u1ec7 t\\u00e2n ti\\u1ebfn<\\/strong><\\/h3>\\r\\n\\r\\n<p>V\\u1edbi n\\u1ec1n t\\u1ea3ng l\\u00e0 ki\\u1ebfn tr\\u00fac TSMC 5nm FinFET, AMD Ryzen 7 7800X3D s\\u1edf h\\u1eefu cho m\\u00ecnh nh\\u1eefng c\\u00f4ng ngh\\u1ec7 x\\u1eed l\\u00fd \\u0111\\u1ec9nh cao.&nbsp;AMD EXPO&nbsp;c\\u00f9ng kh\\u1ea3 n\\u0103ng t\\u0103ng c\\u01b0\\u1eddng hi\\u1ec7u qu\\u1ea3 khi \\u00e9p xung, \\u0111\\u1ea9y m\\u1ee9c hi\\u1ec7u n\\u0103ng x\\u1eed l\\u00fd l\\u00ean t\\u1ed1i \\u0111a c\\u00f9ng nh\\u1eefng kit&nbsp;RAM&nbsp;cao c\\u1ea5p. Hay \\u0111\\u00f3 ch\\u00ednh l\\u00e0 kh\\u1ea3 n\\u0103ng x\\u1eed l\\u00fd v\\u00e0 \\u0111\\u1ed3ng b\\u1ed9 h\\u00f3a tuy\\u1ec7t v\\u1eddi c\\u00f9ng nh\\u1eefng linh ki\\u1ec7n m\\u00e1y t\\u00ednh AMD nh\\u01b0&nbsp;CPU,&nbsp;card m\\u00e0n h\\u00ecnh. V\\u00e0 kh\\u00f4ng k\\u00e9m ph\\u1ea7n \\u0111\\u1ec9nh cao c\\u00f9ng AMD 3D V-Cache gi\\u00fap cho AMD Ryzen 7 7800X3D t\\u1ef1 tin th\\u00eam ph\\u1ea7n x\\u1eed l\\u00fd nh\\u1eefng t\\u00e1c v\\u1ee5 \\u0111\\u1ec9nh cao c\\u00f9ng n\\u1ec1n \\u0111\\u1ed3 h\\u1ecda ph\\u00e1t tri\\u1ec3n hi\\u1ec7n nay.<\\/p>\\r\\n\\r\\n<h3><strong>T\\u01b0\\u01a1ng th\\u00edch c\\u00f9ng nh\\u1eefng linh ki\\u1ec7n ti\\u00ean ti\\u1ebfn<\\/strong><\\/h3>\\r\\n\\r\\n<p>\\u0110\\u1ec3 t\\u01b0\\u01a1ng x\\u1ee9ng c\\u00f9ng s\\u1ee9c m\\u1ea1nh \\u0111\\u00e1ng m\\u01a1 \\u01b0\\u1edbc c\\u1ee7a m\\u00ecnh, AMD Ryzen 7 7800X3D c\\u00f9ng n\\u1ec1n t\\u1ea3ng ti\\u00ean ti\\u1ebfn t\\u1ea1o n\\u00ean kh\\u1ea3 n\\u0103ng k\\u1ebft h\\u1ee3p tuy\\u1ec7t v\\u1eddi. Socket AM5 t\\u1ea1o n\\u00ean \\u201cc\\u00e1nh c\\u1ed5ng 2 chi\\u1ec1u\\u201d c\\u00f9ng nh\\u1eefng&nbsp;mainboard&nbsp;cao c\\u1ea5p nh\\u01b0&nbsp;B650,&nbsp;X670&nbsp;\\u0111\\u1ec3 khai th\\u00e1c to\\u00e0n b\\u1ed9 hi\\u1ec7u n\\u0103ng cho to\\u00e0n b\\u1ed9 d\\u00e0n PC. Hay \\u0111\\u00f3 l\\u00e0 kh\\u1ea3 n\\u0103ng t\\u01b0\\u01a1ng th\\u00edch v\\u1edbi kh\\u1ea3 n\\u0103ng \\u0111a t\\u00e1c v\\u1ee5 t\\u1eeb th\\u1ebf h\\u1ec7&nbsp;RAM DDR5&nbsp;si\\u00eau c\\u1ea5p. T\\u1ea5t c\\u1ea3 c\\u00f9ng nhau t\\u1ea1o n\\u00ean nh\\u1eefng c\\u1ea5u h\\u00ecnh m\\u00e1y t\\u00ednh \\u0111\\u1ed3 hay&nbsp;PC Gaming&nbsp;m\\u1ea1nh m\\u1ebd nh\\u1ea5t c\\u00f9ng AMD.<\\/p>\"},\"seo_title\":\"CPU AMD RYZEN 7 7800X3D | 4.2GHZ UP TO 5.0GHZ|105MB|8 CORES 16 THREADS|120W|SOCKET AM5\",\"seo_keyword\":\"CPU AMD RYZEN 7 7800X3D | 4.2GHZ UP TO 5.0GHZ|105MB|8 CORES 16 THREADS|120W|SOCKET AM5\",\"seo_description\":\"Ryzen 7 7800X3D\\u00a0th\\u1ec3 hi\\u1ec7n s\\u1ee9c m\\u1ea1nh tuy\\u1ec7t v\\u1eddi, bi\\u1ebfn m\\u00ecnh tr\\u1edf th\\u00e0nh m\\u1ed9t trong nh\\u1eefng l\\u1ef1a ch\\u1ecdn t\\u1ed1t nh\\u1ea5t cho PC \\u0111\\u1ed3 h\\u1ecda.\"}', '/data/cms-image/TTECHBNCPUAMD -AM5 RYZEN 7 7800X3D.jpg', '/data/cms-image/TTECHBNCPUAMD -AM5 RYZEN 7 7800X3D.jpg', 0, 43, NULL, 'active', 3, 3, '2024-05-15 09:27:23', '2024-07-19 03:52:22', 'cpu-amd-ryzen-7-7800x3d-42ghz-up-to-50ghz105mb8-cores-16-threads120wsocket-am5'),
 (478, 81, NULL, 'product', 'CPU AMD RYZEN 7 8700G 4.2GHZ UPTO 5.1GHZ | 24MB | 8 CORES| 16 THREADS | 65W | SOCKET AM5', '{\"price\":\"9599000\",\"price_old\":\"10999000\",\"brief\":{\"vi\":\"<ul id=\\\"js-tskt-item\\\">\\r\\n\\t<li>S\\u1ed1 nh\\u00e2n, s\\u1ed1 lu\\u1ed3ng: 8 nh\\u00e2n 16 lu\\u1ed3ng<\\/li>\\r\\n\\t<li>Xung nh\\u1ecbp CPU: 4.2 \\u2013 5.1 GHz<\\/li>\\r\\n\\t<li>B\\u1ed9 nh\\u1edb Cache (L2+L3): 24 MB<\\/li>\\r\\n\\t<li>TDP: 65W<\\/li>\\r\\n\\t<li>Ki\\u1ebfn tr\\u00fac: Zen 4<\\/li>\\r\\n\\t<li>Bus ram h\\u1ed7 tr\\u1ee3: Up to 5200MT\\/s<\\/li>\\r\\n\\t<li>Card \\u0111\\u1ed3 h\\u1ecda: T\\u00edch h\\u1ee3p s\\u1eb5n AMD Radeon\\u2122 780M<\\/li>\\r\\n<\\/ul>\"},\"content\":{\"vi\":\"<table width=\\\"985\\\">\\r\\n\\t<tbody>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">H\\u00e3ng s\\u1ea3n xu\\u1ea5t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">AMD<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Lo\\u1ea1i CPU<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">D\\u00e0nh cho m\\u00e1y b\\u00e0n<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Th\\u1ebf h\\u1ec7<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">Ryzen 7 8000 Series<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">T\\u00ean g\\u1ecdi<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">AMD Ryzen 7 8700G<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\" width=\\\"985\\\">CHI TI\\u1ebeT<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Socket<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">AM5<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">S\\u1ed1 nh\\u00e2n<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">8 Cores<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">S\\u1ed1 lu\\u1ed3ng<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">16 Cores<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">T\\u1ed1c \\u0111\\u1ed9 c\\u01a1 b\\u1ea3n<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">4.2GHz Upto 5.1GHz<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Cache<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">24MB<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">H\\u1ed7 tr\\u1ee3 b\\u1ed9 nh\\u1edb<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">Max Memory Speed<br \\/>\\r\\n\\t\\t\\t2x1R:DDR5-5200<br \\/>\\r\\n\\t\\t\\t2x2R: DDR5-5200<br \\/>\\r\\n\\t\\t\\t4X1R: DDR5-3600<br \\/>\\r\\n\\t\\t\\t4x2R: DDR5-3600<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Nh\\u00e2n \\u0111\\u1ed3 h\\u1ecda<\\/td>\\r\\n\\t\\t\\t<td>AMD Radeon\\u2122 780M<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Phi\\u00ean b\\u1ea3n PCI Express<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">PCIe 4.0<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">TDP<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">65W<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Ti\\u1ebfn tr\\u00ecnh s\\u1ea3n xu\\u1ea5t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"765\\\">TSMC 4nm<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t<\\/tbody>\\r\\n<\\/table>\\r\\n\\r\\n<hr \\/>\\r\\n<p>B\\u1ed9 vi x\\u1eed l\\u00fd&nbsp;n\\u00e0y l\\u00e0 m\\u1ed9t trong nh\\u1eefng s\\u1ea3n ph\\u1ea9m ph\\u00f9 h\\u1ee3p cho \\u0111\\u1ed1i t\\u01b0\\u1ee3ng ng\\u01b0\\u1eddi ti\\u00eau d\\u00f9ng ph\\u1ed5 th\\u00f4ng v\\u00e0 kh\\u00f4ng qu\\u00e1 b\\u1eadn t\\u00e2m b\\u1edfi&nbsp;card \\u0111\\u1ed3 h\\u1ecda&nbsp;r\\u1eddi. &nbsp;AMD Ryzen 7 8700G \\u0111\\u01b0\\u1ee3c thi\\u1ebft k\\u1ebf ho\\u00e0n to\\u00e0n \\u0111\\u1ee7 kh\\u1ea3 n\\u0103ng \\u0111\\u1ec3 chinh chi\\u1ebfn h\\u1ea7u h\\u1ebft c\\u00e1c t\\u1ef1a game 1080p \\u1edf m\\u1ee9c kh\\u00e1 \\u1ed5n,&nbsp;kh\\u1ea3 n\\u0103ng thi\\u1ebft k\\u1ebf&nbsp;\\u0111\\u1ed3 h\\u1ecda \\u1edf m\\u1ee9c \\u1ed5n. B\\u00e2y gi\\u1edd h\\u00e3y c\\u00f9ng t\\u00ecm hi\\u1ec3u s\\u00e2u h\\u01a1n v\\u1ec1 chi\\u1ebfc linh ki\\u1ec7n n\\u00e0y.<\\/p>\\r\\n\\r\\n<h3><strong>Hi\\u1ec7u n\\u0103ng x\\u1eed l\\u00fd \\u1ea5n t\\u01b0\\u1ee3ng&nbsp;<\\/strong><\\/h3>\\r\\n\\r\\n<p>\\u0110\\u01b0\\u1ee3c c\\u1ea5u t\\u1ea1o b\\u1edfi 8 nh\\u00e2n 16 lu\\u1ed3ng cho m\\u1ed9t xung nh\\u1ecbp trong kho\\u1ea3ng 4.2GHz - 5.1GHz (Overclocking), v\\u1edbi t\\u1ed5ng dung l\\u01b0\\u1ee3ng b\\u1ed9 nh\\u1edb cache l\\u00ean \\u0111\\u1ebfn 24MB n\\u00ean&nbsp;b\\u1ed9 vi x\\u1eed l\\u00fd n\\u00e0y cho m\\u1ed9t t\\u1ed1c \\u0111\\u1ed9 t\\u1ed5ng th\\u1ec3 kh\\u00e1 nhanh m\\u00e0 b\\u1ea1n c\\u00f3 th\\u1ec3 c\\u1ea3m nh\\u1eadn \\u0111\\u01b0\\u1ee3c \\u0111\\u1ed3ng th\\u1eddi \\u0111\\u00e1p \\u1ee9ng&nbsp;kh\\u1ea3 n\\u0103ng x\\u1eed l\\u00fd \\u0111\\u1ed3 h\\u1ecda c\\u0169ng \\u0111\\u01b0\\u1ee3c m\\u01b0\\u1ee3t m\\u00e0.<\\/p>\\r\\n\\r\\n<h3><strong>H\\u1ed7 tr\\u1ee3 \\u0111\\u1ed3 h\\u1ecda \\u1ed5n \\u00e1p<\\/strong><\\/h3>\\r\\n\\r\\n<p>Nh\\u01b0 \\u0111\\u01b0\\u1ee3c gi\\u1edbi thi\\u1ec7u khi ra m\\u1eaft AMD Ryzen 7 8700G n\\u00e0y t\\u00edch h\\u1ee3p kh\\u1ea3 n\\u0103ng h\\u1ed7 tr\\u1ee3 \\u0111\\u1ed3 h\\u1ecda kh\\u00e1 t\\u1ed1t cho ng\\u01b0\\u1eddi d\\u00f9ng ph\\u1ed5 th\\u00f4ng v\\u00e0 c\\u00f3 th\\u1ec3 th\\u1ea5y n\\u00f3 s\\u1edf h\\u1eefu 12 nh\\u00e2n \\u0111\\u1ed3 h\\u1ecda cung c\\u1ea5p xung nh\\u1ecbp \\u0111\\u1ed3 h\\u1ecda l\\u00ean \\u0111\\u1ebfn 2900MHz.&nbsp;Ngo\\u00e0i ra, AMD Ryzen 7 8700G c\\u00f2n \\u0111\\u01b0\\u1ee3c trang b\\u1ecb GPU Radeon 780M, lo\\u1ea1i t\\u1ed1t nh\\u1ea5t trong ph\\u00e2n kh\\u00fac n\\u00ean b\\u1ea1n ho\\u00e0n to\\u00e0n c\\u00f3 th\\u1ec3 tr\\u1ea3i tr\\u1ea3i nghi\\u1ec7m&nbsp;game \\u1edf ch\\u1ebf \\u0111\\u1ed9 1080P.<\\/p>\\r\\n\\r\\n<h3><strong>H\\u1ed7 tr\\u1ee3 ho\\u1ea1t \\u0111\\u1ed9ng c\\u1ee7a AI &nbsp;<\\/strong><\\/h3>\\r\\n\\r\\n<p>\\u0110\\u01b0\\u1ee3c trang b\\u1ecb c\\u00f4ng ngh\\u1ec7 AMD Ryzen AI, bao g\\u1ed3m c\\u00f4ng ngh\\u1ec7 NPU \\u0111\\u1ea7u ti\\u00ean tr\\u00ean b\\u1ed9 x\\u1eed l\\u00fd m\\u00e1y t\\u00ednh \\u0111\\u1ec3 b\\u00e0n. N\\u00f3 c\\u00f3 th\\u1ec3 t\\u0103ng t\\u1ed1c \\u0111\\u1ed9 ch\\u1ea1y ph\\u1ea7n m\\u1ec1m AI tr\\u00ean m\\u00e1y t\\u00ednh m\\u1ed9t c\\u00e1ch nhanh ch\\u00f3ng v\\u00e0 \\u0111a nhi\\u1ec7m. T\\u1ed1i \\u01b0u h\\u00f3a kh\\u1ed1i l\\u01b0\\u1ee3ng c\\u00f4ng vi\\u1ec7c AI, c\\u1ea3i thi\\u1ec7n hi\\u1ec7u su\\u1ea5t x\\u1eed l\\u00fd AI v\\u00e0 m\\u1edf kh\\u00f3a nh\\u1eefng tr\\u1ea3i nghi\\u1ec7m nh\\u01b0 kh\\u1eed ti\\u1ebfng \\u1ed3n do AI cung c\\u1ea5p.<\\/p>\\r\\n\\r\\n<p>T\\u00f3m l\\u1ea1i,&nbsp;Ryzen 7 8700G&nbsp;l\\u00e0 s\\u1ef1 l\\u1ef1a ch\\u1ecdn ho\\u00e0n h\\u1ea3o cho game th\\u1ee7 th\\u00f4ng th\\u01b0\\u1eddng ho\\u1eb7c nh\\u1eefng ng\\u01b0\\u1eddi c\\u00f3 ng\\u00e2n s\\u00e1ch eo h\\u1eb9p. N\\u00f3 mang l\\u1ea1i hi\\u1ec7u n\\u0103ng \\u1ea5n t\\u01b0\\u1ee3ng v\\u00e0 t\\u00ednh n\\u0103ng ti\\u00ean ti\\u1ebfn nh\\u01b0 c\\u00f4ng ngh\\u1ec7 Precision Boost, t\\u1ef1 \\u0111\\u1ed9ng \\u0111i\\u1ec1u ch\\u1ec9nh t\\u1ed1c \\u0111\\u1ed9 xung nh\\u1ecbp \\u0111\\u1ec3 t\\u1ed1i \\u01b0u h\\u00f3a hi\\u1ec7u su\\u1ea5t d\\u1ef1a tr\\u00ean y\\u00eau c\\u1ea7u c\\u1ee7a t\\u1eebng c\\u00f4ng vi\\u1ec7c. Ngo\\u00e0i ra, hi\\u1ec7u qu\\u1ea3 s\\u1eed d\\u1ee5ng n\\u0103ng l\\u01b0\\u1ee3ng c\\u1ee7a n\\u00f3 gi\\u00fap ki\\u1ec3m so\\u00e1t m\\u1ee9c ti\\u00eau th\\u1ee5 \\u0111i\\u1ec7n n\\u0103ng, gi\\u1ea3m chi ph\\u00ed v\\u1ec1 nhi\\u1ec7t \\u0111\\u1ed9 v\\u00e0 \\u0111i\\u1ec7n n\\u0103ng.<\\/p>\"},\"seo_title\":\"CPU AMD RYZEN 7 8700G 4.2GHZ UPTO 5.1GHZ | 24MB | 8 CORES| 16 THREADS | 65W | SOCKET AM5\",\"seo_keyword\":\"CPU AMD RYZEN 7 8700G 4.2GHZ UPTO 5.1GHZ | 24MB | 8 CORES| 16 THREADS | 65W | SOCKET AM5\",\"seo_description\":\"\\u00a0Ryzen 7 8700G\\u00a0l\\u00e0 s\\u1ef1 l\\u1ef1a ch\\u1ecdn ho\\u00e0n h\\u1ea3o cho game th\\u1ee7 th\\u00f4ng th\\u01b0\\u1eddng ho\\u1eb7c nh\\u1eefng ng\\u01b0\\u1eddi c\\u00f3 ng\\u00e2n s\\u00e1ch eo h\\u1eb9p. N\\u00f3 mang l\\u1ea1i hi\\u1ec7u n\\u0103ng \\u1ea5n t\\u01b0\\u1ee3ng v\\u00e0 t\\u00ednh n\\u0103ng ti\\u00ean ti\\u1ebfn nh\\u01b0 c\\u00f4ng ngh\\u1ec7 Precision Boost\"}', '/data/cms-image/TTECHBNCPUAMD -AM5 RYZEN 7 8700G.jpg', '/data/cms-image/TTECHBNCPUAMD -AM5 RYZEN 7 8700G.jpg', 0, 46, NULL, 'active', 3, 3, '2024-05-15 09:31:07', '2024-07-14 10:24:16', 'cpu-amd-ryzen-7-8700g-42ghz-upto-51ghz-24mb-8-cores-16-threads-65w-socket-am5'),
 (479, 81, NULL, 'product', 'CPU AMD RYZEN 9 7900X3D 4.4GHZ UP TO 5.6GHZ| 140MB| 12 CORES 24 THREADS| 120W| SOCKETS AM5', '{\"price\":\"14399000\",\"price_old\":\"17399000\",\"brief\":{\"vi\":\"<ul id=\\\"js-tskt-item\\\">\\r\\n\\t<li>CPU AMD Ryzen 7000 X3D Series m\\u1edbi<\\/li>\\r\\n\\t<li>S\\u1ed1 nh\\u00e2n (Cores): 12<\\/li>\\r\\n\\t<li>S\\u1ed1 lu\\u1ed3ng (Threads): 24<\\/li>\\r\\n\\t<li>Xung c\\u01a1 b\\u1ea3n 4.4GHz, xung t\\u1ed1i \\u0111a 5.6GHz<\\/li>\\r\\n<\\/ul>\"},\"content\":{\"vi\":\"<h2><strong>Th\\u00f4ng s\\u1ed1 k\\u1ef9 thu\\u1eadt<\\/strong><\\/h2>\\r\\n\\r\\n<table width=\\\"537\\\">\\r\\n\\t<tbody>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">H\\u00e3ng s\\u1ea3n xu\\u1ea5t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">AMD<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Lo\\u1ea1i CPU<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">D\\u00e0nh cho m\\u00e1y b\\u00e0n<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Th\\u1ebf h\\u1ec7<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">Ryzen 9 7000 Series<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">T\\u00ean g\\u1ecdi<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">AMD&nbsp;Ryzen 9 7900X3D<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\" width=\\\"537\\\">CHI TI\\u1ebeT<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Socket<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">AM5<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">S\\u1ed1 nh\\u00e2n<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">12<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">S\\u1ed1 lu\\u1ed3ng<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">24<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">T\\u1ed1c \\u0111\\u1ed9 c\\u01a1 b\\u1ea3n<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">4.4GHz Upto 5.6GHz<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Cache<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">768KB (L1) + 12MB (L2) + 128MB (L3)<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">H\\u1ed7 tr\\u1ee3 b\\u1ed9 nh\\u1edb<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">DDR5 5200 MHz \\/ 3600 MHz<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Phi\\u00ean b\\u1ea3n PCI Express<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">PCIe 5.0<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">TDP<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">120W<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"220\\\">Ti\\u1ebfn tr\\u00ecnh s\\u1ea3n xu\\u1ea5t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">TSMC 5nm<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>T\\u1ed1c \\u0111\\u1ed9 GPU<\\/td>\\r\\n\\t\\t\\t<td width=\\\"317\\\">Graphics Model: AMD Radeon\\u2122 Graphics<br \\/>\\r\\n\\t\\t\\tGraphics Core Count: 2<br \\/>\\r\\n\\t\\t\\tGraphics Frequency: 2200 MHz<br \\/>\\r\\n\\t\\t\\tGPU Base: 400 MHz<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t<\\/tbody>\\r\\n<\\/table>\\r\\n\\r\\n<hr \\/>\\r\\n<p>CPU AMD Ryzen 9 7900X3D n\\u00e2ng cao hi\\u1ec7u su\\u1ea5t x\\u1eed l\\u00fd v\\u1edbi hi\\u1ec7u n\\u0103ng x\\u1eed l\\u00fd \\u0111a ngu\\u1ed3n k\\u1ebft h\\u1ee3p c\\u00f4ng ngh\\u1ec7 AMD 3D V-Cache gi\\u00fap gi\\u1ea3i ph\\u00f3ng s\\u1ee9c m\\u1ea1nh \\u0111\\u1ec3 t\\u1ed1i \\u0111a h\\u00f3a hi\\u1ec7u su\\u1ea5t c\\u1ee7a m\\u00e1y t\\u00ednh.<\\/p>\\r\\n\\r\\n<p><strong>T\\u0103ng t\\u1ed1c tr\\u00f2 ch\\u01a1i - Hi\\u1ec7u n\\u0103ng c\\u1ef1c cao<\\/strong><\\/p>\\r\\n\\r\\n<p>Ryzen 9 7900X3D cung c\\u1ea5p s\\u1ee9c m\\u1ea1nh cho c\\u00e1c game \\u0111\\u00f2i h\\u1ecfi kh\\u1eaft khe v\\u1ec1 hi\\u1ec7u su\\u1ea5t, mang \\u0111\\u1ebfn m\\u1ed9t tr\\u1ea3i nghi\\u1ec7m nh\\u1eadp vai c\\u00f3 m\\u1ed9t kh\\u00f4ng hai v\\u00e0 th\\u1ed1ng tr\\u1ecb m\\u1ecdi t\\u00e1c v\\u1ee5 \\u0111a lu\\u1ed3ng nh\\u01b0 3D v\\u00e0 k\\u1ebft xu\\u1ea5t video c\\u0169ng nh\\u01b0 bi\\u00ean d\\u1ecbch ph\\u1ea7n m\\u1ec1m.<\\/p>\\r\\n\\r\\n<h3><strong>C\\u1ea5u tr\\u00fac Zen 4 th\\u1ebf h\\u1ec7 m\\u1edbi<\\/strong><\\/h3>\\r\\n\\r\\n<p>\\u0110\\u01b0\\u1ee3c thi\\u1ebft k\\u1ebf v\\u1edbi ki\\u1ebfn tr\\u00fac \\\"Zen 4\\\" l\\u00e0 thi\\u1ebft k\\u1ebf th\\u1ebf h\\u1ec7 m\\u1edbi v\\u1edbi ti\\u1ebfn tr\\u00ecnh 5nm FinFET. \\u0110\\u01b0\\u1ee3c trang b\\u1ecb nh\\u1eefng c\\u1ea3i ti\\u1ebfn v\\u1ec1 thi\\u1ebft k\\u1ebf t\\u1eeb \\u0111\\u1ea7u \\u0111\\u1ebfn cu\\u1ed1i, Zen 4 c\\u1ee7a Ryzen 9 7950X3D mang \\u0111\\u1ebfn hi\\u1ec7u su\\u1ea5t c\\u1ef1c cao, gi\\u00fap ti\\u1ebft ki\\u1ec7m n\\u0103ng l\\u01b0\\u1ee3ng v\\u00e0 gi\\u1ea3m \\u0111\\u1ed9 tr\\u1ec5, \\u0111\\u00f3 l\\u00e0 c\\u1ed1t l\\u00f5i m\\u00e0 b\\u1ed9 vi x\\u1eed l\\u00fd mu\\u1ed1n mang \\u0111\\u1ebfn \\u0111\\u1ec3 b\\u1ea1n c\\u00f3 \\u0111\\u01b0\\u1ee3c tr\\u1ea3i nghi\\u1ec7m ch\\u01a1i game ho\\u00e0n h\\u1ea3o nh\\u1ea5t.<\\/p>\\r\\n\\r\\n<h3><strong>C\\u00f4ng ngh\\u1ec7 AMD 3D V-Cache<\\/strong><\\/h3>\\r\\n\\r\\n<p>CPU AMD Ryzen 7000X3D Series v\\u1edbi thi\\u1ebft k\\u1ebf b\\u1ed9 nh\\u1edb \\u0111\\u1ec7m L3 x\\u1ebfp ch\\u1ed3ng l\\u00ean nhau \\u0111\\u1ec3 gi\\u1ea3i ph\\u00f3ng hi\\u1ec7u su\\u1ea5t ch\\u01a1i game m\\u1ed9t c\\u00e1ch hi\\u1ec7u qu\\u1ea3, t\\u1ea1o ra b\\u1ed9 vi x\\u1eed l\\u00fd m\\u00e1y t\\u00ednh manh m\\u1ebd v\\u01b0\\u1ee3t tr\\u1ed9i<\\/p>\\r\\n\\r\\n<h3><strong>C\\u1ea3i thi\\u1ec7n hi\\u1ec7u su\\u1ea5t<\\/strong><\\/h3>\\r\\n\\r\\n<p>CPU AMD Ryzen 7000X3D Series c\\u1ea3i thi\\u1ec7n hi\\u1ec7u su\\u1ea5t CPU v\\u1edbi xung c\\u00f3 th\\u1ec3 l\\u00ean \\u0111\\u1ebfn 5.7GHz gi\\u00fap c\\u1ea3i thi\\u1ec7n hi\\u1ec7u su\\u1ea5t nh\\u00e2n \\u0111\\u01a1n l\\u00ean \\u0111\\u1ebfn 29% so v\\u1edbi th\\u1ebf h\\u1ec7 CPU 5000 Series.<\\/p>\"},\"seo_title\":\"CPU AMD RYZEN 9 7900X3D 4.4GHZ UP TO 5.6GHZ| 140MB| 12 CORES 24 THREADS| 120W| SOCKETS AM5\",\"seo_keyword\":\"CPU AMD RYZEN 9 7900X3D 4.4GHZ UP TO 5.6GHZ| 140MB| 12 CORES 24 THREADS| 120W| SOCKETS AM5\",\"seo_description\":\"CPU AMD Ryzen 9 7900X3D n\\u00e2ng cao hi\\u1ec7u su\\u1ea5t x\\u1eed l\\u00fd v\\u1edbi hi\\u1ec7u n\\u0103ng x\\u1eed l\\u00fd \\u0111a ngu\\u1ed3n k\\u1ebft h\\u1ee3p c\\u00f4ng ngh\\u1ec7 AMD 3D V-Cache gi\\u00fap gi\\u1ea3i ph\\u00f3ng s\\u1ee9c m\\u1ea1nh \\u0111\\u1ec3 t\\u1ed1i \\u0111a h\\u00f3a hi\\u1ec7u su\\u1ea5t c\\u1ee7a m\\u00e1y t\\u00ednh.\"}', '/data/cms-image/TTECHBNCPUAMD -AM5 RYZEN 9 7900X3D.jpg', '/data/cms-image/TTECHBNCPUAMD -AM5 RYZEN 9 7900X3D.jpg', 0, 43, NULL, 'active', 3, 3, '2024-05-15 09:51:19', '2024-07-14 01:49:34', 'cpu-amd-ryzen-9-7900x3d-44ghz-up-to-56ghz-140mb-12-cores-24-threads-120w-sockets-am5'),
 (480, 81, NULL, 'product', 'CPU AMD RYZEN 9 7900X 4.7 GHZ UPTO 5.6GHZ | 76MB | 12 CORES| 24 THREADS | 170W | SOCKET AM5', '{\"price\":\"12199000\",\"price_old\":\"14299000\",\"brief\":{\"vi\":\"<ul id=\\\"js-tskt-item\\\">\\r\\n\\t<li>S\\u1ed1 nh\\u00e2n: 12<\\/li>\\r\\n\\t<li>S\\u1ed1 lu\\u1ed3ng: 24 lu\\u1ed3ng<\\/li>\\r\\n\\t<li>Xung nh\\u1ecbp boost t\\u1ed1i \\u0111a: 5.6 GHz<\\/li>\\r\\n\\t<li>H\\u1ed7 tr\\u1ee3 PCI-e 5.0<\\/li>\\r\\n\\t<li>H\\u1ed7 tr\\u1ee3 \\u00e9p xung<\\/li>\\r\\n<\\/ul>\"},\"content\":{\"vi\":\"<table width=\\\"609\\\">\\r\\n\\t<tbody>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\">\\r\\n\\t\\t\\t<p><strong><em>TH\\u00d4NG S\\u1ed0 C\\u01a0 B\\u1ea2N<\\/em><\\/strong><\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>H\\u00e3ng s\\u1ea3n xu\\u1ea5t<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>AMD<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>Lo\\u1ea1i CPU<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>D\\u00e0nh cho m\\u00e1y b\\u00e0n<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>Th\\u1ebf h\\u1ec7<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>Ryzen 9 7000 Series<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>T\\u00ean g\\u1ecdi<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>AMD&nbsp;Ryzen 9 7900X<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\">\\r\\n\\t\\t\\t<p><strong>CHI TI\\u1ebeT<\\/strong><\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>Socket<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>AM5<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>S\\u1ed1 nh\\u00e2n<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>12<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>S\\u1ed1 lu\\u1ed3ng<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>24<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>T\\u1ed1c \\u0111\\u1ed9 c\\u01a1 b\\u1ea3n<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>4.7GHz Upto 5.6GHz<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>Cache<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>768KB (L1) + 12MB (L2) +64MB (L3)<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>H\\u1ed7 tr\\u1ee3 b\\u1ed9 nh\\u1edb<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>DDR5 5200 MHz \\/3600 MHz<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>Phi\\u00ean b\\u1ea3n PCI Express<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>PCIe 5.0<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>TDP<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>170W<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td width=\\\"239\\\">\\r\\n\\t\\t\\t<p>Ti\\u1ebfn tr\\u00ecnh s\\u1ea3n xu\\u1ea5t<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td width=\\\"369\\\">\\r\\n\\t\\t\\t<p>TSMC 5nm<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t<\\/tbody>\\r\\n<\\/table>\\r\\n\\r\\n<hr \\/>\\r\\n<h3><strong>Ki\\u1ebfn tr\\u00fac Zen 4<\\/strong><\\/h3>\\r\\n\\r\\n<p>CPU AMD Ryzen 9 7900X m\\u1edbi ra m\\u1eaft c\\u00f9ng v\\u1edbi l\\u00e0n s\\u00f3ng b\\u1ed9 vi x\\u1eed l\\u00fd m\\u00e1y t\\u00ednh \\u0111\\u1ec3 b\\u00e0n \\\"Zen 4\\\" th\\u1ebf h\\u1ec7 ti\\u1ebfp theo \\u0111\\u1ea7u ti\\u00ean c\\u1ee7a AMD. V\\u1edbi ki\\u1ebfn \\u200b\\u200btr\\u00fac m\\u1edbi c\\u1ee7a h\\u1ecd, AMD kh\\u00f4ng ch\\u1ec9 s\\u1eb5n s\\u00e0ng trong t\\u01b0\\u01a1ng lai v\\u1edbi I \\/ O m\\u1edbi m\\u00e0 c\\u00f2n c\\u1ea3 c\\u00e1c \\u1ee9ng d\\u1ee5ng c\\u1ee7a n\\u00f3, v\\u1edbi s\\u1ef1 h\\u1ed7 tr\\u1ee3 cho c\\u00e1c t\\u1eadp l\\u1ec7nh m\\u1edbi. 7900X l\\u00e0 b\\u1ed9 x\\u1eed l\\u00fd \\u0111a l\\u00f5i th\\u00f4ng th\\u01b0\\u1eddng 12 nh\\u00e2n \\/ 24 lu\\u1ed3ng m\\u00e0 ph\\u1ea7n m\\u1ec1m kh\\u00f4ng c\\u1ea7n nh\\u1eadn th\\u1ee9c \\u0111\\u1eb7c bi\\u1ec7t.&nbsp;<\\/p>\\r\\n\\r\\n<h3><strong>N\\u00e2ng c\\u1ea5p hi\\u1ec7u n\\u0103ng v\\u1edbi ti\\u1ebfn tr\\u00ecnh 7nm<\\/strong><\\/h3>\\r\\n\\r\\n<p>CPU AMD Ryzen 9 7900X c\\u00f3 t\\u1ed1c \\u0111\\u1ed9 c\\u01a1 b\\u1ea3n 4,70 GHz, v\\u1edbi t\\u1ea7n s\\u1ed1 t\\u0103ng 5,60 GHz \\u1ea5n t\\u01b0\\u1ee3ng. B\\u1ed9 x\\u1eed l\\u00fd \\u0111i k\\u00e8m v\\u1edbi c\\u00e1c gi\\u1edbi h\\u1ea1n c\\u00f4ng su\\u1ea5t 170 W TDP v\\u00e0 230 W PPT nh\\u01b0 7950X, v\\u1edbi \\u00edt l\\u00f5i h\\u01a1n \\u0111\\u1ec3 ph\\u00e2n ph\\u1ed1i n\\u0103ng l\\u01b0\\u1ee3ng \\u0111\\u00f3 cho nhau, c\\u00f3 ngh\\u0129a l\\u00e0 t\\u1ea7n s\\u1ed1 c\\u01b0 tr\\u00fa \\u0111\\u01b0\\u1ee3c t\\u0103ng c\\u01b0\\u1eddng t\\u1ed1t h\\u01a1n. AMD r\\u00f5 r\\u00e0ng v\\u1ec1 nhu c\\u1ea7u \\u00edt nh\\u1ea5t ph\\u1ea3i c\\u00f3 b\\u1ed9 l\\u00e0m m\\u00e1t CPU AIO ch\\u1ea5t l\\u1ecfng h\\u1eadu m\\u00e3i 240 mm ho\\u1eb7c 280 mm \\u0111i k\\u00e8m v\\u1edbi 7900X; tin t\\u1ed1t l\\u00e0 Socket AM5 m\\u1edbi t\\u01b0\\u01a1ng th\\u00edch t\\u1ed1t h\\u01a1n v\\u1edbi AM4 \\u0111\\u1ec3 b\\u1ea1n c\\u00f3 nhi\\u1ec1u s\\u1ef1 l\\u1ef1a ch\\u1ecdn h\\u01a1n.<\\/p>\\r\\n\\r\\n<h3><strong>Trang b\\u1ecb nh\\u1eefng c\\u00f4ng ngh\\u1ec7 ti\\u00ean ti\\u1ebfn nh\\u1ea5t<\\/strong><\\/h3>\\r\\n\\r\\n<p>AMD Ryzen 9 7900X sinh ra d\\u00e0nh cho nh\\u1eefng c\\u00f4ng vi\\u1ec7c v\\u1ec1 c\\u00f4ng ngh\\u1ec7 \\u0111\\u1ec9nh nh\\u1ea5t nh\\u01b0 coding, AI, gi\\u1ea3 l\\u1eadp, \\u2026V\\u00e0 \\u0111\\u1ec3 h\\u1ed7 tr\\u1ee3 v\\u00e0o kh\\u1ea3 n\\u0103ng x\\u1eed l\\u00fd m\\u1ea1nh m\\u1ebd \\u0111\\u00f3, AMD \\u0111\\u00e3 mang \\u0111\\u1ebfn cho s\\u1ea3n ph\\u1ea9m c\\u1ee7a m\\u00ecnh nh\\u1eefng c\\u00f4ng ngh\\u1ec7 nh\\u01b0:<\\/p>\\r\\n\\r\\n<ul>\\r\\n\\t<li>AMD StoreMI: T\\u0103ng t\\u1ed1c kh\\u1ea3 n\\u0103ng x\\u1eed l\\u00fd, l\\u01b0u tr\\u1eef c\\u1ee7a nh\\u1eefng \\u1ed5 c\\u1ee9ng HDD v\\u00e0 SSD bao g\\u1ed3m c\\u1ea3 kh\\u1ea3 n\\u0103ng t\\u0103ng t\\u1ed1c th\\u1eddi gian t\\u1ea3i, kh\\u1edfi \\u0111\\u1ed9ng, ph\\u1ea3n h\\u1ed3i t\\u1eeb h\\u1ec7 th\\u1ed1ng \\u0111\\u1ebfn ng\\u01b0\\u1eddi d\\u00f9ng.<\\/li>\\r\\n\\t<li>AMD \\\"Zen 4\\\" Core: Nh\\u00e2n x\\u1eed l\\u00fd t\\u1ed1c \\u0111\\u1ed9 cao v\\u00e0 ti\\u00ean ti\\u1ebfn nh\\u1ea5t hi\\u1ec7n nay, ph\\u1ee5c v\\u1ee5 cho kh\\u1ea3 n\\u0103ng l\\u00e0m vi\\u1ec7c v\\u00e0 ch\\u01a1i game t\\u1ed1i \\u01b0u.<\\/li>\\r\\n\\t<li>AMD Ryzen\\u2122 VR-Ready Premium: N\\u00e2ng c\\u1ea5p tr\\u1ea3i nghi\\u1ec7m VR \\u0111\\u1ed1i v\\u1edbi ng\\u01b0\\u1eddi d\\u00f9ng chuy\\u00ean nghi\\u1ec7p.<\\/li>\\r\\n<\\/ul>\\r\\n\\r\\n<p>B\\u1ed5 xung th\\u00eam t\\u00ednh n\\u0103ng<\\/p>\\r\\n\\r\\n<p>C\\u00f3 hai t\\u00ednh n\\u0103ng b\\u1ed5 sung quan tr\\u1ecdng cho d\\u00f2ng Ryzen 7000 \\u0111\\u00e3 qu\\u00e1 h\\u1ea1n t\\u1eeb l\\u00e2u v\\u00e0 \\u0111i\\u1ec1u n\\u00e0y c\\u00f3 th\\u1ec3 l\\u00e0m d\\u1ecbu th\\u1ecfa thu\\u1eadn cho CPU AMD Ryzen 9 7900X. \\u0110\\u1ea7u ti\\u00ean, l\\u00e0 s\\u1ef1 bao g\\u1ed3m c\\u1ee7a \\u0111\\u1ed3 h\\u1ecda t\\u00edch h\\u1ee3p. S\\u00e2n ch\\u01a1i v\\u1edbi Intel hi\\u1ec7n \\u0111\\u00e3 \\u0111\\u01b0\\u1ee3c san b\\u1eb1ng v\\u00e0 t\\u1ea5t c\\u1ea3 nh\\u1eefng ai mu\\u1ed1n nh\\u1eefng con chip n\\u00e0y ch\\u1ec9 v\\u00ec s\\u1ee9c m\\u1ea1nh x\\u1eed l\\u00fd c\\u1ee7a ch\\u00fang v\\u00e0 kh\\u00f4ng c\\u1ea7n card \\u0111\\u1ed3 h\\u1ecda; s\\u1ebd nh\\u1eadn \\u0111\\u01b0\\u1ee3c m\\u1ed9t iGPU c\\u00f3 kh\\u1ea3 n\\u0103ng t\\u01b0\\u01a1ng t\\u1ef1 nh\\u01b0 c\\u00e1c iGPU m\\u00e0 Intel \\u0111\\u01b0a v\\u00e0o b\\u1ed9 vi x\\u1eed l\\u00fd m\\u00e1y t\\u00ednh \\u0111\\u1ec3 b\\u00e0n Core i9 c\\u1ee7a m\\u00ecnh.&nbsp;<\\/p>\\r\\n\\r\\n<p>T\\u00ednh n\\u0103ng th\\u1ee9 hai s\\u1ebd \\u0111\\u1eb7c bi\\u1ec7t thu h\\u00fat \\u0111\\u00e1m \\u0111\\u00f4ng h\\u1ecdc s\\u00e2u AI, \\u0111\\u00f3 l\\u00e0 vi\\u1ec7c b\\u1ed5 sung c\\u00e1c t\\u1eadp l\\u1ec7nh AVX-512, VNNI v\\u00e0 BFLOAT16. Vi\\u1ec7c tri\\u1ec3n khai AVX-512 c\\u1ee7a AMD kh\\u00f4ng \\u0111i k\\u00e8m v\\u1edbi chi ph\\u00ed n\\u0103ng l\\u01b0\\u1ee3ng b\\u1ed5 sung v\\u00e0 s\\u1ebd kh\\u00f4ng d\\u1eabn \\u0111\\u1ebfn t\\u1ed1c \\u0111\\u1ed9 xung nh\\u1ecbp th\\u1ea5p h\\u01a1n \\u0111\\u1ec3 gi\\u1ea3m ti\\u00eau th\\u1ee5 \\/ ti\\u00eau th\\u1ee5 \\u0111i\\u1ec7n n\\u0103ng khi ch\\u1ea1y m\\u00e3 s\\u1eed d\\u1ee5ng n\\u00f3.<\\/p>\"},\"seo_title\":\"CPU AMD RYZEN 9 7900X 4.7 GHZ UPTO 5.6GHZ | 76MB | 12 CORES| 24 THREADS | 170W | SOCKET AM5\",\"seo_keyword\":\"CPU AMD RYZEN 9 7900X 4.7 GHZ UPTO 5.6GHZ | 76MB | 12 CORES| 24 THREADS | 170W | SOCKET AM5\",\"seo_description\":\"CPU AMD Ryzen 9 7900X m\\u1edbi ra m\\u1eaft c\\u00f9ng v\\u1edbi l\\u00e0n s\\u00f3ng b\\u1ed9 vi x\\u1eed l\\u00fd m\\u00e1y t\\u00ednh \\u0111\\u1ec3 b\\u00e0n \\\"Zen 4\\\" th\\u1ebf h\\u1ec7 ti\\u1ebfp theo \\u0111\\u1ea7u ti\\u00ean c\\u1ee7a AMD\"}', '/data/cms-image/TTECHBNCPUAMD -AM5 RYZEN 9 7900X.jpg', '/data/cms-image/TTECHBNCPUAMD -AM5 RYZEN 9 7900X.jpg', 0, 42, NULL, 'active', 3, 3, '2024-05-15 09:53:35', '2024-07-13 22:58:04', 'cpu-amd-ryzen-9-7900x-47-ghz-upto-56ghz-76mb-12-cores-24-threads-170w-socket-am5');
@@ -804,44 +804,49 @@ INSERT INTO `tb_cms_posts` (`id`, `taxonomy_id`, `resources_id`, `is_type`, `tit
 (692, 82, NULL, 'product', 'RAM DESKTOP KINGSTON FURY BEAST|KF552C40BB-16|16GB |1X16GB|DDR5 5200MHZ|', '{\"price\":\"1649000\",\"price_old\":\"2399000\",\"brief\":{\"vi\":\"<ul id=\\\"js-tskt-item\\\">\\r\\n\\t<li>RAM DDR5 hi\\u1ec7u n\\u0103ng cao<\\/li>\\r\\n\\t<li>Dung l\\u01b0\\u1ee3ng: 16GB (1x16GB)<\\/li>\\r\\n\\t<li>Bus: 5200Mhz<\\/li>\\r\\n<\\/ul>\"},\"content\":{\"vi\":\"<h2><strong>Th\\u00f4ng s\\u1ed1 k\\u1ef9 thu\\u1eadt<\\/strong><\\/h2>\\r\\n\\r\\n<table width=\\\"617\\\">\\r\\n\\t<tbody>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\">\\r\\n\\t\\t\\t<p><strong>TH\\u00d4NG TIN C\\u01a0 B\\u1ea2N<\\/strong><\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Th\\u01b0\\u01a1ng hi\\u1ec7u<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>KINGSTON<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Lo\\u1ea1i Ram<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Desktop<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>D\\u00f2ng<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Fury Beast<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>M\\u00e3 Part<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>KF552C40BB-16<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\">\\r\\n\\t\\t\\t<p><strong>CHI TI\\u1ebeT<\\/strong><\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Dung l\\u01b0\\u1ee3ng<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>16GB (1 x 16GB)<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Lo\\u1ea1i<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>DDR5<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>T\\u1ed1c \\u0111\\u1ed9<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>5200 MHz<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>\\u0110\\u1ed9 tr\\u1ec5<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>CL40<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Hi\\u1ec7u \\u0111i\\u1ec7n th\\u1ebf<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>1.1V<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>ECC<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Kh\\u00f4ng h\\u1ed7 tr\\u1ee3<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>\\u0110\\u00f3ng g\\u00f3i<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>1 thanh<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>M\\u00e0u s\\u1eafc<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>\\u0110en<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>T\\u1ea3n nhi\\u1ec7t<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>C\\u00f3<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>M\\u00e0u LED<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Kh\\u00f4ng<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t<\\/tbody>\\r\\n<\\/table>\\r\\n\\r\\n<hr \\/>\\r\\n<p><strong>Ram Desktop Kingston Fury Beast<\\/strong>&nbsp;l\\u00e0 d\\u00f2ng RAM hi\\u1ec7u n\\u0103ng cao c\\u1ee7a Kingston tr\\u00ean n\\u1ec1n t\\u1ea3ng DDR5 m\\u1edbi nh\\u1ea5t cho t\\u1ed1c \\u0111\\u1ed9 c\\u1ef1c nhanh.&nbsp;<\\/p>\\r\\n\\r\\n<h3><strong>Thi\\u1ebft k\\u1ebf&nbsp;<\\/strong><\\/h3>\\r\\n\\r\\n<p>Ram Desktop Kingston Fury beast s\\u1edf h\\u1eefu thi\\u1ebft k\\u1ebf t\\u1ea3n nhi\\u1ec7t nh\\u00f4m \\u0111\\u01a1n gi\\u1ea3n nh\\u01b0ng \\u0111em l\\u1ea1i hi\\u1ec3u qu\\u1ea3 t\\u1ed1t cho h\\u1ea7u h\\u1ebft c\\u00e1c t\\u00e1c v\\u1ee5 t\\u1eeb c\\u01a1 b\\u1ea3n \\u0111\\u1ebfn n\\u00e2ng cao c\\u1ee7a b\\u1ea1n.&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>T\\u0103n t\\u1ed1c kh\\u1ea3 n\\u0103ng \\u00e9p xung<\\/strong><\\/p>\\r\\n\\r\\n<p>C\\u00f4ng ngh\\u1ec7 On-die ECC (ODECC) tr\\u00ean Kingston Fury Beast gi\\u00fap duy tr\\u00ec t\\u00ednh to\\u00e0n v\\u1eb9n d\\u1eef li\\u1ec7u \\u0111\\u1ec3 \\u0111\\u1ea3m b\\u1ea3o hi\\u1ec7u n\\u0103ng cao nh\\u1ea5t khi \\u00e9p xung.<\\/p>\\r\\n\\r\\n<p><strong>Kh\\u1edfi \\u0111\\u1ed9ng trong nh\\u00e1y m\\u1eaft<\\/strong><\\/p>\\r\\n\\r\\n<p><strong>T\\u01b0\\u01a1ng th\\u00edch v\\u1edbi Intel XMP 3.0<\\/strong><\\/p>\\r\\n\\r\\n<p>Ram Desktop Kingston Fury \\u0111\\u01b0\\u1ee3c thi\\u1ebft k\\u1ebf \\u0111\\u1ec3 t\\u01b0\\u01a1ng th\\u00edch ho\\u00e0n h\\u1ea3o v\\u1edbi c\\u00f4ng ngh\\u1ec7 Intel XMP 3.0 m\\u1edbi nh\\u1ea5t.&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>L\\u1eafp \\u0111\\u1eb7t \\u0111\\u01a1n gi\\u1ea3n<\\/strong><\\/p>\\r\\n\\r\\n<p>Ram Desktop Kingston Fury \\u0111\\u01b0\\u1ee3c thi\\u1ebft k\\u1ebf \\u0111\\u1ec3 Plug N Play: C\\u1eafm l\\u00e0 ch\\u1ea1y! H\\u1ec7 th\\u1ed1ng s\\u1ebd t\\u1ef1 \\u0111\\u1ed9ng nh\\u1eadn di\\u1ec7n bus RAM cao nh\\u1ea5t c\\u00f3 th\\u1ec3.&nbsp;<\\/p>\"},\"seo_title\":\"RAM DESKTOP KINGSTON FURY BEAST|KF552C40BB-16|16GB |1X16GB|DDR5 5200MHZ|\",\"seo_keyword\":\"RAM DESKTOP KINGSTON FURY BEAST|KF552C40BB-16|16GB |1X16GB|DDR5 5200MHZ|\",\"seo_description\":\"Ram Desktop Kingston Fury Beast\\u00a0l\\u00e0 d\\u00f2ng RAM hi\\u1ec7u n\\u0103ng cao c\\u1ee7a Kingston tr\\u00ean n\\u1ec1n t\\u1ea3ng DDR5 m\\u1edbi nh\\u1ea5t cho t\\u1ed1c \\u0111\\u1ed9 c\\u1ef1c nhanh.\\u00a0\"}', '/data/cms-image/TTECHBNRAMDT -   KINGSTON FURY BEAST -1.jpg', '/data/cms-image/TTECHBNRAMDT -   KINGSTON FURY BEAST -1.jpg', 0, 48, NULL, 'active', 3, 3, '2024-05-18 02:05:36', '2024-07-15 10:20:36', 'ram-desktop-kingston-fury-beastkf552c40bb-1616gb-1x16gbddr5-5200mhz'),
 (693, 82, NULL, 'product', 'RAM DESKTOP KINGSTON FURY BEAST|16GB |1X16GB|DDR5 4800MHZ| KF548C38BB-16', '{\"price\":\"1599000\",\"price_old\":\"1899000\",\"brief\":{\"vi\":\"<ul id=\\\"js-tskt-item\\\">\\r\\n\\t<li>RAM DDR5 hi\\u1ec7u n\\u0103ng cao<\\/li>\\r\\n\\t<li>Dung l\\u01b0\\u1ee3ng: 32GB (1x16GB)<\\/li>\\r\\n\\t<li>Bus: 4800Mhz<\\/li>\\r\\n<\\/ul>\"},\"content\":{\"vi\":\"<h2><strong>Th\\u00f4ng s\\u1ed1 k\\u1ef9 thu\\u1eadt<\\/strong><\\/h2>\\r\\n\\r\\n<table width=\\\"617\\\">\\r\\n\\t<tbody>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\">\\r\\n\\t\\t\\t<p><strong>TH\\u00d4NG TIN C\\u01a0 B\\u1ea2N<\\/strong><\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Th\\u01b0\\u01a1ng hi\\u1ec7u<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>KINGSTON<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Lo\\u1ea1i Ram<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Desktop<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>D\\u00f2ng<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Fury Beast<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>M\\u00e3 Part<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>KF548C38BB-16<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td colspan=\\\"2\\\">\\r\\n\\t\\t\\t<p><strong>CHI TI\\u1ebeT<\\/strong><\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Dung l\\u01b0\\u1ee3ng<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>16GB (1 x 16GB)<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Lo\\u1ea1i<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>DDR5<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>T\\u1ed1c \\u0111\\u1ed9<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>4800 MHz<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>\\u0110\\u1ed9 tr\\u1ec5<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>CL38-40<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Hi\\u1ec7u \\u0111i\\u1ec7n th\\u1ebf<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>1.1V-1.25V<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>ECC<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Kh\\u00f4ng h\\u1ed7 tr\\u1ee3<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>\\u0110\\u00f3ng g\\u00f3i<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>1 thanh<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>M\\u00e0u s\\u1eafc<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>\\u0110en<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>T\\u1ea3n nhi\\u1ec7t<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>C\\u00f3<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t\\t<tr>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>M\\u00e0u LED<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t\\t<td>\\r\\n\\t\\t\\t<p>Kh\\u00f4ng<\\/p>\\r\\n\\t\\t\\t<\\/td>\\r\\n\\t\\t<\\/tr>\\r\\n\\t<\\/tbody>\\r\\n<\\/table>\\r\\n\\r\\n<hr \\/>\\r\\n<p><strong>Ram Desktop Kingston Fury Beast<\\/strong>&nbsp;l\\u00e0 d\\u00f2ng RAM hi\\u1ec7u n\\u0103ng cao c\\u1ee7a Kingston tr\\u00ean n\\u1ec1n t\\u1ea3ng DDR5 m\\u1edbi nh\\u1ea5t cho t\\u1ed1c \\u0111\\u1ed9 c\\u1ef1c nhanh.&nbsp;<\\/p>\\r\\n\\r\\n<h3><strong>Thi\\u1ebft k\\u1ebf&nbsp;<\\/strong><\\/h3>\\r\\n\\r\\n<p>Ram Desktop Kingston Fury beast s\\u1edf h\\u1eefu thi\\u1ebft k\\u1ebf t\\u1ea3n nhi\\u1ec7t nh\\u00f4m \\u0111\\u01a1n gi\\u1ea3n nh\\u01b0ng \\u0111em l\\u1ea1i hi\\u1ec3u qu\\u1ea3 t\\u1ed1t cho h\\u1ea7u h\\u1ebft c\\u00e1c t\\u00e1c v\\u1ee5 t\\u1eeb c\\u01a1 b\\u1ea3n \\u0111\\u1ebfn n\\u00e2ng cao c\\u1ee7a b\\u1ea1n.&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>T\\u0103n t\\u1ed1c kh\\u1ea3 n\\u0103ng \\u00e9p xung<\\/strong><\\/p>\\r\\n\\r\\n<p>C\\u00f4ng ngh\\u1ec7 On-die ECC (ODECC) tr\\u00ean Kingston Fury Beast gi\\u00fap duy tr\\u00ec t\\u00ednh to\\u00e0n v\\u1eb9n d\\u1eef li\\u1ec7u \\u0111\\u1ec3 \\u0111\\u1ea3m b\\u1ea3o hi\\u1ec7u n\\u0103ng cao nh\\u1ea5t khi \\u00e9p xung.<\\/p>\\r\\n\\r\\n<p><strong>Kh\\u1edfi \\u0111\\u1ed9ng trong nh\\u00e1y m\\u1eaft<\\/strong><\\/p>\\r\\n\\r\\n<p><strong>T\\u01b0\\u01a1ng th\\u00edch v\\u1edbi Intel XMP 3.0<\\/strong><\\/p>\\r\\n\\r\\n<p>Ram Desktop Kingston Fury \\u0111\\u01b0\\u1ee3c thi\\u1ebft k\\u1ebf \\u0111\\u1ec3 t\\u01b0\\u01a1ng th\\u00edch ho\\u00e0n h\\u1ea3o v\\u1edbi c\\u00f4ng ngh\\u1ec7 Intel XMP 3.0 m\\u1edbi nh\\u1ea5t.&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>L\\u1eafp \\u0111\\u1eb7t \\u0111\\u01a1n gi\\u1ea3n<\\/strong><\\/p>\\r\\n\\r\\n<p>Ram Desktop Kingston Fury \\u0111\\u01b0\\u1ee3c thi\\u1ebft k\\u1ebf \\u0111\\u1ec3 Plug N Play: C\\u1eafm l\\u00e0 ch\\u1ea1y! H\\u1ec7 th\\u1ed1ng s\\u1ebd t\\u1ef1 \\u0111\\u1ed9ng nh\\u1eadn di\\u1ec7n bus RAM cao nh\\u1ea5t c\\u00f3 th\\u1ec3.&nbsp;<\\/p>\"},\"seo_title\":\"RAM DESKTOP KINGSTON FURY BEAST|16GB |1X16GB|DDR5 4800MHZ| KF548C38BB-16\",\"seo_keyword\":\"RAM DESKTOP KINGSTON FURY BEAST|16GB |1X16GB|DDR5 4800MHZ| KF548C38BB-16\",\"seo_description\":\"Ram Desktop Kingston Fury Beast\\u00a0l\\u00e0 d\\u00f2ng RAM hi\\u1ec7u n\\u0103ng cao c\\u1ee7a Kingston tr\\u00ean n\\u1ec1n t\\u1ea3ng DDR5 m\\u1edbi nh\\u1ea5t cho t\\u1ed1c \\u0111\\u1ed9 c\\u1ef1c nhanh.\\u00a0\"}', '/data/cms-image/TTECHBNRAMDT -   KINGSTON FURY BEAST -1.jpg', '/data/cms-image/TTECHBNRAMDT -   KINGSTON FURY BEAST -1.jpg', 0, 47, NULL, 'active', 3, 3, '2024-05-18 02:06:37', '2024-07-14 03:55:16', 'ram-desktop-kingston-fury-beast16gb-1x16gbddr5-4800mhz-kf548c38bb-16'),
 (694, 88, NULL, 'post', 'QUY ĐỊNH CHUNG', '{\"brief\":{\"vi\":null},\"content\":{\"vi\":\"<header>\\r\\n<h1><strong>&nbsp;I. Ch\\u00ednh s\\u00e1ch b\\u1ea3o h\\u00e0nh<\\/strong><\\/h1>\\r\\n<\\/header>\\r\\n\\r\\n<p>\\u2013 Ti\\u1ebfp nh\\u1eadn m\\u1ecdi khi\\u1ebfu n\\u1ea1i c\\u1ee7a kh\\u00e1ch h\\u00e0ng li\\u00ean quan \\u0111\\u1ebfn vi\\u1ec7c s\\u1eed d\\u1ee5ng d\\u1ecbch v\\u1ee5 c\\u1ee7a c\\u00f4ng ty.<\\/p>\\r\\n\\r\\n<p>\\u2013 T\\u1ea5t c\\u1ea3 m\\u1ecdi tr\\u01b0\\u1eddng h\\u1ee3p b\\u1ea3o h\\u00e0nh, qu\\u00fd kh\\u00e1ch c\\u00f3 th\\u1ec3 li\\u00ean h\\u1ec7 v\\u1edbi ch\\u00fang t\\u00f4i \\u0111\\u1ec3 l\\u00e0m th\\u1ee7 t\\u1ee5c b\\u1ea3o h\\u00e0nh.<\\/p>\\r\\n\\r\\n<p>\\u2013 Th\\u1eddi gian gi\\u1ea3i quy\\u1ebft khi\\u1ebfu n\\u1ea1i trong th\\u1eddi h\\u1ea1n t\\u1ed1i \\u0111a l\\u00e0 03 (ba) ng\\u00e0y l\\u00e0m vi\\u1ec7c k\\u1ec3 t\\u1eeb khi nh\\u1eadn \\u0111\\u01b0\\u1ee3c khi\\u1ebfu n\\u1ea1i c\\u1ee7a c\\u1ee7a kh\\u00e1ch h\\u00e0ng. Trong tr\\u01b0\\u1eddng h\\u1ee3p b\\u1ea5t kh\\u1ea3 kh\\u00e1ng 2 b\\u00ean s\\u1ebd t\\u1ef1 th\\u01b0\\u01a1ng l\\u01b0\\u1ee3ng.<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>&nbsp;II. H\\u00ecnh th\\u1ee9c thanh to\\u00e1n<\\/strong><\\/p>\\r\\n\\r\\n<p>C\\u00f3 3 h\\u00ecnh th\\u1ee9c thanh to\\u00e1n, kh\\u00e1ch h\\u00e0ng c\\u00f3 th\\u1ec3 l\\u1ef1a ch\\u1ecdn h\\u00ecnh th\\u1ee9c thu\\u1eadn ti\\u1ec7n v\\u00e0 ph\\u00f9 h\\u1ee3p v\\u1edbi m\\u00ecnh nh\\u1ea5t:<\\/p>\\r\\n\\r\\n<p>C\\u00e1ch 1:&nbsp;Thanh to\\u00e1n ti\\u1ec1n m\\u1eb7t tr\\u1ef1c ti\\u1ebfp t\\u1ea1i c\\u00f4ng ty<\\/p>\\r\\n\\r\\n<p>C\\u00e1ch 2:&nbsp;Chuy\\u1ec3n kho\\u1ea3n \\u0111\\u1ed1i v\\u1edbi c\\u00e1c \\u0111\\u01a1n v\\u1ecb, t\\u1ed5 ch\\u1ee9c. Sau khi qu\\u00fd kh\\u00e1ch nh\\u1eadn \\u0111\\u01b0\\u1ee3c h\\u00e0ng v\\u00e0 h\\u00f3a \\u0111\\u01a1n t\\u00e0i ch\\u00ednh, Qu\\u00fd kh\\u00e1ch vui l\\u00f2ng chuy\\u1ec3n kho\\u1ea3n thanh to\\u00e1n v\\u00e0o s\\u1ed1 t\\u00e0i kho\\u1ea3n c\\u1ee7a C\\u00f4ng ty theo th\\u00f4ng tin d\\u01b0\\u1edbi \\u0111\\u00e2y<\\/p>\\r\\n\\r\\n<p>C\\u00e1ch 3:&nbsp;Chuy\\u1ec3n kho\\u1ea3n tr\\u01b0\\u1edbc. Qu\\u00fd kh\\u00e1ch chuy\\u1ec3n kho\\u1ea3n tr\\u01b0\\u1edbc, sau \\u0111\\u00f3 ch\\u00fang t\\u00f4i ti\\u1ebfn h\\u00e0nh giao h\\u00e0ng theo th\\u1ecfa thu\\u1eadn ho\\u1eb7c h\\u1ee3p \\u0111\\u1ed3ng v\\u1edbi Qu\\u00fd kh\\u00e1ch.<\\/p>\\r\\n\\r\\n<p><strong>&nbsp; + Ch\\u1ee7 t\\u00e0i kho\\u1ea3n: &nbsp;C\\u00f4ng ty TNHH M\\u00e1y t\\u00ednh TTech<\\/strong><\\/p>\\r\\n\\r\\n<p><strong>&nbsp; + S\\u1ed1 T\\u00e0i kho\\u1ea3n: 117602503888<\\/strong><\\/p>\\r\\n\\r\\n<p><strong>&nbsp; + Ng\\u00e2n h\\u00e0ng: Ng\\u00e2n h\\u00e0ng TMCP C\\u00f4ng Th\\u01b0\\u01a1ng Vi\\u1ec7t<\\/strong><\\/p>\\r\\n\\r\\n<ul>\\r\\n\\t<li><strong><em><u>L\\u01b0u \\u00fd<\\/u><\\/em><\\/strong><\\/li>\\r\\n<\\/ul>\\r\\n\\r\\n<p>+ N\\u1ed9i dung chuy\\u1ec3n kho\\u1ea3n ghi r\\u00f5 h\\u1ecd t\\u00ean v\\u00e0 chuy\\u1ec3n cho \\u0111\\u01a1n h\\u00e0ng n\\u00e0o. Sau khi chuy\\u1ec3n kho\\u1ea3n, ch\\u00fang t\\u00f4i s\\u1ebd li\\u00ean h\\u1ec7 x\\u00e1c nh\\u1eadn v\\u00e0 ti\\u1ebfn h\\u00e0nh giao h\\u00e0ng. N\\u1ebfu sau th\\u1eddi gian th\\u1ecfa thu\\u1eadn m\\u00e0 ch\\u00fang t\\u00f4i kh\\u00f4ng giao h\\u00e0ng ho\\u1eb7c kh\\u00f4ng ph\\u1ea3n h\\u1ed3i l\\u1ea1i, qu\\u00fd kh\\u00e1ch c\\u00f3 th\\u1ec3 g\\u1eedi khi\\u1ebfu n\\u1ea1i tr\\u1ef1c ti\\u1ebfp v\\u1ec1 c\\u00f4ng ty v\\u00e0 y\\u00eau c\\u1ea7u b\\u1ed3i th\\u01b0\\u1eddng n\\u1ebfu ch\\u1ee9ng minh \\u0111\\u01b0\\u1ee3c s\\u1ef1 ch\\u1eadm tr\\u1ec5 l\\u00e0m \\u1ea3nh h\\u01b0\\u1edfng \\u0111\\u1ebfn kinh doanh c\\u1ee7a qu\\u00fd kh\\u00e1ch.<\\/p>\\r\\n\\r\\n<p>+ \\u0110\\u1ed1i v\\u1edbi kh\\u00e1ch h\\u00e0ng c\\u00f3 nhu c\\u1ea7u mua s\\u1ed1 l\\u01b0\\u1ee3ng l\\u1edbn \\u0111\\u1ec3 kinh doanh ho\\u1eb7c bu\\u00f4n s\\u1ec9 vui l\\u00f2ng li\\u00ean h\\u1ec7 tr\\u1ef1c ti\\u1ebfp v\\u1edbi ch\\u00fang t\\u00f4i \\u0111\\u1ec3 c\\u00f3 ch\\u00ednh s\\u00e1ch gi\\u00e1 c\\u1ea3 h\\u1ee3p l\\u00fd. V\\u00e0 vi\\u1ec7c thanh to\\u00e1n s\\u1ebd \\u0111\\u01b0\\u1ee3c th\\u1ef1c hi\\u1ec7n theo h\\u1ee3p \\u0111\\u1ed3ng.<\\/p>\\r\\n\\r\\n<p>+ Ch\\u00fang t\\u00f4i cam k\\u1ebft kinh doanh minh b\\u1ea1ch, h\\u1ee3p ph\\u00e1p, b\\u00e1n h\\u00e0ng ch\\u1ea5t l\\u01b0\\u1ee3ng, c\\u00f3 ngu\\u1ed3n g\\u1ed1c r\\u00f5 r\\u00e0ng.<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>III. Ch\\u00ednh s\\u00e1ch \\u0111\\u1ed5i tr\\u1ea3\\/ho\\u00e0n ti\\u1ec1n<\\/strong><\\/p>\\r\\n\\r\\n<p>Khi nh\\u1eadn h\\u00e0ng Qu\\u00fd Kh\\u00e1ch vui l\\u00f2ng ki\\u1ec3m tra k\\u1ef9 h\\u00e0ng ch\\u00fang t\\u00f4i giao. Sau khi nh\\u1eadn h\\u00e0ng c\\u00f4ng ty ch\\u00fang t\\u00f4i&nbsp;<strong>KH\\u00d4NG \\u00c1P D\\u1ee4NG<\\/strong>&nbsp;ch\\u00ednh s\\u00e1ch \\u0111\\u1ed5i tr\\u1ea3 s\\u1ea3n ph\\u1ea9m. V\\u00ec v\\u1eady, khi nh\\u1eadn h\\u00e0ng Qu\\u00fd kh\\u00e1ch vui l\\u00f2ng&nbsp;<strong>KI\\u1ec2M TRA H\\u00c0NG TH\\u1eacT K\\u1ef8<\\/strong>. N\\u1ebfu ph\\u00e1t hi\\u1ec7n h\\u00e0ng b\\u1ecb h\\u01b0 h\\u1ecfng do qu\\u00e1 tr\\u00ecnh v\\u1eadn chuy\\u1ec3n ho\\u1eb7c b\\u1ecb qu\\u00e1 h\\u1ea1n s\\u1eed d\\u1ee5ng xin vui l\\u00f2ng g\\u1ecdi ngay qua s\\u1ed1 \\u0111i\\u1ec7n tho\\u1ea1i t\\u1ea1i \\u0111\\u1ecba ch\\u1ec9 m\\u00e0 kh\\u00e1ch \\u0111\\u1eb7t mua h\\u00e0ng \\u0111\\u1ec3 th\\u00f4ng b\\u00e1o c\\u00f4ng ty ch\\u00fang t\\u00f4i v\\u1ec1 t\\u00ecnh tr\\u1ea1ng h\\u00e0ng h\\u00f3a m\\u00e0 kh\\u00e1ch nh\\u1eadn m\\u00e0 kh\\u00f4ng \\u0111\\u01b0\\u1ee3c nh\\u01b0 \\u00fd.<\\/p>\\r\\n\\r\\n<p>\\u0110\\u1ed1i v\\u1edbi h\\u00ecnh th\\u1ee9c chuy\\u1ec3n kho\\u1ea3n tr\\u01b0\\u1edbc, giao h\\u00e0ng sau: N\\u1ebfu ph\\u00e1t hi\\u1ec7n h\\u00e0ng h\\u1ebft h\\u1ea1n s\\u1eed d\\u1ee5ng, kh\\u00f4ng \\u0111\\u1ea3m b\\u1ea3o ch\\u1ea5t l\\u01b0\\u1ee3ng ho\\u1eb7c h\\u01b0 h\\u1ecfng do qu\\u00e1 tr\\u00ecnh v\\u1eadn chuy\\u1ec3n,.. Qu\\u00fd kh\\u00e1ch vui l\\u00f2ng kh\\u00f4ng nh\\u1eadn h\\u00e0ng. Ti\\u1ebfn h\\u00e0nh l\\u1eadp bi\\u00ean b\\u1ea3n ghi nh\\u1eadn t\\u00ecnh tr\\u1ea1ng h\\u00e0ng. Qu\\u00fd kh\\u00e1ch v\\u00e0 nh\\u00e2n vi\\u00ean giao nh\\u1eadn c\\u1ee7a ch\\u00fang t\\u00f4i k\\u00fd x\\u00e1c nh\\u1eadn s\\u1ef1 vi\\u1ec7c ghi trong v\\u0103n b\\u1ea3n. Ch\\u00fang t\\u00f4i mang h\\u00e0ng v\\u1ec1.<\\/p>\\r\\n\\r\\n<p>C\\u0103n c\\u1ee9 v\\u00e0o h\\u00e0ng h\\u00f3a th\\u1ef1c t\\u1ebf v\\u00e0 bi\\u00ean b\\u1ea3n tr\\u00ean, ch\\u00fang t\\u00f4i ti\\u1ebfn h\\u00e0nh \\u0111\\u1ed5i s\\u1ea3n ph\\u1ea9m kh\\u00e1c cho kh\\u00e1ch h\\u00e0ng trong v\\u00f2ng 2 ng\\u00e0y l\\u00e0m vi\\u1ec7c. N\\u1ebfu kh\\u00e1ch h\\u00e0ng kh\\u00f4ng c\\u00f2n nhu c\\u1ea7u s\\u1eed d\\u1ee5ng s\\u1ea3n ph\\u1ea9m n\\u1eefa th\\u00ec ch\\u00fang t\\u00f4i s\\u1ebd ho\\u00e0n tr\\u1ea3 100% s\\u1ed1 ti\\u1ec1n Qu\\u00fd kh\\u00e1ch h\\u00e0ng \\u0111\\u00e3 chuy\\u1ec3n sau 7 ng\\u00e0y l\\u00e0m vi\\u1ec7c (kh\\u00f4ng k\\u1ec3 th\\u1ee9 7, ch\\u1ee7 nh\\u1eadt, ng\\u00e0y l\\u1ec5 t\\u1ebft). N\\u1ebfu trong 7 ng\\u00e0y l\\u00e0m vi\\u1ec7c Qu\\u00fd kh\\u00e1ch ch\\u01b0a nh\\u1eadn \\u0111\\u01b0\\u1ee3c ti\\u1ec1n xin vui l\\u00f2ng ph\\u1ea3n h\\u1ed3i l\\u1ea1i cho ch\\u00fang t\\u00f4i \\u0111\\u1ec3 ki\\u1ec3m tra l\\u1ea1i t\\u00ecnh tr\\u1ea1ng chuy\\u1ec3n kho\\u1ea3n.<\\/p>\\r\\n\\r\\n<p>Ch\\u00fang t\\u00f4i mong r\\u1eb1ng c\\u00e1c ch\\u00ednh s\\u00e1ch mua b\\u00e1n h\\u00e0ng c\\u1ee7a c\\u00f4ng ty s\\u1ebd mang \\u0111\\u1ebfn s\\u1ef1 h\\u00e0i l\\u00f2ng v\\u00e0 an t\\u00e2m khi Qu\\u00fd kh\\u00e1ch mua h\\u00e0ng.<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>IV. Ch\\u00ednh s\\u00e1ch v\\u1eadn chuy\\u1ec3n<\\/strong><\\/p>\\r\\n\\r\\n<p>Th\\u00f4ng th\\u01b0\\u1eddng c\\u00f4ng ty ch\\u00fang t\\u00f4i sau khi nh\\u1eadn \\u0111\\u01b0\\u1ee3c th\\u00f4ng tin \\u0111\\u1eb7t h\\u00e0ng s\\u1ebd x\\u1eed l\\u00fd \\u0111\\u01a1n h\\u00e0ng trong v\\u00f2ng 24h v\\u00e0 ph\\u1ea3n h\\u1ed3i l\\u1ea1i th\\u00f4ng tin cho kh\\u00e1ch h\\u00e0ng v\\u1ec1 vi\\u1ec7c thanh to\\u00e1n v\\u00e0 giao nh\\u1eadn. Th\\u1eddi gian giao h\\u00e0ng th\\u01b0\\u1eddng trong kho\\u1ea3ng t\\u1eeb 3-5 ng\\u00e0y k\\u1ec3 t\\u1eeb ng\\u00e0y ch\\u1ed1t \\u0111\\u01a1n h\\u00e0ng ho\\u1eb7c theo th\\u1ecfa thu\\u1eadn v\\u1edbi kh\\u00e1ch khi \\u0111\\u1eb7t h\\u00e0ng. Tuy nhi\\u00ean, c\\u0169ng c\\u00f3 tr\\u01b0\\u1eddng h\\u1ee3p vi\\u1ec7c giao h\\u00e0ng k\\u00e9o d\\u00e0i h\\u01a1n nh\\u01b0ng ch\\u1ec9 x\\u1ea3y ra trong nh\\u1eefng t\\u00ecnh hu\\u1ed1ng b\\u1ea5t kh\\u1ea3 kh\\u00e1ng nh\\u01b0 sau:<\\/p>\\r\\n\\r\\n<p>\\u2013 Nh\\u00e2n vi\\u00ean c\\u00f4ng ty ch\\u00fang t\\u00f4i li\\u00ean l\\u1ea1c v\\u1edbi kh\\u00e1ch h\\u00e0ng qua \\u0111i\\u1ec7n tho\\u1ea1i kh\\u00f4ng \\u0111\\u01b0\\u1ee3c n\\u00ean kh\\u00f4ng th\\u1ec3 giao h\\u00e0ng.<\\/p>\\r\\n\\r\\n<p>\\u2013 \\u0110\\u1ecba ch\\u1ec9 giao h\\u00e0ng b\\u1ea1n cung c\\u1ea5p kh\\u00f4ng ch\\u00ednh x\\u00e1c ho\\u1eb7c kh\\u00f3 t\\u00ecm.<\\/p>\\r\\n\\r\\n<p>\\u2013 S\\u1ed1 l\\u01b0\\u1ee3ng \\u0111\\u01a1n h\\u00e0ng c\\u1ee7a c\\u00f4ng ty ch\\u00fang t\\u00f4i t\\u0103ng \\u0111\\u1ed9t bi\\u1ebfn khi\\u1ebfn vi\\u1ec7c x\\u1eed l\\u00fd \\u0111\\u01a1n h\\u00e0ng b\\u1ecb ch\\u1eadm.<\\/p>\\r\\n\\r\\n<p>\\u2013 \\u0110\\u1ed1i t\\u00e1c cung c\\u1ea5p h\\u00e0ng cho c\\u00f4ng ty ch\\u00fang t\\u00f4i ch\\u1eadm h\\u01a1n d\\u1ef1 ki\\u1ebfn khi\\u1ebfn vi\\u1ec7c giao h\\u00e0ng b\\u1ecb ch\\u1eadm l\\u1ea1i ho\\u1eb7c \\u0111\\u1ed1i t\\u00e1c v\\u1eadn chuy\\u1ec3n giao h\\u00e0ng b\\u1ecb ch\\u1eadm<\\/p>\\r\\n\\r\\n<p>V\\u1ec1 ph\\u00ed v\\u1eadn chuy\\u1ec3n, c\\u00f4ng ty ch\\u00fang t\\u00f4i s\\u1eed d\\u1ee5ng d\\u1ecbch v\\u1ee5 v\\u1eadn chuy\\u1ec3n ngo\\u00e0i n\\u00ean c\\u01b0\\u1edbc ph\\u00ed v\\u1eadn chuy\\u1ec3n s\\u1ebd \\u0111\\u01b0\\u1ee3c t\\u00ednh theo ph\\u00ed c\\u1ee7a c\\u00e1c \\u0111\\u01a1n v\\u1ecb v\\u1eadn chuy\\u1ec3n t\\u00f9y v\\u00e0o v\\u1ecb tr\\u00ed v\\u00e0 kh\\u1ed1i l\\u01b0\\u1ee3ng c\\u1ee7a \\u0111\\u01a1n h\\u00e0ng. c\\u00f4ng ty ch\\u00fang t\\u00f4i khi li\\u00ean h\\u1ec7 l\\u1ea1i x\\u00e1c nh\\u1eadn \\u0111\\u01a1n h\\u00e0ng v\\u1edbi kh\\u00e1ch s\\u1ebd b\\u00e1o m\\u1ee9c ph\\u00ed c\\u1ee5 th\\u1ec3 cho kh\\u00e1ch h\\u00e0ng.<\\/p>\\r\\n\\r\\n<p>Ri\\u00eang kh\\u00e1ch t\\u1ec9nh c\\u00f3 nhu c\\u1ea7u mua s\\u1ed1 l\\u01b0\\u1ee3ng l\\u1edbn ho\\u1eb7c kh\\u00e1ch bu\\u00f4n s\\u1ec9 n\\u1ebfu c\\u00f3 nhu c\\u1ea7u mua s\\u1ea3n ph\\u1ea9m c\\u1ee7a c\\u00f4ng ty ch\\u00fang t\\u00f4i th\\u00ec c\\u00f4ng ty ch\\u00fang t\\u00f4i s\\u1ebd nh\\u1edd d\\u1ecbch v\\u1ee5 giao nh\\u1eadn c\\u1ee7a c\\u00e1c c\\u00f4ng ty v\\u1eadn chuy\\u1ec3n v\\u00e0 ph\\u00ed s\\u1ebd \\u0111\\u01b0\\u1ee3c t\\u00ednh theo ph\\u00ed c\\u1ee7a c\\u00e1c \\u0111\\u01a1n v\\u1ecb cung c\\u1ea5p d\\u1ecbch v\\u1ee5 v\\u1eadn chuy\\u1ec3n ho\\u1eb7c theo tho\\u1ea3 thu\\u1eadn h\\u1ee3p \\u0111\\u1ed3ng gi\\u1eefa 2 b\\u00ean.<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>V. H\\u01b0\\u1edbng d\\u1eabn mua h\\u00e0ng<\\/strong><\\/p>\\r\\n\\r\\n<p>B\\u01b0\\u1edbc 1: L\\u1ef1a ch\\u1ecdn s\\u1ea3n ph\\u1ea9m c\\u1ea7n mua.<\\/p>\\r\\n\\r\\n<p>B\\u01b0\\u1edbc 2: Th\\u00eam v\\u00e0o gi\\u1ecf h\\u00e0ng<\\/p>\\r\\n\\r\\n<p>B\\u01b0\\u1edbc 3: V\\u00e0o gi\\u1ecf h\\u00e0ng ki\\u1ec3m tra th\\u00f4ng tin, s\\u1ed1 l\\u01b0\\u1ee3ng v\\u00e0 ti\\u1ebfn h\\u00e0nh \\u0111\\u1eb7t h\\u00e0ng<\\/p>\\r\\n\\r\\n<p>B\\u01b0\\u1edbc 4: \\u0110\\u0103ng k\\u00fd th\\u00f4ng tin \\u0111\\u1ecba ch\\u1ec9 \\u0111\\u1ec3 giao h\\u00e0ng<\\/p>\\r\\n\\r\\n<p>B\\u01b0\\u1edbc 5: X\\u00e1c nh\\u1eadn \\u0111\\u1eb7t h\\u00e0ng th\\u00e0nh c\\u00f4ng.<\\/p>\"},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', NULL, NULL, 0, 40, NULL, 'active', 3, 3, '2024-06-17 08:21:22', '2024-07-15 17:06:45', 'quy-dinh-chung'),
-(695, 88, NULL, 'post', 'Bảo mật và thu thập thông tin', '{\"brief\":{\"vi\":null},\"content\":{\"vi\":\"<p><strong>&nbsp;I. M\\u1ee4C \\u0110\\u00cdCH V\\u00c0 PH\\u1ea0M VI THU TH\\u1eacP<\\/strong><\\/p>\\r\\n\\r\\n<p>Vi\\u1ec7c thu th\\u1eadp d\\u1eef li\\u1ec7u ch\\u1ee7 y\\u1ebfu tr\\u00ean website bao g\\u1ed3m: h\\u1ecd t\\u00ean, email, \\u0111i\\u1ec7n tho\\u1ea1i, \\u0111\\u1ecba ch\\u1ec9 kh\\u00e1ch h\\u00e0ng trong m\\u1ee5c li\\u00ean h\\u1ec7. \\u0110\\u00e2y l\\u00e0 c\\u00e1c th\\u00f4ng tin m\\u00e0 ch\\u00fang t\\u00f4i c\\u1ea7n th\\u00e0nh vi\\u00ean cung c\\u1ea5p b\\u1eaft bu\\u1ed9c khi g\\u1eedi th\\u00f4ng tin nh\\u1edd t\\u01b0 v\\u1ea5n hay mu\\u1ed1n mua s\\u1ea3n ph\\u1ea9m v\\u00e0 \\u0111\\u1ec3 ch\\u00fang t\\u00f4i li\\u00ean h\\u1ec7 x\\u00e1c nh\\u1eadn l\\u1ea1i v\\u1edbi kh\\u00e1ch h\\u00e0ng tr\\u00ean website nh\\u1eb1m \\u0111\\u1ea3m b\\u1ea3o quy\\u1ec1n l\\u1ee3i cho cho ng\\u01b0\\u1eddi ti\\u00eau d\\u00f9ng.<\\/p>\\r\\n\\r\\n<p>C\\u00e1c th\\u00e0nh vi\\u00ean s\\u1ebd t\\u1ef1 ch\\u1ecbu tr\\u00e1ch nhi\\u1ec7m v\\u1ec1 b\\u1ea3o m\\u1eadt v\\u00e0 l\\u01b0u gi\\u1eef m\\u1ecdi ho\\u1ea1t \\u0111\\u1ed9ng s\\u1eed d\\u1ee5ng d\\u1ecbch v\\u1ee5 d\\u01b0\\u1edbi th\\u00f4ng tin m\\u00e0 m\\u00ecnh cung c\\u1ea5p v\\u00e0 h\\u1ed9p th\\u01b0 \\u0111i\\u1ec7n t\\u1eed c\\u1ee7a m\\u00ecnh. Ngo\\u00e0i ra, th\\u00e0nh vi\\u00ean c\\u00f3 tr\\u00e1ch nhi\\u1ec7m th\\u00f4ng b\\u00e1o k\\u1ecbp th\\u1eddi cho webiste ch\\u00fang t\\u00f4i v\\u1ec1 nh\\u1eefng h\\u00e0nh vi s\\u1eed d\\u1ee5ng tr\\u00e1i ph\\u00e9p, l\\u1ea1m d\\u1ee5ng, vi ph\\u1ea1m b\\u1ea3o m\\u1eadt, l\\u01b0u gi\\u1eef t\\u00ean \\u0111\\u0103ng k\\u00fd v\\u00e0 m\\u1eadt kh\\u1ea9u c\\u1ee7a b\\u00ean th\\u1ee9 ba \\u0111\\u1ec3 c\\u00f3 bi\\u1ec7n ph\\u00e1p gi\\u1ea3i quy\\u1ebft ph\\u00f9 h\\u1ee3p.<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>&nbsp;II. PH\\u1ea0M VI S\\u1eec D\\u1ee4NG TH\\u00d4NG TIN<\\/strong><\\/p>\\r\\n\\r\\n<p>Ch\\u00fang t\\u00f4i s\\u1eed d\\u1ee5ng th\\u00f4ng tin th\\u00e0nh vi\\u00ean cung c\\u1ea5p \\u0111\\u1ec3:<\\/p>\\r\\n\\r\\n<p>\\u2013 Li\\u00ean h\\u1ec7 x\\u00e1c nh\\u1eadn \\u0111\\u01a1n h\\u00e0ng v\\u00e0 giao h\\u00e0ng cho th\\u00e0nh vi\\u00ean khi nh\\u1eadn \\u0111\\u01b0\\u1ee3c y\\u00eau c\\u1ea7u t\\u1eeb th\\u00e0nh vi\\u00ean;<\\/p>\\r\\n\\r\\n<p>\\u2013 Cung c\\u1ea5p th\\u00f4ng tin v\\u1ec1 s\\u1ea3n ph\\u1ea9m \\u0111\\u1ebfn kh\\u00e1ch h\\u00e0ng n\\u1ebfu c\\u00f3 y\\u00eau c\\u1ea7u t\\u1eeb kh\\u00e1ch h\\u00e0ng;<\\/p>\\r\\n\\r\\n<p>\\u2013 G\\u1eedi email ti\\u1ebfp th\\u1ecb, khuy\\u1ebfn m\\u1ea1i v\\u1ec1 h\\u00e0ng h\\u00f3a do ch\\u00fang t\\u00f4i b\\u00e1n;<\\/p>\\r\\n\\r\\n<p>\\u2013 G\\u1eedi c\\u00e1c th\\u00f4ng b\\u00e1o v\\u1ec1 c\\u00e1c ho\\u1ea1t \\u0111\\u1ed9ng tr\\u00ean website<\\/p>\\r\\n\\r\\n<p>\\u2013 Li\\u00ean l\\u1ea1c v\\u00e0 gi\\u1ea3i quy\\u1ebft v\\u1edbi ng\\u01b0\\u1eddi d\\u00f9ng trong nh\\u1eefng tr\\u01b0\\u1eddng h\\u1ee3p \\u0111\\u1eb7c bi\\u1ec7t;<\\/p>\\r\\n\\r\\n<p>\\u2013 Kh\\u00f4ng s\\u1eed d\\u1ee5ng th\\u00f4ng tin c\\u00e1 nh\\u00e2n c\\u1ee7a ng\\u01b0\\u1eddi d\\u00f9ng ngo\\u00e0i m\\u1ee5c \\u0111\\u00edch x\\u00e1c nh\\u1eadn v\\u00e0 li\\u00ean h\\u1ec7 c\\u00f3 li\\u00ean quan \\u0111\\u1ebfn giao d\\u1ecbch<\\/p>\\r\\n\\r\\n<p>\\u2013 Khi c\\u00f3 y\\u00eau c\\u1ea7u c\\u1ee7a c\\u01a1 quan t\\u01b0 ph\\u00e1p bao g\\u1ed3m: Vi\\u1ec7n ki\\u1ec3m s\\u00e1t, t\\u00f2a \\u00e1n, c\\u01a1 quan c\\u00f4ng an \\u0111i\\u1ec1u tra li\\u00ean quan \\u0111\\u1ebfn h\\u00e0nh vi vi ph\\u1ea1m ph\\u00e1p lu\\u1eadt n\\u00e0o \\u0111\\u00f3 c\\u1ee7a kh\\u00e1ch h\\u00e0ng.<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>III. TH\\u1edcI GIAN L\\u01afU TR\\u1eee TH\\u00d4NG TIN<\\/strong><\\/p>\\r\\n\\r\\n<p>D\\u1eef li\\u1ec7u c\\u00e1 nh\\u00e2n c\\u1ee7a th\\u00e0nh vi\\u00ean s\\u1ebd \\u0111\\u01b0\\u1ee3c l\\u01b0u tr\\u1eef cho \\u0111\\u1ebfn khi c\\u00f3 y\\u00eau c\\u1ea7u ban qu\\u1ea3n tr\\u1ecb h\\u1ee7y b\\u1ecf. C\\u00f2n l\\u1ea1i trong m\\u1ecdi tr\\u01b0\\u1eddng h\\u1ee3p th\\u00f4ng tin c\\u00e1 nh\\u00e2n th\\u00e0nh vi\\u00ean s\\u1ebd \\u0111\\u01b0\\u1ee3c b\\u1ea3o m\\u1eadt tr\\u00ean m\\u00e1y ch\\u1ee7 c\\u1ee7a ch\\u00fang t\\u00f4i<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>&nbsp;IV. NH\\u1eeeNG NG\\u01af\\u1edcI HO\\u1eb6C T\\u1ed4 CH\\u1ee8C C\\u00d3 TH\\u1ec2 \\u0110\\u01af\\u1ee2C TI\\u1ebeP C\\u1eacN V\\u1edaI TH\\u00d4NG TIN C\\u00c1 NH\\u00c2N<\\/strong><\\/p>\\r\\n\\r\\n<p>\\u0110\\u1ed1i t\\u01b0\\u1ee3ng \\u0111\\u01b0\\u1ee3c ti\\u1ebfp c\\u1eadn v\\u1edbi th\\u00f4ng tin c\\u00e1 nh\\u00e2n c\\u1ee7a kh\\u00e1ch h\\u00e0ng thu\\u1ed9c m\\u1ed9t trong nh\\u1eefng tr\\u01b0\\u1eddng h\\u1ee3p sau:<\\/p>\\r\\n\\r\\n<p>\\u2013 Nh\\u00e2n vi\\u00ean c\\u1ee7a c\\u00f4ng ty<\\/p>\\r\\n\\r\\n<p>\\u2013 C\\u00e1c \\u0111\\u1ed1i t\\u00e1c c\\u00f3 k\\u00fd h\\u1ee3p \\u0111\\u1ed9ng th\\u1ef1c hi\\u1ec7n 1 ph\\u1ea7n d\\u1ecbch v\\u1ee5 c\\u1ee7a C\\u00f4ng ty. C\\u00e1c \\u0111\\u1ed1i t\\u00e1c n\\u00e0y s\\u1ebd nh\\u1eadn \\u0111\\u01b0\\u1ee3c nh\\u1eefng th\\u00f4ng tin theo th\\u1ecfa thu\\u1eadn h\\u1ee3p \\u0111\\u1ed3ng (c\\u00f3 th\\u1ec3 1 ph\\u1ea7n ho\\u1eb7c to\\u00e0n b\\u1ed9 th\\u00f4ng tin tuy theo \\u0111i\\u1ec1u kho\\u1ea3n h\\u1ee3p \\u0111\\u1ed3ng) \\u0111\\u1ec3 ti\\u1ebfn h\\u00e0nh h\\u1ed7 tr\\u1ee3 ng\\u01b0\\u1eddi d\\u00f9ng s\\u1eed d\\u1ee5ng d\\u1ecbch v\\u1ee5 do C\\u00f4ng ty cung c\\u1ea5p.<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>&nbsp;V. \\u0110\\u1ecaA CH\\u1ec8 C\\u1ee6A \\u0110\\u01a0N V\\u1eca THU TH\\u1eacP V\\u00c0 QU\\u1ea2N L\\u00dd TH\\u00d4NG TIN C\\u00c1 NH\\u00c2N<\\/strong><\\/p>\\r\\n\\r\\n<p><strong>C\\u00f4ng ty TNHH M\\u00e1y t\\u00ednh TTech<\\/strong><\\/p>\\r\\n\\r\\n<p>\\u0110\\u1ecba ch\\u1ec9: S\\u1ed1 32 Ph\\u1ed1 V\\u0169, Ph\\u01b0\\u1eddng \\u0110\\u1ea1i Ph\\u00fac, TP. B\\u1eafc Ninh, T\\u1ec9nh B\\u1eafc Ninh<\\/p>\\r\\n\\r\\n<p>\\u0110i\\u1ec7n tho\\u1ea1i: 0222. 3636262 \\u2013 0368.221.386<\\/p>\\r\\n\\r\\n<p>Email:&nbsp;ttechpcbn@gmail.com<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>VI. PH\\u01af\\u01a0NG TI\\u1ec6N V\\u00c0 C\\u00d4NG C\\u1ee4 \\u0110\\u1ec2 NG\\u01af\\u1edcI D\\u00d9NG TI\\u1ebeP C\\u1eacN V\\u00c0 CH\\u1ec8NH S\\u1eecA D\\u1eee LI\\u1ec6U C\\u00c1 NH\\u00c2N C\\u1ee6A M\\u00ccNH<\\/strong><\\/p>\\r\\n\\r\\n<p>Th\\u00e0nh vi\\u00ean c\\u00f3 quy\\u1ec1n t\\u1ef1 ki\\u1ec3m tra, c\\u1eadp nh\\u1eadt, \\u0111i\\u1ec1u ch\\u1ec9nh ho\\u1eb7c h\\u1ee7y b\\u1ecf th\\u00f4ng tin c\\u00e1 nh\\u00e2n c\\u1ee7a m\\u00ecnh b\\u1eb1ng c\\u00e1ch li\\u00ean h\\u1ec7 v\\u1edbi ban qu\\u1ea3n tr\\u1ecb website th\\u1ef1c hi\\u1ec7n vi\\u1ec7c n\\u00e0y.<\\/p>\\r\\n\\r\\n<p>Th\\u00e0nh vi\\u00ean c\\u00f3 quy\\u1ec1n g\\u1eedi khi\\u1ebfu n\\u1ea1i v\\u1ec1 n\\u1ed9i dung b\\u1ea3o m\\u1eadt th\\u00f4ng tin \\u0111\\u1ec1 ngh\\u1ecb li\\u00ean h\\u1ec7 Ban qu\\u1ea3n tr\\u1ecb c\\u1ee7a website. Khi ti\\u1ebfp nh\\u1eadn nh\\u1eefng ph\\u1ea3n h\\u1ed3i n\\u00e0y, ch\\u00fang t\\u00f4i s\\u1ebd x\\u00e1c nh\\u1eadn l\\u1ea1i th\\u00f4ng tin, tr\\u01b0\\u1eddng h\\u1ee3p \\u0111\\u00fang nh\\u01b0 ph\\u1ea3n \\u00e1nh c\\u1ee7a th\\u00e0nh vi\\u00ean t\\u00f9y theo m\\u1ee9c \\u0111\\u1ed9, ch\\u00fang t\\u00f4i s\\u1ebd c\\u00f3 nh\\u1eefng bi\\u1ec7n ph\\u00e1p x\\u1eed l\\u00fd k\\u1ecbp th\\u1eddi.<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>&nbsp;VII. C\\u01a0 CH\\u1ebe TI\\u1ebeP NH\\u1eacN V\\u00c0 GI\\u1ea2I QUY\\u1ebeT KHI\\u1ebeU N\\u1ea0I C\\u1ee6A NG\\u01af\\u1edcI TI\\u00caU D\\u00d9NG<\\/strong><\\/p>\\r\\n\\r\\n<p>+ M\\u1ecdi tranh ch\\u1ea5p ph\\u00e1t sinh gi\\u1eefa C\\u00f4ng ty v\\u00e0 Ng\\u01b0\\u1eddi d\\u00f9ng s\\u1ebd \\u0111\\u01b0\\u1ee3c gi\\u1ea3i quy\\u1ebft tr\\u00ean c\\u01a1 s\\u1edf th\\u01b0\\u01a1ng l\\u01b0\\u1ee3ng. Tr\\u01b0\\u1eddng h\\u1ee3p kh\\u00f4ng \\u0111\\u1ea1t \\u0111\\u01b0\\u1ee3c th\\u1ecfa thu\\u1eadn nh\\u01b0 mong mu\\u1ed1n, m\\u1ed9t trong hai b\\u00ean c\\u00f3 quy\\u1ec1n \\u0111\\u01b0a v\\u1ee5 vi\\u1ec7c ra T\\u00f2a \\u00e1n nh\\u00e2n d\\u00e2n c\\u00f3 th\\u1ea9m quy\\u1ec1n \\u0111\\u1ec3 gi\\u1ea3i quy\\u1ebft.<\\/p>\\r\\n\\r\\n<p>+ Khi kh\\u00f4ng gia\\u0309i quy\\u00ea\\u0301t \\u0111\\u01b0\\u01a1\\u0323c qua th\\u01b0\\u01a1ng l\\u01b0\\u01a1\\u0323ng, ho\\u0300a gia\\u0309i nh\\u01b0 tr\\u00ean, b\\u00ean bi\\u0323 vi pha\\u0323m t\\u00e2\\u0323p h\\u01a1\\u0323p ca\\u0301c ch\\u01b0\\u0301ng c\\u01b0\\u0301 nh\\u01b0 email, tin nh\\u0103\\u0301n \\u2026 va\\u0300 li\\u00ean la\\u0323c v\\u01a1\\u0301i C\\u00f4ng ty. C\\u00f4ng ty se\\u0303 li\\u00ean la\\u0323c la\\u0323i v\\u01a1\\u0301i ng\\u01b0\\u01a1\\u0300i khi\\u00ea\\u0301u na\\u0323i \\u0111\\u00ea\\u0309 gia\\u0309i quy\\u00ea\\u0301t.<\\/p>\\r\\n\\r\\n<p>+ N\\u00ea\\u0301u vu\\u0323 vi\\u00ea\\u0323c v\\u01b0\\u01a1\\u0323t qua\\u0301 th\\u00e2\\u0309m quy\\u00ea\\u0300n cu\\u0309a mi\\u0300nh, C\\u00f4ng ty se\\u0303 \\u0111\\u00ea\\u0300 ngh\\u1ecb chuy\\u00ea\\u0309n vu\\u0323 vi\\u00ea\\u0323c cho ca\\u0301c c\\u01a1 quan ch\\u01b0\\u0301c n\\u0103ng co\\u0301 th\\u00e2\\u0309m quy\\u00ea\\u0300n. Trong tr\\u01b0\\u01a1\\u0300ng h\\u01a1\\u0323p na\\u0300y, C\\u00f4ng ty v\\u00e2\\u0303n ph\\u00f4\\u0301i h\\u01a1\\u0323p h\\u00f4\\u0303 tr\\u01a1\\u0323 \\u0111\\u00ea\\u0309 ba\\u0309o v\\u00ea\\u0323 t\\u00f4\\u0301t nh\\u00e2\\u0301t b\\u00ean bi\\u0323 vi pha\\u0323m.<\\/p>\\r\\n\\r\\n<p>+ Th\\u00f4ng tin c\\u00e1 nh\\u00e2n c\\u1ee7a th\\u00e0nh vi\\u00ean \\u0111\\u01b0\\u1ee3c cam k\\u1ebft b\\u1ea3o m\\u1eadt tuy\\u1ec7t \\u0111\\u1ed1i theo ch\\u00ednh s\\u00e1ch b\\u1ea3o v\\u1ec7 th\\u00f4ng tin c\\u00e1 nh\\u00e2n. Vi\\u1ec7c thu th\\u1eadp v\\u00e0 s\\u1eed d\\u1ee5ng th\\u00f4ng tin c\\u1ee7a m\\u1ed7i th\\u00e0nh vi\\u00ean ch\\u1ec9 \\u0111\\u01b0\\u1ee3c th\\u1ef1c hi\\u1ec7n khi c\\u00f3 s\\u1ef1 \\u0111\\u1ed3ng \\u00fd c\\u1ee7a kh\\u00e1ch h\\u00e0ng \\u0111\\u00f3 tr\\u1eeb nh\\u1eefng tr\\u01b0\\u1eddng h\\u1ee3p ph\\u00e1p lu\\u1eadt c\\u00f3 quy \\u0111\\u1ecbnh kh\\u00e1c.<\\/p>\\r\\n\\r\\n<p>+ Kh\\u00f4ng s\\u1eed d\\u1ee5ng, kh\\u00f4ng chuy\\u1ec3n giao, cung c\\u1ea5p hay ti\\u1ebft l\\u1ed9 cho b\\u00ean th\\u1ee9 3 n\\u00e0o v\\u1ec1 th\\u00f4ng tin c\\u00e1 nh\\u00e2n c\\u1ee7a th\\u00e0nh vi\\u00ean khi kh\\u00f4ng c\\u00f3 s\\u1ef1 cho ph\\u00e9p \\u0111\\u1ed3ng \\u00fd t\\u1eeb th\\u00e0nh vi\\u00ean.<\\/p>\\r\\n\\r\\n<p>+ Trong tr\\u01b0\\u1eddng h\\u1ee3p m\\u00e1y ch\\u1ee7 l\\u01b0u tr\\u1eef th\\u00f4ng tin b\\u1ecb hacker t\\u1ea5n c\\u00f4ng d\\u1eabn \\u0111\\u1ebfn m\\u1ea5t m\\u00e1t d\\u1eef li\\u1ec7u c\\u00e1 nh\\u00e2n th\\u00e0nh vi\\u00ean, ch\\u00fang t\\u00f4i s\\u1ebd c\\u00f3 tr\\u00e1ch nhi\\u1ec7m th\\u00f4ng b\\u00e1o v\\u1ee5 vi\\u1ec7c cho c\\u01a1 quan ch\\u1ee9c n\\u0103ng \\u0111i\\u1ec1u tra x\\u1eed l\\u00fd k\\u1ecbp th\\u1eddi v\\u00e0 th\\u00f4ng b\\u00e1o cho th\\u00e0nh vi\\u00ean \\u0111\\u01b0\\u1ee3c bi\\u1ebft.<\\/p>\\r\\n\\r\\n<p>+ B\\u1ea3o m\\u1eadt tuy\\u1ec7t \\u0111\\u1ed1i m\\u1ecdi th\\u00f4ng tin giao d\\u1ecbch tr\\u1ef1c tuy\\u1ebfn c\\u1ee7a th\\u00e0nh vi\\u00ean bao g\\u1ed3m th\\u00f4ng tin h\\u00f3a \\u0111\\u01a1n k\\u1ebf to\\u00e1n ch\\u1ee9ng t\\u1eeb s\\u1ed1 h\\u00f3a<\\/p>\\r\\n\\r\\n<p>+ C\\u00f4ng ty y\\u00eau c\\u1ea7u c\\u00e1c c\\u00e1 nh\\u00e2n khi \\u0111\\u0103ng k\\u00fd\\/mua h\\u00e0ng ph\\u1ea3i cung c\\u1ea5p \\u0111\\u1ea7y \\u0111\\u1ee7 th\\u00f4ng tin c\\u00e1 nh\\u00e2n c\\u00f3 li\\u00ean quan nh\\u01b0: H\\u1ecd v\\u00e0 t\\u00ean, \\u0111\\u1ecba ch\\u1ec9 li\\u00ean l\\u1ea1c, email, \\u0111i\\u1ec7n tho\\u1ea1i,\\u2026., v\\u00e0 ch\\u1ecbu tr\\u00e1ch nhi\\u1ec7m v\\u1ec1 t\\u00ednh ph\\u00e1p l\\u00fd c\\u1ee7a nh\\u1eefng th\\u00f4ng tin tr\\u00ean. C\\u00f4ng ty kh\\u00f4ng ch\\u1ecbu tr\\u00e1ch nhi\\u1ec7m c\\u0169ng nh\\u01b0 kh\\u00f4ng gi\\u1ea3i quy\\u1ebft m\\u1ecdi khi\\u1ebfu n\\u1ea1i c\\u00f3 li\\u00ean quan \\u0111\\u1ebfn quy\\u1ec1n l\\u1ee3i c\\u1ee7a th\\u00e0nh vi\\u00ean \\u0111\\u00f3 n\\u1ebfu x\\u00e9t th\\u1ea5y t\\u1ea5t c\\u1ea3 th\\u00f4ng tin c\\u00e1 nh\\u00e2n c\\u1ee7a th\\u00e0nh vi\\u00ean \\u0111\\u00f3 cung c\\u1ea5p khi \\u0111\\u0103ng k\\u00fd ban \\u0111\\u1ea7u l\\u00e0 kh\\u00f4ng ch\\u00ednh x\\u00e1c.<\\/p>\"},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', NULL, NULL, 0, 36, NULL, 'active', 3, 3, '2024-06-17 08:27:07', '2024-07-17 00:58:32', 'bao-mat-va-thu-thap-thong-tin');
+(695, 88, NULL, 'post', 'Bảo mật và thu thập thông tin', '{\"brief\":{\"vi\":null},\"content\":{\"vi\":\"<p><strong>&nbsp;I. M\\u1ee4C \\u0110\\u00cdCH V\\u00c0 PH\\u1ea0M VI THU TH\\u1eacP<\\/strong><\\/p>\\r\\n\\r\\n<p>Vi\\u1ec7c thu th\\u1eadp d\\u1eef li\\u1ec7u ch\\u1ee7 y\\u1ebfu tr\\u00ean website bao g\\u1ed3m: h\\u1ecd t\\u00ean, email, \\u0111i\\u1ec7n tho\\u1ea1i, \\u0111\\u1ecba ch\\u1ec9 kh\\u00e1ch h\\u00e0ng trong m\\u1ee5c li\\u00ean h\\u1ec7. \\u0110\\u00e2y l\\u00e0 c\\u00e1c th\\u00f4ng tin m\\u00e0 ch\\u00fang t\\u00f4i c\\u1ea7n th\\u00e0nh vi\\u00ean cung c\\u1ea5p b\\u1eaft bu\\u1ed9c khi g\\u1eedi th\\u00f4ng tin nh\\u1edd t\\u01b0 v\\u1ea5n hay mu\\u1ed1n mua s\\u1ea3n ph\\u1ea9m v\\u00e0 \\u0111\\u1ec3 ch\\u00fang t\\u00f4i li\\u00ean h\\u1ec7 x\\u00e1c nh\\u1eadn l\\u1ea1i v\\u1edbi kh\\u00e1ch h\\u00e0ng tr\\u00ean website nh\\u1eb1m \\u0111\\u1ea3m b\\u1ea3o quy\\u1ec1n l\\u1ee3i cho cho ng\\u01b0\\u1eddi ti\\u00eau d\\u00f9ng.<\\/p>\\r\\n\\r\\n<p>C\\u00e1c th\\u00e0nh vi\\u00ean s\\u1ebd t\\u1ef1 ch\\u1ecbu tr\\u00e1ch nhi\\u1ec7m v\\u1ec1 b\\u1ea3o m\\u1eadt v\\u00e0 l\\u01b0u gi\\u1eef m\\u1ecdi ho\\u1ea1t \\u0111\\u1ed9ng s\\u1eed d\\u1ee5ng d\\u1ecbch v\\u1ee5 d\\u01b0\\u1edbi th\\u00f4ng tin m\\u00e0 m\\u00ecnh cung c\\u1ea5p v\\u00e0 h\\u1ed9p th\\u01b0 \\u0111i\\u1ec7n t\\u1eed c\\u1ee7a m\\u00ecnh. Ngo\\u00e0i ra, th\\u00e0nh vi\\u00ean c\\u00f3 tr\\u00e1ch nhi\\u1ec7m th\\u00f4ng b\\u00e1o k\\u1ecbp th\\u1eddi cho webiste ch\\u00fang t\\u00f4i v\\u1ec1 nh\\u1eefng h\\u00e0nh vi s\\u1eed d\\u1ee5ng tr\\u00e1i ph\\u00e9p, l\\u1ea1m d\\u1ee5ng, vi ph\\u1ea1m b\\u1ea3o m\\u1eadt, l\\u01b0u gi\\u1eef t\\u00ean \\u0111\\u0103ng k\\u00fd v\\u00e0 m\\u1eadt kh\\u1ea9u c\\u1ee7a b\\u00ean th\\u1ee9 ba \\u0111\\u1ec3 c\\u00f3 bi\\u1ec7n ph\\u00e1p gi\\u1ea3i quy\\u1ebft ph\\u00f9 h\\u1ee3p.<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>&nbsp;II. PH\\u1ea0M VI S\\u1eec D\\u1ee4NG TH\\u00d4NG TIN<\\/strong><\\/p>\\r\\n\\r\\n<p>Ch\\u00fang t\\u00f4i s\\u1eed d\\u1ee5ng th\\u00f4ng tin th\\u00e0nh vi\\u00ean cung c\\u1ea5p \\u0111\\u1ec3:<\\/p>\\r\\n\\r\\n<p>\\u2013 Li\\u00ean h\\u1ec7 x\\u00e1c nh\\u1eadn \\u0111\\u01a1n h\\u00e0ng v\\u00e0 giao h\\u00e0ng cho th\\u00e0nh vi\\u00ean khi nh\\u1eadn \\u0111\\u01b0\\u1ee3c y\\u00eau c\\u1ea7u t\\u1eeb th\\u00e0nh vi\\u00ean;<\\/p>\\r\\n\\r\\n<p>\\u2013 Cung c\\u1ea5p th\\u00f4ng tin v\\u1ec1 s\\u1ea3n ph\\u1ea9m \\u0111\\u1ebfn kh\\u00e1ch h\\u00e0ng n\\u1ebfu c\\u00f3 y\\u00eau c\\u1ea7u t\\u1eeb kh\\u00e1ch h\\u00e0ng;<\\/p>\\r\\n\\r\\n<p>\\u2013 G\\u1eedi email ti\\u1ebfp th\\u1ecb, khuy\\u1ebfn m\\u1ea1i v\\u1ec1 h\\u00e0ng h\\u00f3a do ch\\u00fang t\\u00f4i b\\u00e1n;<\\/p>\\r\\n\\r\\n<p>\\u2013 G\\u1eedi c\\u00e1c th\\u00f4ng b\\u00e1o v\\u1ec1 c\\u00e1c ho\\u1ea1t \\u0111\\u1ed9ng tr\\u00ean website<\\/p>\\r\\n\\r\\n<p>\\u2013 Li\\u00ean l\\u1ea1c v\\u00e0 gi\\u1ea3i quy\\u1ebft v\\u1edbi ng\\u01b0\\u1eddi d\\u00f9ng trong nh\\u1eefng tr\\u01b0\\u1eddng h\\u1ee3p \\u0111\\u1eb7c bi\\u1ec7t;<\\/p>\\r\\n\\r\\n<p>\\u2013 Kh\\u00f4ng s\\u1eed d\\u1ee5ng th\\u00f4ng tin c\\u00e1 nh\\u00e2n c\\u1ee7a ng\\u01b0\\u1eddi d\\u00f9ng ngo\\u00e0i m\\u1ee5c \\u0111\\u00edch x\\u00e1c nh\\u1eadn v\\u00e0 li\\u00ean h\\u1ec7 c\\u00f3 li\\u00ean quan \\u0111\\u1ebfn giao d\\u1ecbch<\\/p>\\r\\n\\r\\n<p>\\u2013 Khi c\\u00f3 y\\u00eau c\\u1ea7u c\\u1ee7a c\\u01a1 quan t\\u01b0 ph\\u00e1p bao g\\u1ed3m: Vi\\u1ec7n ki\\u1ec3m s\\u00e1t, t\\u00f2a \\u00e1n, c\\u01a1 quan c\\u00f4ng an \\u0111i\\u1ec1u tra li\\u00ean quan \\u0111\\u1ebfn h\\u00e0nh vi vi ph\\u1ea1m ph\\u00e1p lu\\u1eadt n\\u00e0o \\u0111\\u00f3 c\\u1ee7a kh\\u00e1ch h\\u00e0ng.<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>III. TH\\u1edcI GIAN L\\u01afU TR\\u1eee TH\\u00d4NG TIN<\\/strong><\\/p>\\r\\n\\r\\n<p>D\\u1eef li\\u1ec7u c\\u00e1 nh\\u00e2n c\\u1ee7a th\\u00e0nh vi\\u00ean s\\u1ebd \\u0111\\u01b0\\u1ee3c l\\u01b0u tr\\u1eef cho \\u0111\\u1ebfn khi c\\u00f3 y\\u00eau c\\u1ea7u ban qu\\u1ea3n tr\\u1ecb h\\u1ee7y b\\u1ecf. C\\u00f2n l\\u1ea1i trong m\\u1ecdi tr\\u01b0\\u1eddng h\\u1ee3p th\\u00f4ng tin c\\u00e1 nh\\u00e2n th\\u00e0nh vi\\u00ean s\\u1ebd \\u0111\\u01b0\\u1ee3c b\\u1ea3o m\\u1eadt tr\\u00ean m\\u00e1y ch\\u1ee7 c\\u1ee7a ch\\u00fang t\\u00f4i<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>&nbsp;IV. NH\\u1eeeNG NG\\u01af\\u1edcI HO\\u1eb6C T\\u1ed4 CH\\u1ee8C C\\u00d3 TH\\u1ec2 \\u0110\\u01af\\u1ee2C TI\\u1ebeP C\\u1eacN V\\u1edaI TH\\u00d4NG TIN C\\u00c1 NH\\u00c2N<\\/strong><\\/p>\\r\\n\\r\\n<p>\\u0110\\u1ed1i t\\u01b0\\u1ee3ng \\u0111\\u01b0\\u1ee3c ti\\u1ebfp c\\u1eadn v\\u1edbi th\\u00f4ng tin c\\u00e1 nh\\u00e2n c\\u1ee7a kh\\u00e1ch h\\u00e0ng thu\\u1ed9c m\\u1ed9t trong nh\\u1eefng tr\\u01b0\\u1eddng h\\u1ee3p sau:<\\/p>\\r\\n\\r\\n<p>\\u2013 Nh\\u00e2n vi\\u00ean c\\u1ee7a c\\u00f4ng ty<\\/p>\\r\\n\\r\\n<p>\\u2013 C\\u00e1c \\u0111\\u1ed1i t\\u00e1c c\\u00f3 k\\u00fd h\\u1ee3p \\u0111\\u1ed9ng th\\u1ef1c hi\\u1ec7n 1 ph\\u1ea7n d\\u1ecbch v\\u1ee5 c\\u1ee7a C\\u00f4ng ty. C\\u00e1c \\u0111\\u1ed1i t\\u00e1c n\\u00e0y s\\u1ebd nh\\u1eadn \\u0111\\u01b0\\u1ee3c nh\\u1eefng th\\u00f4ng tin theo th\\u1ecfa thu\\u1eadn h\\u1ee3p \\u0111\\u1ed3ng (c\\u00f3 th\\u1ec3 1 ph\\u1ea7n ho\\u1eb7c to\\u00e0n b\\u1ed9 th\\u00f4ng tin tuy theo \\u0111i\\u1ec1u kho\\u1ea3n h\\u1ee3p \\u0111\\u1ed3ng) \\u0111\\u1ec3 ti\\u1ebfn h\\u00e0nh h\\u1ed7 tr\\u1ee3 ng\\u01b0\\u1eddi d\\u00f9ng s\\u1eed d\\u1ee5ng d\\u1ecbch v\\u1ee5 do C\\u00f4ng ty cung c\\u1ea5p.<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>&nbsp;V. \\u0110\\u1ecaA CH\\u1ec8 C\\u1ee6A \\u0110\\u01a0N V\\u1eca THU TH\\u1eacP V\\u00c0 QU\\u1ea2N L\\u00dd TH\\u00d4NG TIN C\\u00c1 NH\\u00c2N<\\/strong><\\/p>\\r\\n\\r\\n<p><strong>C\\u00f4ng ty TNHH M\\u00e1y t\\u00ednh TTech<\\/strong><\\/p>\\r\\n\\r\\n<p>\\u0110\\u1ecba ch\\u1ec9: S\\u1ed1 32 Ph\\u1ed1 V\\u0169, Ph\\u01b0\\u1eddng \\u0110\\u1ea1i Ph\\u00fac, TP. B\\u1eafc Ninh, T\\u1ec9nh B\\u1eafc Ninh<\\/p>\\r\\n\\r\\n<p>\\u0110i\\u1ec7n tho\\u1ea1i: 0222. 3636262 \\u2013 0368.221.386<\\/p>\\r\\n\\r\\n<p>Email:&nbsp;ttechpcbn@gmail.com<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>VI. PH\\u01af\\u01a0NG TI\\u1ec6N V\\u00c0 C\\u00d4NG C\\u1ee4 \\u0110\\u1ec2 NG\\u01af\\u1edcI D\\u00d9NG TI\\u1ebeP C\\u1eacN V\\u00c0 CH\\u1ec8NH S\\u1eecA D\\u1eee LI\\u1ec6U C\\u00c1 NH\\u00c2N C\\u1ee6A M\\u00ccNH<\\/strong><\\/p>\\r\\n\\r\\n<p>Th\\u00e0nh vi\\u00ean c\\u00f3 quy\\u1ec1n t\\u1ef1 ki\\u1ec3m tra, c\\u1eadp nh\\u1eadt, \\u0111i\\u1ec1u ch\\u1ec9nh ho\\u1eb7c h\\u1ee7y b\\u1ecf th\\u00f4ng tin c\\u00e1 nh\\u00e2n c\\u1ee7a m\\u00ecnh b\\u1eb1ng c\\u00e1ch li\\u00ean h\\u1ec7 v\\u1edbi ban qu\\u1ea3n tr\\u1ecb website th\\u1ef1c hi\\u1ec7n vi\\u1ec7c n\\u00e0y.<\\/p>\\r\\n\\r\\n<p>Th\\u00e0nh vi\\u00ean c\\u00f3 quy\\u1ec1n g\\u1eedi khi\\u1ebfu n\\u1ea1i v\\u1ec1 n\\u1ed9i dung b\\u1ea3o m\\u1eadt th\\u00f4ng tin \\u0111\\u1ec1 ngh\\u1ecb li\\u00ean h\\u1ec7 Ban qu\\u1ea3n tr\\u1ecb c\\u1ee7a website. Khi ti\\u1ebfp nh\\u1eadn nh\\u1eefng ph\\u1ea3n h\\u1ed3i n\\u00e0y, ch\\u00fang t\\u00f4i s\\u1ebd x\\u00e1c nh\\u1eadn l\\u1ea1i th\\u00f4ng tin, tr\\u01b0\\u1eddng h\\u1ee3p \\u0111\\u00fang nh\\u01b0 ph\\u1ea3n \\u00e1nh c\\u1ee7a th\\u00e0nh vi\\u00ean t\\u00f9y theo m\\u1ee9c \\u0111\\u1ed9, ch\\u00fang t\\u00f4i s\\u1ebd c\\u00f3 nh\\u1eefng bi\\u1ec7n ph\\u00e1p x\\u1eed l\\u00fd k\\u1ecbp th\\u1eddi.<\\/p>\\r\\n\\r\\n<p>&nbsp;<\\/p>\\r\\n\\r\\n<p><strong>&nbsp;VII. C\\u01a0 CH\\u1ebe TI\\u1ebeP NH\\u1eacN V\\u00c0 GI\\u1ea2I QUY\\u1ebeT KHI\\u1ebeU N\\u1ea0I C\\u1ee6A NG\\u01af\\u1edcI TI\\u00caU D\\u00d9NG<\\/strong><\\/p>\\r\\n\\r\\n<p>+ M\\u1ecdi tranh ch\\u1ea5p ph\\u00e1t sinh gi\\u1eefa C\\u00f4ng ty v\\u00e0 Ng\\u01b0\\u1eddi d\\u00f9ng s\\u1ebd \\u0111\\u01b0\\u1ee3c gi\\u1ea3i quy\\u1ebft tr\\u00ean c\\u01a1 s\\u1edf th\\u01b0\\u01a1ng l\\u01b0\\u1ee3ng. Tr\\u01b0\\u1eddng h\\u1ee3p kh\\u00f4ng \\u0111\\u1ea1t \\u0111\\u01b0\\u1ee3c th\\u1ecfa thu\\u1eadn nh\\u01b0 mong mu\\u1ed1n, m\\u1ed9t trong hai b\\u00ean c\\u00f3 quy\\u1ec1n \\u0111\\u01b0a v\\u1ee5 vi\\u1ec7c ra T\\u00f2a \\u00e1n nh\\u00e2n d\\u00e2n c\\u00f3 th\\u1ea9m quy\\u1ec1n \\u0111\\u1ec3 gi\\u1ea3i quy\\u1ebft.<\\/p>\\r\\n\\r\\n<p>+ Khi kh\\u00f4ng gia\\u0309i quy\\u00ea\\u0301t \\u0111\\u01b0\\u01a1\\u0323c qua th\\u01b0\\u01a1ng l\\u01b0\\u01a1\\u0323ng, ho\\u0300a gia\\u0309i nh\\u01b0 tr\\u00ean, b\\u00ean bi\\u0323 vi pha\\u0323m t\\u00e2\\u0323p h\\u01a1\\u0323p ca\\u0301c ch\\u01b0\\u0301ng c\\u01b0\\u0301 nh\\u01b0 email, tin nh\\u0103\\u0301n \\u2026 va\\u0300 li\\u00ean la\\u0323c v\\u01a1\\u0301i C\\u00f4ng ty. C\\u00f4ng ty se\\u0303 li\\u00ean la\\u0323c la\\u0323i v\\u01a1\\u0301i ng\\u01b0\\u01a1\\u0300i khi\\u00ea\\u0301u na\\u0323i \\u0111\\u00ea\\u0309 gia\\u0309i quy\\u00ea\\u0301t.<\\/p>\\r\\n\\r\\n<p>+ N\\u00ea\\u0301u vu\\u0323 vi\\u00ea\\u0323c v\\u01b0\\u01a1\\u0323t qua\\u0301 th\\u00e2\\u0309m quy\\u00ea\\u0300n cu\\u0309a mi\\u0300nh, C\\u00f4ng ty se\\u0303 \\u0111\\u00ea\\u0300 ngh\\u1ecb chuy\\u00ea\\u0309n vu\\u0323 vi\\u00ea\\u0323c cho ca\\u0301c c\\u01a1 quan ch\\u01b0\\u0301c n\\u0103ng co\\u0301 th\\u00e2\\u0309m quy\\u00ea\\u0300n. Trong tr\\u01b0\\u01a1\\u0300ng h\\u01a1\\u0323p na\\u0300y, C\\u00f4ng ty v\\u00e2\\u0303n ph\\u00f4\\u0301i h\\u01a1\\u0323p h\\u00f4\\u0303 tr\\u01a1\\u0323 \\u0111\\u00ea\\u0309 ba\\u0309o v\\u00ea\\u0323 t\\u00f4\\u0301t nh\\u00e2\\u0301t b\\u00ean bi\\u0323 vi pha\\u0323m.<\\/p>\\r\\n\\r\\n<p>+ Th\\u00f4ng tin c\\u00e1 nh\\u00e2n c\\u1ee7a th\\u00e0nh vi\\u00ean \\u0111\\u01b0\\u1ee3c cam k\\u1ebft b\\u1ea3o m\\u1eadt tuy\\u1ec7t \\u0111\\u1ed1i theo ch\\u00ednh s\\u00e1ch b\\u1ea3o v\\u1ec7 th\\u00f4ng tin c\\u00e1 nh\\u00e2n. Vi\\u1ec7c thu th\\u1eadp v\\u00e0 s\\u1eed d\\u1ee5ng th\\u00f4ng tin c\\u1ee7a m\\u1ed7i th\\u00e0nh vi\\u00ean ch\\u1ec9 \\u0111\\u01b0\\u1ee3c th\\u1ef1c hi\\u1ec7n khi c\\u00f3 s\\u1ef1 \\u0111\\u1ed3ng \\u00fd c\\u1ee7a kh\\u00e1ch h\\u00e0ng \\u0111\\u00f3 tr\\u1eeb nh\\u1eefng tr\\u01b0\\u1eddng h\\u1ee3p ph\\u00e1p lu\\u1eadt c\\u00f3 quy \\u0111\\u1ecbnh kh\\u00e1c.<\\/p>\\r\\n\\r\\n<p>+ Kh\\u00f4ng s\\u1eed d\\u1ee5ng, kh\\u00f4ng chuy\\u1ec3n giao, cung c\\u1ea5p hay ti\\u1ebft l\\u1ed9 cho b\\u00ean th\\u1ee9 3 n\\u00e0o v\\u1ec1 th\\u00f4ng tin c\\u00e1 nh\\u00e2n c\\u1ee7a th\\u00e0nh vi\\u00ean khi kh\\u00f4ng c\\u00f3 s\\u1ef1 cho ph\\u00e9p \\u0111\\u1ed3ng \\u00fd t\\u1eeb th\\u00e0nh vi\\u00ean.<\\/p>\\r\\n\\r\\n<p>+ Trong tr\\u01b0\\u1eddng h\\u1ee3p m\\u00e1y ch\\u1ee7 l\\u01b0u tr\\u1eef th\\u00f4ng tin b\\u1ecb hacker t\\u1ea5n c\\u00f4ng d\\u1eabn \\u0111\\u1ebfn m\\u1ea5t m\\u00e1t d\\u1eef li\\u1ec7u c\\u00e1 nh\\u00e2n th\\u00e0nh vi\\u00ean, ch\\u00fang t\\u00f4i s\\u1ebd c\\u00f3 tr\\u00e1ch nhi\\u1ec7m th\\u00f4ng b\\u00e1o v\\u1ee5 vi\\u1ec7c cho c\\u01a1 quan ch\\u1ee9c n\\u0103ng \\u0111i\\u1ec1u tra x\\u1eed l\\u00fd k\\u1ecbp th\\u1eddi v\\u00e0 th\\u00f4ng b\\u00e1o cho th\\u00e0nh vi\\u00ean \\u0111\\u01b0\\u1ee3c bi\\u1ebft.<\\/p>\\r\\n\\r\\n<p>+ B\\u1ea3o m\\u1eadt tuy\\u1ec7t \\u0111\\u1ed1i m\\u1ecdi th\\u00f4ng tin giao d\\u1ecbch tr\\u1ef1c tuy\\u1ebfn c\\u1ee7a th\\u00e0nh vi\\u00ean bao g\\u1ed3m th\\u00f4ng tin h\\u00f3a \\u0111\\u01a1n k\\u1ebf to\\u00e1n ch\\u1ee9ng t\\u1eeb s\\u1ed1 h\\u00f3a<\\/p>\\r\\n\\r\\n<p>+ C\\u00f4ng ty y\\u00eau c\\u1ea7u c\\u00e1c c\\u00e1 nh\\u00e2n khi \\u0111\\u0103ng k\\u00fd\\/mua h\\u00e0ng ph\\u1ea3i cung c\\u1ea5p \\u0111\\u1ea7y \\u0111\\u1ee7 th\\u00f4ng tin c\\u00e1 nh\\u00e2n c\\u00f3 li\\u00ean quan nh\\u01b0: H\\u1ecd v\\u00e0 t\\u00ean, \\u0111\\u1ecba ch\\u1ec9 li\\u00ean l\\u1ea1c, email, \\u0111i\\u1ec7n tho\\u1ea1i,\\u2026., v\\u00e0 ch\\u1ecbu tr\\u00e1ch nhi\\u1ec7m v\\u1ec1 t\\u00ednh ph\\u00e1p l\\u00fd c\\u1ee7a nh\\u1eefng th\\u00f4ng tin tr\\u00ean. C\\u00f4ng ty kh\\u00f4ng ch\\u1ecbu tr\\u00e1ch nhi\\u1ec7m c\\u0169ng nh\\u01b0 kh\\u00f4ng gi\\u1ea3i quy\\u1ebft m\\u1ecdi khi\\u1ebfu n\\u1ea1i c\\u00f3 li\\u00ean quan \\u0111\\u1ebfn quy\\u1ec1n l\\u1ee3i c\\u1ee7a th\\u00e0nh vi\\u00ean \\u0111\\u00f3 n\\u1ebfu x\\u00e9t th\\u1ea5y t\\u1ea5t c\\u1ea3 th\\u00f4ng tin c\\u00e1 nh\\u00e2n c\\u1ee7a th\\u00e0nh vi\\u00ean \\u0111\\u00f3 cung c\\u1ea5p khi \\u0111\\u0103ng k\\u00fd ban \\u0111\\u1ea7u l\\u00e0 kh\\u00f4ng ch\\u00ednh x\\u00e1c.<\\/p>\"},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', NULL, NULL, 0, 37, NULL, 'active', 3, 3, '2024-06-17 08:27:07', '2024-07-18 15:39:35', 'bao-mat-va-thu-thap-thong-tin');
 INSERT INTO `tb_cms_posts` (`id`, `taxonomy_id`, `resources_id`, `is_type`, `title`, `json_params`, `image`, `image_thumb`, `is_featured`, `count_visited`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`, `alias`) VALUES
 (696, 88, NULL, 'post', 'Chính sách đổi trả hàng', '{\"brief\":{\"vi\":null},\"content\":{\"vi\":\"<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><b><span style=\\\"font-size:12.0pt\\\">1. \\u0110i\\u1ec1u ki\\u1ec7n \\u00e1p d\\u1ee5ng<\\/span><\\/b><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><span style=\\\"font-size:12.0pt\\\">Theo c\\u00e1c \\u0111i\\u1ec1u kho\\u1ea3n v\\u00e0 \\u0111i\\u1ec1u ki\\u1ec7n \\u0111\\u01b0\\u1ee3c quy \\u0111\\u1ecbnh trong Ch\\u00ednh s\\u00e1ch Tr\\u1ea3 h\\u00e0ng v\\u00e0 Ho\\u00e0n ti\\u1ec1n n\\u00e0y v\\u00e0 t\\u1ea1o th\\u00e0nh m\\u1ed9t ph\\u1ea7n c\\u1ee7a \\u0110i\\u1ec1u kho\\u1ea3n d\\u1ecbch v\\u1ee5, M\\u00e1y t\\u00ednh TTech \\u0111\\u1ea3m b\\u1ea3o quy\\u1ec1n l\\u1ee3i c\\u1ee7a Ng\\u01b0\\u1eddi mua b\\u1eb1ng c\\u00e1ch cho ph\\u00e9p g\\u1eedi y\\u00eau c\\u1ea7u ho\\u00e0n tr\\u1ea3 s\\u1ea3n ph\\u1ea9m v\\u00e0\\/ho\\u1eb7c ho\\u00e0n ti\\u1ec1n tr\\u01b0\\u1edbc khi h\\u1ebft h\\u1ea1n. Th\\u1eddi h\\u1ea1n M\\u00e1y t\\u00ednh TTech \\u0110\\u1ea3m B\\u1ea3o \\u0111\\u00e3 \\u0111\\u01b0\\u1ee3c qui \\u0111\\u1ecbnh trong \\u0110i\\u1ec1u kho\\u1ea3n D\\u1ecbch v\\u1ee5.<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><span style=\\\"font-size:12.0pt\\\">M\\u00e1y t\\u00ednh TTech \\u0110\\u1ea3m b\\u1ea3o l\\u00e0 m\\u1ed9t d\\u1ecbch v\\u1ee5 cung c\\u1ea5p b\\u1edfi M\\u00e1y t\\u00ednh TTech, theo y\\u00eau c\\u1ea7u c\\u1ee7a Ng\\u01b0\\u1eddi d\\u00f9ng, \\u0111\\u1ec3 h\\u1ed7 tr\\u1ee3 Ng\\u01b0\\u1eddi d\\u00f9ng trong vi\\u1ec7c gi\\u1ea3i quy\\u1ebft c\\u00e1c xung \\u0111\\u1ed9t c\\u00f3 th\\u1ec3 ph\\u00e1t sinh trong qu\\u00e1 tr\\u00ecnh giao d\\u1ecbch. Ng\\u01b0\\u1eddi d\\u00f9ng c\\u00f3 th\\u1ec3 li\\u00ean h\\u1ec7 v\\u1edbi nhau \\u0111\\u1ec3 th\\u1ecfa thu\\u1eadn v\\u1ec1 vi\\u1ec7c gi\\u1ea3i quy\\u1ebft tranh ch\\u1ea5p c\\u1ee7a h\\u1ecd ho\\u1eb7c b\\u00e1o c\\u00e1o l\\u00ean ch\\u00ednh quy\\u1ec1n \\u0111\\u1ecba ph\\u01b0\\u01a1ng c\\u00f3 li\\u00ean quan nh\\u1edd h\\u1ed7 tr\\u1ee3 h\\u1ecd trong vi\\u1ec7c gi\\u1ea3i quy\\u1ebft b\\u1ea5t k\\u1ef3 tranh ch\\u1ea5p x\\u1ea3y ra tr\\u01b0\\u1edbc, trong ho\\u1eb7c sau khi s\\u1eed d\\u1ee5ng M\\u00e1y t\\u00ednh TTech \\u0110\\u1ea3m b\\u1ea3o.<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><b><span style=\\\"font-size:12.0pt\\\">2. \\u0110i\\u1ec1u ki\\u1ec7n tr\\u1ea3 h\\u00e0ng<\\/span><\\/b><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><span style=\\\"font-size:12.0pt\\\">Ng\\u01b0\\u1eddi mua \\u0111\\u1ed3ng \\u00fd r\\u1eb1ng c\\u00f4 \\u1ea5y\\/anh \\u1ea5y ch\\u1ec9 c\\u00f3 th\\u1ec3 y\\u00eau c\\u1ea7u tr\\u1ea3 h\\u00e0ng v\\u00e0 ho\\u00e0n ti\\u1ec1n trong c\\u00e1c tr\\u01b0\\u1eddng h\\u1ee3p sau:<br \\/>\\r\\n\\u2022 Ng\\u01b0\\u1eddi mua \\u0111\\u00e3 thanh to\\u00e1n nh\\u01b0ng kh\\u00f4ng nh\\u1eadn \\u0111\\u01b0\\u1ee3c s\\u1ea3n ph\\u1ea9m;<br \\/>\\r\\n\\u2022 S\\u1ea3n ph\\u1ea9m b\\u1ecb l\\u1ed7i ho\\u1eb7c b\\u1ecb h\\u01b0 h\\u1ea1i trong qu\\u00e1 tr\\u00ecnh v\\u1eadn chuy\\u1ec3n;<br \\/>\\r\\n\\u2022 Ng\\u01b0\\u1eddi b\\u00e1n giao sai s\\u1ea3n ph\\u1ea9m cho Ng\\u01b0\\u1eddi mua (VD: sai k\\u00edch c\\u1ee1, sai m\\u00e0u s\\u1eafc, v.vv\\u2026);<br \\/>\\r\\n\\u2022 S\\u1ea3n ph\\u1ea9m Ng\\u01b0\\u1eddi mua nh\\u1eadn \\u0111\\u01b0\\u1ee3c kh\\u00e1c bi\\u1ec7t m\\u1ed9t c\\u00e1ch r\\u00f5 r\\u1ec7t so v\\u1edbi th\\u00f4ng tin m\\u00e0 Ng\\u01b0\\u1eddi b\\u00e1n cung c\\u1ea5p trong m\\u1ee5c m\\u00f4 t\\u1ea3 s\\u1ea3n ph\\u1ea9m;<br \\/>\\r\\n\\u2022 Ng\\u01b0\\u1eddi b\\u00e1n \\u0111\\u00e3 t\\u1ef1 th\\u1ecfa thu\\u1eadn v\\u00e0 \\u0111\\u1ed3ng \\u00fd cho Ng\\u01b0\\u1eddi mua tr\\u1ea3 h\\u00e0ng (tuy nhi\\u00ean M\\u00e1y t\\u00ednh TTech s\\u1ebd c\\u1ea7n Ng\\u01b0\\u1eddi b\\u00e1n x\\u00e1c nh\\u1eadn l\\u1ea1i nh\\u1eefng tho\\u1ea3 thu\\u1eadn n\\u00e0y).<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><span style=\\\"font-size:12.0pt\\\">T\\u1ea5t c\\u1ea3 c\\u00e1c y\\u00eau c\\u1ea7u tr\\u1ea3 h\\u00e0ng-ho\\u00e0n ti\\u1ec1n ph\\u1ea3i \\u0111\\u01b0\\u1ee3c th\\u1ef1c hi\\u1ec7n tr\\u00ean \\u1ee8ng d\\u1ee5ng M\\u00e1y t\\u00ednh TTech.<br \\/>\\r\\nM\\u00e1y t\\u00ednh TTech lu\\u00f4n xem x\\u00e9t c\\u1ea9n th\\u1eadn t\\u1eebng y\\u00eau c\\u1ea7u tr\\u1ea3 h\\u00e0ng\\/ho\\u00e0n ti\\u1ec1n c\\u1ee7a Ng\\u01b0\\u1eddi mua v\\u00e0 c\\u00f3 quy\\u1ec1n \\u0111\\u01b0a ra quy\\u1ebft \\u0111\\u1ecbnh cu\\u1ed1i c\\u00f9ng \\u0111\\u1ed1i v\\u1edbi y\\u00eau c\\u1ea7u \\u0111\\u00f3 d\\u1ef1a tr\\u00ean c\\u00e1c quy \\u0111\\u1ecbnh n\\u00eau tr\\u00ean v\\u00e0 &nbsp;theo \\u0110i\\u1ec1u kho\\u1ea3n D\\u1ecbch v\\u1ee5 c\\u1ee7a M\\u00e1y t\\u00ednh TTech.<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><b><span style=\\\"font-size:12.0pt\\\">3. Kh\\u00f4ng thay \\u0111\\u1ed5i \\u00fd \\u0111\\u1ecbnh mua h\\u00e0ng<\\/span><\\/b><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><span style=\\\"font-size:12.0pt\\\">Tr\\u1eeb khi \\u0111\\u01b0\\u1ee3c \\u0111\\u1ec1 c\\u1eadp trong Ch\\u00ednh s\\u00e1ch Tr\\u1ea3 h\\u00e0ng v\\u00e0 Ho\\u00e0n ti\\u1ec1n n\\u00e0y, c\\u00e1c tr\\u01b0\\u1eddng h\\u1ee3p tr\\u1ea3 h\\u00e0ng do Ng\\u01b0\\u1eddi mua thay \\u0111\\u1ed5i \\u00fd \\u0111\\u1ecbnh mua h\\u00e0ng s\\u1ebd kh\\u00f4ng \\u0111\\u01b0\\u1ee3c ch\\u1ea5p nh\\u1eadn.<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><b><span style=\\\"font-size:12.0pt\\\">4. Quy\\u1ec1n l\\u1ee3i c\\u1ee7a Ng\\u01b0\\u1eddi b\\u00e1n<\\/span><\\/b><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><span style=\\\"font-size:12.0pt\\\">Khi nh\\u1eadn \\u0111\\u01b0\\u1ee3c y\\u00eau c\\u1ea7u tr\\u1ea3 h\\u00e0ng v\\u00e0\\/ho\\u1eb7c ho\\u00e0n ti\\u1ec1n t\\u1eeb ph\\u00eda Ng\\u01b0\\u1eddi mua, M\\u00e1y t\\u00ednh TTech s\\u1ebd th\\u00f4ng b\\u00e1o cho Ng\\u01b0\\u1eddi b\\u00e1n qua v\\u0103n b\\u1ea3n (th\\u00f4ng b\\u00e1o tr\\u00ean \\u1ee8ng d\\u1ee5ng v\\u00e0\\/ho\\u1eb7c th\\u01b0 \\u0111i\\u1ec7n t\\u1eed v\\u00e0\\/ho\\u1eb7c tin nh\\u1eafn \\u0111i\\u1ec7n tho\\u1ea1i). Ng\\u01b0\\u1eddi b\\u00e1n c\\u1ea7n ph\\u1ea3i g\\u1eedi ph\\u1ea3n h\\u1ed3i theo h\\u01b0\\u1edbng d\\u1eabn c\\u1ee7a M\\u00e1y t\\u00ednh TTech trong th\\u1eddi gian quy \\u0111\\u1ecbnh. Sau th\\u1eddi gian \\u0111\\u00f3, n\\u1ebfu M\\u00e1y t\\u00ednh TTech kh\\u00f4ng nh\\u1eadn \\u0111\\u01b0\\u1ee3c b\\u1ea5t c\\u1ee9 ph\\u1ea3n h\\u1ed3i n\\u00e0o t\\u1eeb Ng\\u01b0\\u1eddi b\\u00e1n, M\\u00e1y t\\u00ednh TTech s\\u1ebd hi\\u1ec3u r\\u1eb1ng Ng\\u01b0\\u1eddi b\\u00e1n ho\\u00e0n to\\u00e0n \\u0111\\u1ed3ng \\u00fd v\\u1edbi y\\u00eau c\\u1ea7u c\\u1ee7a Ng\\u01b0\\u1eddi mua, v\\u00e0 t\\u1ef1 \\u0111\\u1ed9ng ho\\u00e0n ti\\u1ec1n cho Ng\\u01b0\\u1eddi mua m\\u00e0 kh\\u00f4ng th\\u00f4ng b\\u00e1o g\\u00ec th\\u00eam.<br \\/>\\r\\nM\\u00e1y t\\u00ednh TTech lu\\u00f4n theo d\\u00f5i ph\\u1ea3n h\\u1ed3i c\\u1ee7a Ng\\u01b0\\u1eddi b\\u00e1n trong t\\u1eebng tr\\u01b0\\u1eddng h\\u1ee3p v\\u00e0 to\\u00e0n quy\\u1ec1n ra quy\\u1ebft \\u0111\\u1ecbnh cu\\u1ed1i c\\u00f9ng \\u0111\\u1ed1i v\\u1edbi &nbsp;y\\u00eau c\\u1ea7u tr\\u1ea3 h\\u00e0ng\\/ho\\u00e0n ti\\u1ec1n c\\u1ee7a Ng\\u01b0\\u1eddi mua.<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><b><span style=\\\"font-size:12.0pt\\\">5. T\\u00ecnh tr\\u1ea1ng c\\u1ee7a h\\u00e0ng tr\\u1ea3 l\\u1ea1i<\\/span><\\/b><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><span style=\\\"font-size:12.0pt\\\">\\u0110\\u1ec3 h\\u1ea1n ch\\u1ebf c\\u00e1c r\\u1eafc r\\u1ed1i ph\\u00e1t sinh li\\u00ean quan \\u0111\\u1ebfn tr\\u1ea3 h\\u00e0ng, Ng\\u01b0\\u1eddi mua l\\u01b0u \\u00fd c\\u1ea7n ph\\u1ea3i g\\u1eedi tr\\u1ea3 s\\u1ea3n ph\\u1ea9m bao g\\u1ed3m to\\u00e0n b\\u1ed9 ph\\u1ee5 ki\\u1ec7n \\u0111i k\\u00e8m, h\\u00f3a \\u0111\\u01a1n VAT, tem phi\\u1ebfu b\\u1ea3o h\\u00e0nh\\u2026 n\\u1ebfu c\\u00f3 v\\u00e0 s\\u1ea3n ph\\u1ea9m ph\\u1ea3i trong t\\u00ecnh tr\\u1ea1ng nguy\\u00ean v\\u1eb9n nh\\u01b0 khi nh\\u1eadn h\\u00e0ng. M\\u00e1y t\\u00ednh TTech khuy\\u1ebfn kh\\u00edch Ng\\u01b0\\u1eddi mua ch\\u1ee5p l\\u1ea1i \\u1ea3nh s\\u1ea3n ph\\u1ea9m ngay khi nh\\u1eadn \\u0111\\u01b0\\u1ee3c \\u0111\\u1ec3 l\\u00e0m b\\u1eb1ng ch\\u1ee9ng \\u0111\\u1ed1i chi\\u1ebfu\\/khi\\u1ebfu n\\u1ea1i v\\u1ec1 sau n\\u1ebfu c\\u1ea7n.<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><b><span style=\\\"font-size:12.0pt\\\">6. Chi ph\\u00ed tr\\u1ea3 h\\u00e0ng<\\/span><\\/b><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><span style=\\\"font-size:12.0pt\\\">Ng\\u01b0\\u1eddi b\\u00e1n v\\u00e0 Ng\\u01b0\\u1eddi mua c\\u1ea7n th\\u1ed1ng nh\\u1ea5t v\\u1ec1 vi\\u1ec7c ai s\\u1ebd l\\u00e0 ng\\u01b0\\u1eddi ch\\u1ecbu ph\\u00ed v\\u1eadn chuy\\u1ec3n \\u0111\\u1ed1i v\\u1edbi h\\u00e0ng tr\\u1ea3 l\\u1ea1i.<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><span style=\\\"font-size:12.0pt\\\">V\\u01a1\\u0301i h\\u00e0ng M\\u00e1y t\\u00ednh TTech Mall, Ng\\u01b0\\u01a1\\u0300i mua se\\u0303 kh\\u00f4ng pha\\u0309i tra\\u0309 ph\\u00ed tra\\u0309 h\\u00e0ng.<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><span style=\\\"font-size:12.0pt\\\">V\\u01a1\\u0301i h\\u00e0ng kh\\u00f4ng thu\\u00f4\\u0323c M\\u00e1y t\\u00ednh TTech Mall, Ng\\u01b0\\u01a1\\u0300i mua c\\u00e2\\u0300n thanh to\\u00e1n ph\\u00ed tra\\u0309 h\\u00e0ng tr\\u01b0\\u0323c ti\\u00ea\\u0301p cho \\u0111\\u01a1n vi\\u0323 v\\u00e2\\u0323n chuy\\u00ea\\u0309n tr\\u01b0\\u01a1\\u0301c khi g\\u01b0\\u0309i tra\\u0309 h\\u00e0ng (tr\\u01b0\\u0300 tr\\u01b0\\u01a1\\u0300ng h\\u01a1\\u0323p \\u0111\\u00e3 tho\\u0309a thu\\u00e2\\u0323n v\\u01a1\\u0301i Ng\\u01b0\\u01a1\\u0300i b\\u00e1n trong mu\\u0323c Chat tr\\u00ean M\\u00e1y t\\u00ednh TTech). M\\u00e1y t\\u00ednh TTech se\\u0303 h\\u00f4\\u0303 tr\\u01a1\\u0323 ph\\u00ed tra\\u0309 h\\u00e0ng b\\u0103\\u0300ng h\\u00ecnh th\\u01b0\\u0301c ho\\u00e0n M\\u00e1y t\\u00ednh TTech Xu theo \\u0111i\\u00ea\\u0300u ki\\u00ea\\u0323n.<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\">&nbsp;<\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><b><span style=\\\"font-size:12.0pt\\\">7. Ho\\u00e0n ti\\u1ec1n cho H\\u00e0ng tr\\u1ea3 l\\u1ea1i<\\/span><\\/b><br \\/>\\r\\n<span style=\\\"font-size:12.0pt\\\">M\\u00e1y t\\u00ednh TTech s\\u1ebd ch\\u1ec9 ho\\u00e0n ti\\u1ec1n cho Ng\\u01b0\\u1eddi mua khi Ng\\u01b0\\u1eddi b\\u00e1n x\\u00e1c nh\\u1eadn \\u0111\\u00e3 nh\\u1eadn \\u0111\\u01b0\\u1ee3c H\\u00e0ng tr\\u1ea3 l\\u1ea1i. Trong tr\\u01b0\\u1eddng h\\u1ee3p Ng\\u01b0\\u1eddi b\\u00e1n kh\\u00f4ng ph\\u1ea3n h\\u1ed3i trong kho\\u1ea3ng th\\u1eddi gian \\u0111\\u00e3 \\u0111\\u01b0\\u1ee3c quy \\u0111\\u1ecbnh tr\\u01b0\\u1edbc, M\\u00e1y t\\u00ednh TTech s\\u1ebd t\\u1ef1 \\u0111\\u1ed9ng ho\\u00e0n ti\\u1ec1n cho Ng\\u01b0\\u1eddi mua m\\u00e0 kh\\u00f4ng th\\u00f4ng b\\u00e1o g\\u00ec th\\u00eam. \\u0110\\u1ec3 bi\\u1ebft th\\u00eam th\\u00f4ng tin v\\u1ec1 th\\u1eddi h\\u1ea1n ph\\u1ea3n h\\u1ed3i c\\u1ee7a Ng\\u01b0\\u1eddi b\\u00e1n, vui l\\u00f2ng b\\u1ea5m v\\u00e0o \\u0111\\u00e2y. T\\u00f9y t\\u1eebng tr\\u01b0\\u1eddng h\\u1ee3p, ti\\u1ec1n ho\\u00e0n tr\\u1ea3 s\\u1ebd \\u0111\\u01b0\\u1ee3c chuy\\u1ec3n v\\u00e0o th\\u1ebb t\\u00edn d\\u1ee5ng\\/t\\u00e0i kho\\u1ea3n ng\\u00e2n h\\u00e0ng \\u0111\\u01b0\\u1ee3c ch\\u1ec9 \\u0111\\u1ecbnh c\\u1ee7a Ng\\u01b0\\u1eddi mua.<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><span style=\\\"font-size:12.0pt\\\">L\\u01b0u \\u00fd: V\\u1edbi \\u0111\\u01a1n h\\u00e0ng COD, Ng\\u01b0\\u1eddi mua c\\u00f3 tr\\u00e1ch nhi\\u1ec7m ph\\u1ea3i cung c\\u1ea5p th\\u00f4ng tin t\\u00e0i kho\\u1ea3n ng\\u00e2n h\\u00e0ng \\u0111\\u1ec3 nh\\u1eadn ti\\u1ec1n ho\\u00e0n tr\\u1ea3.<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><b><span style=\\\"font-size:12.0pt\\\">8. Li\\u00ean l\\u1ea1c gi\\u1eefa ng\\u01b0\\u1eddi b\\u00e1n v\\u00e0 ng\\u01b0\\u1eddi mua<\\/span><\\/b><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><span style=\\\"font-size:12.0pt\\\">M\\u00e1y t\\u00ednh TTech khuy\\u1ebfn kh\\u00edch Ng\\u01b0\\u1eddi d\\u00f9ng li\\u00ean h\\u1ec7 \\u0111\\u1ec3 th\\u01b0\\u01a1ng l\\u01b0\\u1ee3ng tr\\u01b0\\u1edbc v\\u1edbi nhau khi c\\u00f3 b\\u1ea5t c\\u1ee9 v\\u1ea5n \\u0111\\u1ec1 n\\u00e0o ph\\u00e1t sinh trong giao d\\u1ecbch. M\\u00e1y t\\u00ednh TTech s\\u1ebd ch\\u1ec9 can thi\\u1ec7p trong tr\\u01b0\\u1eddng h\\u1ee3p Ng\\u01b0\\u1eddi b\\u00e1n v\\u00e0 Ng\\u01b0\\u1eddi mua kh\\u00f4ng th\\u1ec3 \\u0111i \\u0111\\u1ebfn th\\u1ecfa thu\\u1eadn cu\\u1ed1i c\\u00f9ng; do v\\u1eady Ng\\u01b0\\u1eddi mua n\\u00ean ch\\u1ee7 \\u0111\\u1ed9ng li\\u00ean h\\u1ec7 v\\u1edbi Ng\\u01b0\\u1eddi b\\u00e1n khi c\\u00f3 b\\u1ea5t c\\u1ee9 v\\u1ea5n \\u0111\\u1ec1 n\\u00e0o li\\u00ean quan \\u0111\\u1ebfn \\u0111\\u01a1n h\\u00e0ng.<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><b><span style=\\\"font-size:12.0pt\\\">9. Tranh ch\\u1ea5p gi\\u1eefa Ng\\u01b0\\u1eddi mua v\\u00e0 Ng\\u01b0\\u1eddi b\\u00e1n<\\/span><\\/b><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><span style=\\\"font-size:12.0pt\\\">Trong tr\\u01b0\\u1eddng h\\u1ee3p Ng\\u01b0\\u1eddi mua v\\u00e0 Ng\\u01b0\\u1eddi b\\u00e1n kh\\u00f4ng th\\u1ec3 \\u0111\\u1ed3ng thu\\u1eadn v\\u1ec1 ph\\u01b0\\u01a1ng \\u00e1n gi\\u1ea3i quy\\u1ebft, Ng\\u01b0\\u1eddi mua v\\u00e0 Ng\\u01b0\\u1eddi b\\u00e1n c\\u00f3 th\\u1ec3 khi\\u1ebfu n\\u1ea1i vi\\u1ec7c n\\u00e0y l\\u00ean c\\u00e1c C\\u01a1 quan ch\\u1ee9c n\\u0103ng \\u0111\\u1ec3 gi\\u1ea3i quy\\u1ebft.<br \\/>\\r\\nN\\u1ebfu m\\u1ed9t b\\u00ean khi\\u1ebfu n\\u1ea1i b\\u00ean kia t\\u1edbi c\\u00e1c C\\u01a1 quan ch\\u1ee9c n\\u0103ng, b\\u00ean khi\\u1ebfu n\\u1ea1i c\\u1ea7n th\\u00f4ng b\\u00e1o k\\u1ecbp th\\u1eddi v\\u1edbi M\\u00e1y t\\u00ednh TTech v\\u1ec1 v\\u1ee5 vi\\u1ec7c tranh ch\\u1ea5p n\\u00e0y k\\u00e8m theo nh\\u1eefng th\\u00f4ng tin y\\u00eau c\\u1ea7u t\\u1eeb ph\\u00eda M\\u00e1y t\\u00ednh TTech m\\u00e0 M\\u00e1y t\\u00ednh TTech cho l\\u00e0 h\\u1ee3p l\\u00fd, theo t\\u1eebng v\\u1ee5 vi\\u1ec7c c\\u1ee5 th\\u1ec3. Trong tr\\u01b0\\u1eddng h\\u1ee3p \\u0111\\u00f3, Ng\\u01b0\\u1eddi b\\u00e1n v\\u00e0 Ng\\u01b0\\u1eddi mua c\\u00f9ng \\u0111\\u1ed3ng \\u00fd r\\u1eb1ng m\\u1ed9t khi M\\u00e1y t\\u00ednh TTech \\u0111\\u00e3 nh\\u1eadn \\u0111\\u01b0\\u1ee3c th\\u00f4ng b\\u00e1o v\\u00e0 c\\u00e1c th\\u00f4ng tin li\\u00ean quan \\u0111\\u1ebfn v\\u1ee5 vi\\u1ec7c tranh ch\\u1ea5p, khi ti\\u1ec1n h\\u00e0ng v\\u1eabn ch\\u01b0a \\u0111\\u01b0\\u1ee3c thanh to\\u00e1n cho Ng\\u01b0\\u1eddi b\\u00e1n theo quy \\u0111\\u1ecbnh c\\u1ee7a M\\u00e1y t\\u00ednh TTech \\u0110\\u1ea3m B\\u1ea3o, M\\u00e1y t\\u00ednh TTech c\\u00f3 quy\\u1ec1n t\\u1ea1m ho\\u00e3n thanh to\\u00e1n cho Ng\\u01b0\\u1eddi b\\u00e1n cho \\u0111\\u1ebfn khi c\\u00f3 quy\\u1ebft \\u0111\\u1ecbnh cu\\u1ed1i c\\u00f9ng v\\u1ec1 vi\\u1ec7c gi\\u1ea3i quy\\u1ebft tranh ch\\u1ea5p gi\\u1eefa Ng\\u01b0\\u1eddi b\\u00e1n v\\u00e0 Ng\\u01b0\\u1eddi mua. Trong tr\\u01b0\\u1eddng h\\u1ee3p kho\\u1ea3n ti\\u1ec1n thanh to\\u00e1n n\\u00e0y \\u0111\\u00e3 \\u0111\\u01b0\\u1ee3c tr\\u1ea3 cho Ng\\u01b0\\u1eddi b\\u00e1n theo ch\\u00ednh s\\u00e1ch M\\u00e1y t\\u00ednh TTech \\u0110\\u1ea3m B\\u1ea3o, c\\u1ea3 Ng\\u01b0\\u1eddi mua v\\u00e0 Ng\\u01b0\\u1eddi b\\u00e1n \\u0111\\u1ed3ng \\u00fd r\\u1eb1ng M\\u00e1y t\\u00ednh TTech kh\\u00f4ng c\\u00f2n tr\\u00e1ch nhi\\u1ec7m gi\\u1ea3i quy\\u1ebft khi\\u1ebfu n\\u1ea1i, tranh ch\\u1ea5p gi\\u1eefa hai b\\u00ean ho\\u1eb7c kh\\u00f4ng c\\u00f2n b\\u1ea5t k\\u1ef3 tr\\u00e1ch nhi\\u1ec7m n\\u00e0o \\u0111\\u1ed1i v\\u1edbi kho\\u1ea3n ti\\u1ec1n h\\u00e0ng.<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\"><span style=\\\"font-family:Arial,Helvetica,sans-serif;\\\"><span style=\\\"font-size:11pt\\\"><span style=\\\"line-height:normal\\\"><span style=\\\"font-size:12.0pt\\\">Ng\\u01b0\\u1eddi mua v\\u00e0 Ng\\u01b0\\u1eddi b\\u00e1n \\u0111\\u1ed3ng \\u00fd b\\u1ed3i th\\u01b0\\u1eddng v\\u00e0 gi\\u1eef cho M\\u00e1y t\\u00ednh TTech kh\\u00f4ng b\\u1ecb thi\\u1ec7t h\\u1ea1i, ho\\u1eb7c ch\\u1ed1ng l\\u1ea1i b\\u1ea5t k\\u1ef3 vi\\u1ec7c khi\\u1ebfu n\\u1ea1i, ki\\u1ec7n t\\u1ee5ng, ho\\u1eb7c c\\u00e1c ngh\\u0129a v\\u1ee5\\/tr\\u00e1ch nhi\\u1ec7m, thi\\u1ec7t h\\u1ea1i, tuy\\u00ean b\\u1ed1, h\\u00ecnh ph\\u1ea1t, ti\\u1ec1n ph\\u1ea1t, c\\u00e1c chi ph\\u00ed v\\u00e0 ph\\u00ed t\\u1ed5n (bao g\\u1ed3m, nh\\u01b0ng kh\\u00f4ng gi\\u1edbi h\\u1ea1n b\\u1ea5t k\\u1ef3 chi ph\\u00ed gi\\u1ea3i quy\\u1ebft tranh ch\\u1ea5p n\\u00e0o kh\\u00e1c) c\\u00f3 li\\u00ean quan ph\\u00e1t sinh t\\u1eeb ho\\u1eb7c c\\u00f3 li\\u00ean quan \\u0111\\u1ebfn b\\u1ea5t k\\u1ef3 h\\u00e0nh \\u0111\\u1ed9ng n\\u00e0o c\\u1ee7a M\\u00e1y t\\u00ednh TTech theo Ch\\u00ednh s\\u00e1ch Tr\\u1ea3 h\\u00e0ng v\\u00e0 Ho\\u00e0n ti\\u1ec1n n\\u00e0y.<\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\">&nbsp;<\\/p>\"},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', NULL, NULL, 0, 31, NULL, 'active', 3, 3, '2024-06-17 08:34:34', '2024-07-15 21:48:46', 'chinh-sach-doi-tra-hang'),
 (697, 88, NULL, 'post', 'Hướng dẫn mua hàng', '{\"brief\":{\"vi\":null},\"content\":{\"vi\":\"<p>B\\u01b0\\u1edbc 1: L\\u1ef1a ch\\u1ecdn s\\u1ea3n ph\\u1ea9m c\\u1ea7n mua.<\\/p>\\r\\n\\r\\n<p>B\\u01b0\\u1edbc 2: Th\\u00eam v\\u00e0o gi\\u1ecf h\\u00e0ng<\\/p>\\r\\n\\r\\n<p>B\\u01b0\\u1edbc 3: V\\u00e0o gi\\u1ecf h\\u00e0ng ki\\u1ec3m tra th\\u00f4ng tin, s\\u1ed1 l\\u01b0\\u1ee3ng v\\u00e0 ti\\u1ebfn h\\u00e0nh \\u0111\\u1eb7t h\\u00e0ng<\\/p>\\r\\n\\r\\n<p>B\\u01b0\\u1edbc 4: \\u0110\\u0103ng k\\u00fd th\\u00f4ng tin \\u0111\\u1ecba ch\\u1ec9 \\u0111\\u1ec3 giao h\\u00e0ng<\\/p>\\r\\n\\r\\n<p>B\\u01b0\\u1edbc 5: X\\u00e1c nh\\u1eadn \\u0111\\u1eb7t h\\u00e0ng th\\u00e0nh c\\u00f4ng<\\/p>\"},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', NULL, NULL, 0, 34, NULL, 'active', 3, 3, '2024-06-17 08:35:41', '2024-07-15 16:33:20', 'huong-dan-mua-hang'),
-(698, 88, NULL, 'post', 'Chính sách bảo hành', '{\"brief\":{\"vi\":null},\"content\":{\"vi\":\"<p style=\\\"margin-bottom:21px\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">Trong th\\u1eddi gian s\\u1eed d\\u1ee5ng n\\u1ebfu g\\u1eb7p b\\u1ea5t k\\u1ef3 tr\\u1ee5c tr\\u1eb7c n\\u00e0o ho\\u1eb7c l\\u1ed7i do ng\\u01b0\\u1eddi s\\u1eed d\\u1ee5ng Kh\\u00e1ch h\\u00e0ng c\\u00f3 th\\u1ec3 li\\u00ean l\\u1ea1c tr\\u1ef1c ti\\u1ebfp v\\u1edbi Trung t\\u00e2m b\\u1ea3o h\\u00e0nh c\\u1ee7a H\\u00e3ng ho\\u1eb7c Trung t\\u00e2m B\\u1ea3o h\\u00e0nh c\\u1ee7a C\\u00f4ng ty TNHH M\\u00e1y t\\u00ednh TTech&nbsp;\\u0111\\u1ec3 \\u0111\\u01b0\\u1ee3c tr\\u1ee3 gi\\u00fap.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><strong style=\\\"box-sizing:border-box\\\"><u style=\\\"box-sizing:border-box\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">I\\/ Nh\\u1eefng tr\\u01b0\\u1eddng h\\u1ee3p \\u0111\\u01b0\\u1ee3c b\\u1ea3o h\\u00e0nh mi\\u1ec5n ph\\u00ed:<\\/span><\\/span><\\/span><\\/u><\\/strong><br style=\\\"box-sizing:border-box\\\" \\/>\\r\\n<span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\"><strong style=\\\"box-sizing:border-box\\\"><u style=\\\"box-sizing:border-box\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\">B\\u1ea3o h\\u00e0nh s\\u1ea3n ph\\u1ea9m l\\u00e0:<\\/span><\\/u><\\/strong>&nbsp;kh\\u1eafc ph\\u1ee5c nh\\u1eefng l\\u1ed7i h\\u1ecfng h\\u00f3c, s\\u1ef1 c\\u1ed1 k\\u1ef9 thu\\u1eadt x\\u1ea3y ra do l\\u1ed7i c\\u1ee7a H\\u00e3ng s\\u1ea3n xu\\u1ea5t.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 S\\u1ea3n ph\\u1ea9m \\u0111\\u01b0\\u1ee3c b\\u1ea3o h\\u00e0nh mi\\u1ec5n ph\\u00ed n\\u1ebfu s\\u1ea3n ph\\u1ea9m \\u0111\\u00f3 c\\u00f2n th\\u1eddi h\\u1ea1n b\\u1ea3o h\\u00e0nh \\u0111\\u01b0\\u1ee3c t\\u00ednh k\\u1ec3 t\\u1eeb ng\\u00e0y giao h\\u00e0ng.<br style=\\\"box-sizing:border-box\\\" \\/>\\r\\n\\u2013 Th\\u1eddi h\\u1ea1n b\\u1ea3o h\\u00e0nh \\u0111\\u01b0\\u1ee3c ghi tr\\u00ean Phi\\u1ebfu B\\u1ea3o H\\u00e0nh v\\u00e0 theo quy \\u0111\\u1ecbnh c\\u1ee7a t\\u1eebng H\\u00e3ng s\\u1ea3n xu\\u1ea5t \\u0111\\u1ed1i v\\u1edbi t\\u1ea5t c\\u1ea3 c\\u00e1c s\\u1ef1 c\\u1ed1 v\\u1ec1 m\\u1eb7t k\\u1ef9 thu\\u1eadt.<br style=\\\"box-sizing:border-box\\\" \\/>\\r\\n\\u2013 C\\u00f3 Phi\\u1ebfu b\\u1ea3o h\\u00e0nh v\\u00e0 Tem b\\u1ea3o h\\u00e0nh c\\u1ee7a H\\u00e3ng s\\u1ea3n xu\\u1ea5t tr\\u00ean s\\u1ea3n ph\\u1ea9m.<br style=\\\"box-sizing:border-box\\\" \\/>\\r\\n\\u2013 S\\u1ea3n ph\\u1ea9m b\\u1ea3o h\\u00e0nh s\\u1ebd tu\\u00e2n theo qui \\u0111\\u1ecbnh b\\u1ea3o h\\u00e0nh c\\u1ee7a t\\u1eebng H\\u00e3ng s\\u1ea3n xu\\u1ea5t \\u0111\\u1ed1i v\\u1edbi c\\u00e1c s\\u1ef1 c\\u1ed1 v\\u1ec1 m\\u1eb7t k\\u1ef9 thu\\u1eadt.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><strong style=\\\"box-sizing:border-box\\\"><u style=\\\"box-sizing:border-box\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">II\\/ Nh\\u1eefng tr\\u01b0\\u1eddng h\\u1ee3p sau \\u0111\\u00e2y s\\u1ebd kh\\u00f4ng \\u0111\\u01b0\\u1ee3c b\\u1ea3o h\\u00e0nh (s\\u1eeda ch\\u1eefa c\\u00f3 t\\u00ednh ph\\u00ed):<\\/span><\\/span><\\/span><\\/u><\\/strong><br style=\\\"box-sizing:border-box\\\" \\/>\\r\\n<span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 Nh\\u1eefng s\\u1ea3n ph\\u1ea9m kh\\u00f4ng th\\u1ec3 x\\u00e1c \\u0111\\u1ecbnh \\u0111\\u01b0\\u1ee3c ngu\\u1ed3n g\\u1ed1c mua t\\u1ea1i C\\u00f4ng ty TNHH M\\u00e1y t\\u00ednh TTech, th\\u00ec C\\u00f4ng ty TNHH M\\u00e1y t\\u00ednh TTech&nbsp;c\\u00f3 quy\\u1ec1n t\\u1eeb ch\\u1ed1i b\\u1ea3o h\\u00e0nh.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 S\\u1ea3n ph\\u1ea9m \\u0111\\u00e3 qu\\u00e1 th\\u1eddi h\\u1ea1n ghi tr\\u00ean Phi\\u1ebfu b\\u1ea3o h\\u00e0nh ho\\u1eb7c m\\u1ea5t Phi\\u1ebfu b\\u1ea3o h\\u00e0nh.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 Phi\\u1ebfu b\\u1ea3o h\\u00e0nh,Tem b\\u1ea3o h\\u00e0nh b\\u1ecb r\\u00e1ch, kh\\u00f4ng c\\u00f2n Tem b\\u1ea3o h\\u00e0nh, Tem b\\u1ea3o h\\u00e0nh d\\u00e1n \\u0111\\u00e8 ho\\u1eb7c b\\u1ecb s\\u1eeda \\u0111\\u1ed5i.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 Phi\\u1ebfu b\\u1ea3o h\\u00e0nh kh\\u00f4ng ghi r\\u00f5 s\\u1ed1 Serial v\\u00e0 ng\\u00e0y mua h\\u00e0ng.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 S\\u1ed1 Serial tr\\u00ean m\\u00e1y v\\u00e0 Phi\\u1ebfu b\\u1ea3o h\\u00e0nh kh\\u00f4ng tr\\u00f9ng kh\\u1edbp nhau ho\\u1eb7c kh\\u00f4ng x\\u00e1c \\u0111\\u1ecbnh \\u0111\\u01b0\\u1ee3c v\\u00ec b\\u1ea5t k\\u1ef3 l\\u00fd do n\\u00e0o.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 S\\u1ea3n ph\\u1ea9m b\\u1ecb h\\u01b0 h\\u1ecfng do t\\u00e1c \\u0111\\u1ed9ng c\\u01a1 h\\u1ecdc l\\u00e0m r\\u01a1i, v\\u1ee1, va \\u0111\\u1eadp, tr\\u1ea7y x\\u01b0\\u1edbc, m\\u00f3p m\\u00e9o, \\u1ea9m \\u01b0\\u1edbt, hoen r\\u1ec9, ch\\u1ea3y n\\u01b0\\u1edbc ho\\u1eb7c do h\\u1ecfa ho\\u1ea1n, thi\\u00ean tai g\\u00e2y n\\u00ean.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 S\\u1ea3n ph\\u1ea9m c\\u00f3 d\\u1ea5u hi\\u1ec7u h\\u01b0 h\\u1ecfng do chu\\u1ed9t b\\u1ecd ho\\u1eb7c c\\u00f4n tr\\u00f9ng x\\u00e2m nh\\u1eadp.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 S\\u1ea3n ph\\u1ea9m b\\u1ecb h\\u01b0 h\\u1ecfng do s\\u1eed d\\u1ee5ng kh\\u00f4ng \\u0111\\u00fang s\\u00e1ch h\\u01b0\\u1edbng d\\u1eabn, s\\u1eed d\\u1ee5ng sai \\u0111i\\u1ec7n \\u00e1p quy \\u0111\\u1ecbnh.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 C\\u00e1c lo\\u1ea1i ph\\u1ee5 ki\\u1ec7n k\\u00e8m theo nh\\u01b0: \\u0110i\\u1ec1u khi\\u1ec3n t\\u1eeb xa, Pin \\u0111i\\u1ec1u khi\\u1ec3n, Pin CMOS, d\\u00e2y ngu\\u1ed3n, d\\u00e2y t\\u00edn hi\\u1ec7u, n\\u1eafn d\\u00f2ng, \\u0111\\u00e8n t\\u00edn hi\\u1ec7u, qu\\u1ea1t tr\\u00ean thi\\u1ebft b\\u1ecb, ho\\u1eb7c thi\\u1ebft b\\u1ecb do qu\\u1ea1t b\\u1ecb h\\u1ecfng g\\u00e2y ra ch\\u00e1y n\\u1ed5.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 C\\u00e1c d\\u1eef li\\u1ec7u, t\\u00e0i li\\u1ec7u, v\\u0103n b\\u1ea3n v\\u00e0 ph\\u1ea7n m\\u1ec1m cung c\\u1ea5p mi\\u1ec5n ph\\u00ed, l\\u01b0u tr\\u1eef k\\u00e8m theo s\\u1ea3n ph\\u1ea9m (k\\u1ec3 c\\u1ea3 trong th\\u1eddi gian g\\u1eedi b\\u1ea3o h\\u00e0nh).<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 T\\u1ef1 \\u00fd th\\u00e1o d\\u1ee1, s\\u1eeda ch\\u1eefa b\\u1edfi c\\u00e1c c\\u00e1 nh\\u00e2n ho\\u1eb7c K\\u1ef9 thu\\u1eadt vi\\u00ean kh\\u00f4ng \\u0111\\u01b0\\u1ee3c s\\u1ef1 \\u1ee7y quy\\u1ec1n c\\u1ee7a C\\u00f4ng ty TNHH M\\u00e1y t\\u00ednh TTech.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><strong style=\\\"box-sizing:border-box\\\"><u style=\\\"box-sizing:border-box\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">III\\/ Ch\\u00ednh s\\u00e1ch \\u01b0u \\u0111\\u00e3i:<\\/span><\\/span><\\/span><\\/u><\\/strong><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">Nh\\u1eefng linh ki\\u1ec7n h\\u1ebft th\\u1eddi gian b\\u1ea3o h\\u00e0nh ho\\u1eb7c kh\\u00f4ng \\u0111\\u1ee7 \\u0111i\\u1ec1u ki\\u1ec7n b\\u1ea3o h\\u00e0nh, Th\\u00e0nh Ph\\u00e1t&nbsp;s\\u1ebd t\\u1ea1o \\u0111i\\u1ec1u ki\\u1ec7n h\\u1ed7 tr\\u1ee3 t\\u1edbi m\\u1ee9c t\\u1ed1i \\u0111a.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><em style=\\\"box-sizing:border-box\\\"><b><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">C\\u00e1c kh\\u00e1ch h\\u00e0ng l\\u1ebb khi \\u0111\\u1ebfn g\\u1eedi h\\u00e0ng b\\u1ea3o h\\u00e0nh t\\u1ea1i ph\\u00f2ng b\\u1ea3o h\\u00e0nh C\\u00f4ng ty Th\\u00e0nh Ph\\u00e1t&nbsp;c\\u00f3 th\\u1ec3 nh\\u1eadn h\\u00e0ng: T\\u1ea1i n\\u01a1i s\\u1eed d\\u1ee5ng HO\\u1eb6C T\\u1ea1i n\\u01a1i g\\u1eedi h\\u00e0ng.<\\/span><\\/span><\\/span><\\/b><\\/em><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><strong style=\\\"box-sizing:border-box\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">&nbsp;Nh\\u00e2n vi\\u00ean ph\\u00f2ng b\\u1ea3o h\\u00e0nh C\\u00f4ng ty s\\u1ebd&nbsp;c\\u00f3 tr\\u00e1ch nhi\\u1ec7m \\u0111em tr\\u1ea3 h\\u00e0ng b\\u1ea3o h\\u00e0nh (sau khi \\u0111\\u00e3 x\\u1eed l\\u00fd xong) t\\u1ea1i n\\u01a1i kh\\u00e1ch h\\u00e0ng s\\u1eed d\\u1ee5ng ho\\u1eb7c n\\u01a1i kh\\u00e1ch h\\u00e0ng \\u0111\\u0103ng k\\u00fd (trong v\\u00f2ng b\\u00e1n k\\u00ednh 10&nbsp;km t\\u00ednh t\\u1eeb ph\\u00f2ng B\\u1ea3o h\\u00e0nh). Tr\\u01b0\\u1eddng h\\u1ee3p xa h\\u01a1n kho\\u1ea3ng c\\u00e1ch tr\\u00ean, ch\\u1ec9 nh\\u1eadn tr\\u1ea3 h\\u00e0ng t\\u1ea1i n\\u01a1i g\\u1eedi h\\u00e0ng.&nbsp;T\\u1ea1i ph\\u00f2ng b\\u1ea3o h\\u00e0nh C\\u00f4ng ty: &nbsp;quy tr\\u00ecnh nh\\u1eadn, tr\\u1ea3 h\\u00e0ng v\\u1eabn theo c\\u00e1c quy \\u0111\\u1ecbnh c\\u0169.<\\/span><\\/span><\\/span><\\/strong><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><strong style=\\\"box-sizing:border-box\\\"><u style=\\\"box-sizing:border-box\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">IV\\/ Li\\u00ean h\\u1ec7, th\\u1eafc m\\u1eafc, khi\\u1ebfu n\\u1ea1i v\\u1ec1 v\\u1ea5n \\u0111\\u1ec1 b\\u1ea3o h\\u00e0nh:<\\/span><\\/span><\\/span><\\/u><\\/strong><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">N\\u1ebfu Qu\\u00fd kh\\u00e1ch ch\\u01b0a th\\u1ea5y h\\u00e0i l\\u00f2ng ho\\u1eb7c c\\u00f3 th\\u1eafc m\\u1eafc khi\\u1ebfu n\\u1ea1i g\\u00ec v\\u1ec1 v\\u1ea5n \\u0111\\u1ec1 b\\u1ea3o h\\u00e0nh, xin Qu\\u00fd kh\\u00e1ch vui l\\u00f2ng li\\u00ean h\\u1ec7:<br style=\\\"box-sizing:border-box\\\" \\/>\\r\\n<strong style=\\\"box-sizing:border-box\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\">C\\u00f4ng ty TNHH M\\u00e1y t\\u00ednh TTech<\\/span><\\/strong><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><em style=\\\"box-sizing:border-box\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">Tr\\u1ee5 s\\u1edf ch\\u00ednh&nbsp;:&nbsp;<\\/span><\\/span><\\/span><\\/em><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">S\\u1ed1 32 Ph\\u1ed1 V\\u0169, Ph\\u01b0\\u1eddng \\u0110\\u1ea1i Ph\\u00fac, TP. B\\u1eafc Ninh, T\\u1ec9nh B\\u1eafc Ninh<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><em><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u0110i\\u1ec7n tho\\u1ea1i&nbsp;: 0222. 3636262 \\u2013 0368.221.386<\\/span><\\/span><\\/span><\\/em><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><em style=\\\"box-sizing:border-box\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">Email&nbsp;: ttechpcbn@gmail.com<\\/span><\\/span><\\/span><\\/em><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\">&nbsp;<\\/p>\"},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', NULL, NULL, 0, 29, NULL, 'active', 3, 3, '2024-06-17 08:42:15', '2024-07-16 12:21:37', 'chinh-sach-bao-hanh');
+(698, 88, NULL, 'post', 'Chính sách bảo hành', '{\"brief\":{\"vi\":null},\"content\":{\"vi\":\"<p style=\\\"margin-bottom:21px\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">Trong th\\u1eddi gian s\\u1eed d\\u1ee5ng n\\u1ebfu g\\u1eb7p b\\u1ea5t k\\u1ef3 tr\\u1ee5c tr\\u1eb7c n\\u00e0o ho\\u1eb7c l\\u1ed7i do ng\\u01b0\\u1eddi s\\u1eed d\\u1ee5ng Kh\\u00e1ch h\\u00e0ng c\\u00f3 th\\u1ec3 li\\u00ean l\\u1ea1c tr\\u1ef1c ti\\u1ebfp v\\u1edbi Trung t\\u00e2m b\\u1ea3o h\\u00e0nh c\\u1ee7a H\\u00e3ng ho\\u1eb7c Trung t\\u00e2m B\\u1ea3o h\\u00e0nh c\\u1ee7a C\\u00f4ng ty TNHH M\\u00e1y t\\u00ednh TTech&nbsp;\\u0111\\u1ec3 \\u0111\\u01b0\\u1ee3c tr\\u1ee3 gi\\u00fap.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><strong style=\\\"box-sizing:border-box\\\"><u style=\\\"box-sizing:border-box\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">I\\/ Nh\\u1eefng tr\\u01b0\\u1eddng h\\u1ee3p \\u0111\\u01b0\\u1ee3c b\\u1ea3o h\\u00e0nh mi\\u1ec5n ph\\u00ed:<\\/span><\\/span><\\/span><\\/u><\\/strong><br style=\\\"box-sizing:border-box\\\" \\/>\\r\\n<span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\"><strong style=\\\"box-sizing:border-box\\\"><u style=\\\"box-sizing:border-box\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\">B\\u1ea3o h\\u00e0nh s\\u1ea3n ph\\u1ea9m l\\u00e0:<\\/span><\\/u><\\/strong>&nbsp;kh\\u1eafc ph\\u1ee5c nh\\u1eefng l\\u1ed7i h\\u1ecfng h\\u00f3c, s\\u1ef1 c\\u1ed1 k\\u1ef9 thu\\u1eadt x\\u1ea3y ra do l\\u1ed7i c\\u1ee7a H\\u00e3ng s\\u1ea3n xu\\u1ea5t.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 S\\u1ea3n ph\\u1ea9m \\u0111\\u01b0\\u1ee3c b\\u1ea3o h\\u00e0nh mi\\u1ec5n ph\\u00ed n\\u1ebfu s\\u1ea3n ph\\u1ea9m \\u0111\\u00f3 c\\u00f2n th\\u1eddi h\\u1ea1n b\\u1ea3o h\\u00e0nh \\u0111\\u01b0\\u1ee3c t\\u00ednh k\\u1ec3 t\\u1eeb ng\\u00e0y giao h\\u00e0ng.<br style=\\\"box-sizing:border-box\\\" \\/>\\r\\n\\u2013 Th\\u1eddi h\\u1ea1n b\\u1ea3o h\\u00e0nh \\u0111\\u01b0\\u1ee3c ghi tr\\u00ean Phi\\u1ebfu B\\u1ea3o H\\u00e0nh v\\u00e0 theo quy \\u0111\\u1ecbnh c\\u1ee7a t\\u1eebng H\\u00e3ng s\\u1ea3n xu\\u1ea5t \\u0111\\u1ed1i v\\u1edbi t\\u1ea5t c\\u1ea3 c\\u00e1c s\\u1ef1 c\\u1ed1 v\\u1ec1 m\\u1eb7t k\\u1ef9 thu\\u1eadt.<br style=\\\"box-sizing:border-box\\\" \\/>\\r\\n\\u2013 C\\u00f3 Phi\\u1ebfu b\\u1ea3o h\\u00e0nh v\\u00e0 Tem b\\u1ea3o h\\u00e0nh c\\u1ee7a H\\u00e3ng s\\u1ea3n xu\\u1ea5t tr\\u00ean s\\u1ea3n ph\\u1ea9m.<br style=\\\"box-sizing:border-box\\\" \\/>\\r\\n\\u2013 S\\u1ea3n ph\\u1ea9m b\\u1ea3o h\\u00e0nh s\\u1ebd tu\\u00e2n theo qui \\u0111\\u1ecbnh b\\u1ea3o h\\u00e0nh c\\u1ee7a t\\u1eebng H\\u00e3ng s\\u1ea3n xu\\u1ea5t \\u0111\\u1ed1i v\\u1edbi c\\u00e1c s\\u1ef1 c\\u1ed1 v\\u1ec1 m\\u1eb7t k\\u1ef9 thu\\u1eadt.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><strong style=\\\"box-sizing:border-box\\\"><u style=\\\"box-sizing:border-box\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">II\\/ Nh\\u1eefng tr\\u01b0\\u1eddng h\\u1ee3p sau \\u0111\\u00e2y s\\u1ebd kh\\u00f4ng \\u0111\\u01b0\\u1ee3c b\\u1ea3o h\\u00e0nh (s\\u1eeda ch\\u1eefa c\\u00f3 t\\u00ednh ph\\u00ed):<\\/span><\\/span><\\/span><\\/u><\\/strong><br style=\\\"box-sizing:border-box\\\" \\/>\\r\\n<span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 Nh\\u1eefng s\\u1ea3n ph\\u1ea9m kh\\u00f4ng th\\u1ec3 x\\u00e1c \\u0111\\u1ecbnh \\u0111\\u01b0\\u1ee3c ngu\\u1ed3n g\\u1ed1c mua t\\u1ea1i C\\u00f4ng ty TNHH M\\u00e1y t\\u00ednh TTech, th\\u00ec C\\u00f4ng ty TNHH M\\u00e1y t\\u00ednh TTech&nbsp;c\\u00f3 quy\\u1ec1n t\\u1eeb ch\\u1ed1i b\\u1ea3o h\\u00e0nh.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 S\\u1ea3n ph\\u1ea9m \\u0111\\u00e3 qu\\u00e1 th\\u1eddi h\\u1ea1n ghi tr\\u00ean Phi\\u1ebfu b\\u1ea3o h\\u00e0nh ho\\u1eb7c m\\u1ea5t Phi\\u1ebfu b\\u1ea3o h\\u00e0nh.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 Phi\\u1ebfu b\\u1ea3o h\\u00e0nh,Tem b\\u1ea3o h\\u00e0nh b\\u1ecb r\\u00e1ch, kh\\u00f4ng c\\u00f2n Tem b\\u1ea3o h\\u00e0nh, Tem b\\u1ea3o h\\u00e0nh d\\u00e1n \\u0111\\u00e8 ho\\u1eb7c b\\u1ecb s\\u1eeda \\u0111\\u1ed5i.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 Phi\\u1ebfu b\\u1ea3o h\\u00e0nh kh\\u00f4ng ghi r\\u00f5 s\\u1ed1 Serial v\\u00e0 ng\\u00e0y mua h\\u00e0ng.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 S\\u1ed1 Serial tr\\u00ean m\\u00e1y v\\u00e0 Phi\\u1ebfu b\\u1ea3o h\\u00e0nh kh\\u00f4ng tr\\u00f9ng kh\\u1edbp nhau ho\\u1eb7c kh\\u00f4ng x\\u00e1c \\u0111\\u1ecbnh \\u0111\\u01b0\\u1ee3c v\\u00ec b\\u1ea5t k\\u1ef3 l\\u00fd do n\\u00e0o.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 S\\u1ea3n ph\\u1ea9m b\\u1ecb h\\u01b0 h\\u1ecfng do t\\u00e1c \\u0111\\u1ed9ng c\\u01a1 h\\u1ecdc l\\u00e0m r\\u01a1i, v\\u1ee1, va \\u0111\\u1eadp, tr\\u1ea7y x\\u01b0\\u1edbc, m\\u00f3p m\\u00e9o, \\u1ea9m \\u01b0\\u1edbt, hoen r\\u1ec9, ch\\u1ea3y n\\u01b0\\u1edbc ho\\u1eb7c do h\\u1ecfa ho\\u1ea1n, thi\\u00ean tai g\\u00e2y n\\u00ean.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 S\\u1ea3n ph\\u1ea9m c\\u00f3 d\\u1ea5u hi\\u1ec7u h\\u01b0 h\\u1ecfng do chu\\u1ed9t b\\u1ecd ho\\u1eb7c c\\u00f4n tr\\u00f9ng x\\u00e2m nh\\u1eadp.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 S\\u1ea3n ph\\u1ea9m b\\u1ecb h\\u01b0 h\\u1ecfng do s\\u1eed d\\u1ee5ng kh\\u00f4ng \\u0111\\u00fang s\\u00e1ch h\\u01b0\\u1edbng d\\u1eabn, s\\u1eed d\\u1ee5ng sai \\u0111i\\u1ec7n \\u00e1p quy \\u0111\\u1ecbnh.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 C\\u00e1c lo\\u1ea1i ph\\u1ee5 ki\\u1ec7n k\\u00e8m theo nh\\u01b0: \\u0110i\\u1ec1u khi\\u1ec3n t\\u1eeb xa, Pin \\u0111i\\u1ec1u khi\\u1ec3n, Pin CMOS, d\\u00e2y ngu\\u1ed3n, d\\u00e2y t\\u00edn hi\\u1ec7u, n\\u1eafn d\\u00f2ng, \\u0111\\u00e8n t\\u00edn hi\\u1ec7u, qu\\u1ea1t tr\\u00ean thi\\u1ebft b\\u1ecb, ho\\u1eb7c thi\\u1ebft b\\u1ecb do qu\\u1ea1t b\\u1ecb h\\u1ecfng g\\u00e2y ra ch\\u00e1y n\\u1ed5.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 C\\u00e1c d\\u1eef li\\u1ec7u, t\\u00e0i li\\u1ec7u, v\\u0103n b\\u1ea3n v\\u00e0 ph\\u1ea7n m\\u1ec1m cung c\\u1ea5p mi\\u1ec5n ph\\u00ed, l\\u01b0u tr\\u1eef k\\u00e8m theo s\\u1ea3n ph\\u1ea9m (k\\u1ec3 c\\u1ea3 trong th\\u1eddi gian g\\u1eedi b\\u1ea3o h\\u00e0nh).<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u2013 T\\u1ef1 \\u00fd th\\u00e1o d\\u1ee1, s\\u1eeda ch\\u1eefa b\\u1edfi c\\u00e1c c\\u00e1 nh\\u00e2n ho\\u1eb7c K\\u1ef9 thu\\u1eadt vi\\u00ean kh\\u00f4ng \\u0111\\u01b0\\u1ee3c s\\u1ef1 \\u1ee7y quy\\u1ec1n c\\u1ee7a C\\u00f4ng ty TNHH M\\u00e1y t\\u00ednh TTech.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><strong style=\\\"box-sizing:border-box\\\"><u style=\\\"box-sizing:border-box\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">III\\/ Ch\\u00ednh s\\u00e1ch \\u01b0u \\u0111\\u00e3i:<\\/span><\\/span><\\/span><\\/u><\\/strong><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">Nh\\u1eefng linh ki\\u1ec7n h\\u1ebft th\\u1eddi gian b\\u1ea3o h\\u00e0nh ho\\u1eb7c kh\\u00f4ng \\u0111\\u1ee7 \\u0111i\\u1ec1u ki\\u1ec7n b\\u1ea3o h\\u00e0nh, Th\\u00e0nh Ph\\u00e1t&nbsp;s\\u1ebd t\\u1ea1o \\u0111i\\u1ec1u ki\\u1ec7n h\\u1ed7 tr\\u1ee3 t\\u1edbi m\\u1ee9c t\\u1ed1i \\u0111a.<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><em style=\\\"box-sizing:border-box\\\"><b><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">C\\u00e1c kh\\u00e1ch h\\u00e0ng l\\u1ebb khi \\u0111\\u1ebfn g\\u1eedi h\\u00e0ng b\\u1ea3o h\\u00e0nh t\\u1ea1i ph\\u00f2ng b\\u1ea3o h\\u00e0nh C\\u00f4ng ty Th\\u00e0nh Ph\\u00e1t&nbsp;c\\u00f3 th\\u1ec3 nh\\u1eadn h\\u00e0ng: T\\u1ea1i n\\u01a1i s\\u1eed d\\u1ee5ng HO\\u1eb6C T\\u1ea1i n\\u01a1i g\\u1eedi h\\u00e0ng.<\\/span><\\/span><\\/span><\\/b><\\/em><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><strong style=\\\"box-sizing:border-box\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">&nbsp;Nh\\u00e2n vi\\u00ean ph\\u00f2ng b\\u1ea3o h\\u00e0nh C\\u00f4ng ty s\\u1ebd&nbsp;c\\u00f3 tr\\u00e1ch nhi\\u1ec7m \\u0111em tr\\u1ea3 h\\u00e0ng b\\u1ea3o h\\u00e0nh (sau khi \\u0111\\u00e3 x\\u1eed l\\u00fd xong) t\\u1ea1i n\\u01a1i kh\\u00e1ch h\\u00e0ng s\\u1eed d\\u1ee5ng ho\\u1eb7c n\\u01a1i kh\\u00e1ch h\\u00e0ng \\u0111\\u0103ng k\\u00fd (trong v\\u00f2ng b\\u00e1n k\\u00ednh 10&nbsp;km t\\u00ednh t\\u1eeb ph\\u00f2ng B\\u1ea3o h\\u00e0nh). Tr\\u01b0\\u1eddng h\\u1ee3p xa h\\u01a1n kho\\u1ea3ng c\\u00e1ch tr\\u00ean, ch\\u1ec9 nh\\u1eadn tr\\u1ea3 h\\u00e0ng t\\u1ea1i n\\u01a1i g\\u1eedi h\\u00e0ng.&nbsp;T\\u1ea1i ph\\u00f2ng b\\u1ea3o h\\u00e0nh C\\u00f4ng ty: &nbsp;quy tr\\u00ecnh nh\\u1eadn, tr\\u1ea3 h\\u00e0ng v\\u1eabn theo c\\u00e1c quy \\u0111\\u1ecbnh c\\u0169.<\\/span><\\/span><\\/span><\\/strong><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><strong style=\\\"box-sizing:border-box\\\"><u style=\\\"box-sizing:border-box\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">IV\\/ Li\\u00ean h\\u1ec7, th\\u1eafc m\\u1eafc, khi\\u1ebfu n\\u1ea1i v\\u1ec1 v\\u1ea5n \\u0111\\u1ec1 b\\u1ea3o h\\u00e0nh:<\\/span><\\/span><\\/span><\\/u><\\/strong><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">N\\u1ebfu Qu\\u00fd kh\\u00e1ch ch\\u01b0a th\\u1ea5y h\\u00e0i l\\u00f2ng ho\\u1eb7c c\\u00f3 th\\u1eafc m\\u1eafc khi\\u1ebfu n\\u1ea1i g\\u00ec v\\u1ec1 v\\u1ea5n \\u0111\\u1ec1 b\\u1ea3o h\\u00e0nh, xin Qu\\u00fd kh\\u00e1ch vui l\\u00f2ng li\\u00ean h\\u1ec7:<br style=\\\"box-sizing:border-box\\\" \\/>\\r\\n<strong style=\\\"box-sizing:border-box\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\">C\\u00f4ng ty TNHH M\\u00e1y t\\u00ednh TTech<\\/span><\\/strong><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><em style=\\\"box-sizing:border-box\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">Tr\\u1ee5 s\\u1edf ch\\u00ednh&nbsp;:&nbsp;<\\/span><\\/span><\\/span><\\/em><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">S\\u1ed1 32 Ph\\u1ed1 V\\u0169, Ph\\u01b0\\u1eddng \\u0110\\u1ea1i Ph\\u00fac, TP. B\\u1eafc Ninh, T\\u1ec9nh B\\u1eafc Ninh<\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><em><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">\\u0110i\\u1ec7n tho\\u1ea1i&nbsp;: 0222. 3636262 \\u2013 0368.221.386<\\/span><\\/span><\\/span><\\/em><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:21px; text-align:start\\\"><span style=\\\"font-size:12pt\\\"><span style=\\\"background:white\\\"><span style=\\\"box-sizing:border-box\\\"><span style=\\\"font-variant-ligatures:normal\\\"><span style=\\\"text-decoration-thickness:initial\\\"><span style=\\\"text-decoration-style:initial\\\"><span style=\\\"text-decoration-color:initial\\\"><span style=\\\"font-family:&quot;Times New Roman&quot;,serif\\\"><em style=\\\"box-sizing:border-box\\\"><span style=\\\"font-size:13.5pt\\\"><span style=\\\"font-family:&quot;Arial&quot;,sans-serif\\\"><span style=\\\"color:#232323\\\">Email&nbsp;: ttechpcbn@gmail.com<\\/span><\\/span><\\/span><\\/em><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/span><\\/p>\\r\\n\\r\\n<p style=\\\"margin-bottom:11px\\\">&nbsp;<\\/p>\"},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', NULL, NULL, 0, 29, NULL, 'active', 3, 3, '2024-06-17 08:42:15', '2024-07-16 12:21:37', 'chinh-sach-bao-hanh'),
+(699, 74, NULL, 'product', 'Phụ kiện Laptop', '{\"price\":\"120000\",\"price_old\":\"140000\",\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', '/data/cms-image/Lap Gaming/dell-alienware-m18-lapip-3-1679622163.jpg', NULL, 1, 0, NULL, 'active', 3, 3, '2024-07-18 15:36:06', '2024-07-18 15:36:06', 'phu-kien-laptop'),
+(700, 74, NULL, 'product', 'Intel 10 core I7', '{\"price\":\"360000\",\"price_old\":\"400000\",\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', '/data/cms-image/Linh phụ kiện/TTECHBNCPUi710th_i7_10700.jpg', NULL, 1, 0, NULL, 'active', 3, 3, '2024-07-18 15:37:04', '2024-07-18 15:37:17', 'intel-10-core-i7'),
+(701, 74, NULL, 'product', 'Phụ kiện Laptop', '{\"price\":\"120000\",\"price_old\":\"140000\",\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', '/data/cms-image/Lap Gaming/dell-alienware-m18-lapip-3-1679622163.jpg', NULL, 1, 0, NULL, 'active', 3, 3, '2024-07-18 15:36:06', '2024-07-18 15:36:06', 'phu-kien-laptop'),
+(702, 74, NULL, 'product', 'Intel 10 core I7', '{\"price\":\"360000\",\"price_old\":\"400000\",\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', '/data/cms-image/Linh phụ kiện/TTECHBNCPUi710th_i7_10700.jpg', NULL, 1, 0, NULL, 'active', 3, 3, '2024-07-18 15:37:04', '2024-07-18 15:37:17', 'intel-10-core-i7'),
+(703, 74, NULL, 'product', 'Intel 10 core I7', '{\"price\":\"360000\",\"price_old\":\"400000\",\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', '/data/cms-image/Linh phụ kiện/TTECHBNCPUi710th_i7_10700.jpg', NULL, 1, 0, NULL, 'active', 3, 3, '2024-07-18 15:37:04', '2024-07-18 15:37:17', 'intel-10-core-i7');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_cms_taxonomys`
+-- Table structure for table `tb_cms_taxonomys`
 --
 
 CREATE TABLE `tb_cms_taxonomys` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `taxonomy` varchar(255) NOT NULL,
+  `taxonomy` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
-  `title` varchar(255) NOT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `is_featured` tinyint(1) NOT NULL DEFAULT 0,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `is_featured` tinyint(1) NOT NULL DEFAULT '0',
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `alias` varchar(255) DEFAULT NULL,
-  `is_show_home` int(11) NOT NULL DEFAULT 0
+  `alias` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_show_home` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_cms_taxonomys`
+-- Dumping data for table `tb_cms_taxonomys`
 --
 
 INSERT INTO `tb_cms_taxonomys` (`id`, `taxonomy`, `parent_id`, `title`, `json_params`, `is_featured`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`, `alias`, `is_show_home`) VALUES
 (1, 'post', NULL, 'Tin tức', '{\"image\":null,\"image_background\":\"https:\\/\\/jcgroup.vn\\/wp-content\\/uploads\\/2022\\/09\\/01-3.png\",\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 0, NULL, 'active', 1, 1, '2021-10-15 03:19:10', '2024-01-12 09:12:39', 'tin-tuc', 0),
 (57, 'product', NULL, 'Laptop Gaming', '{\"image\":\"\\/data\\/cms-image\\/thumb\\/icon5.webp\",\"image_background\":\"\\/data\\/cms-image\\/banner\\/banner_3_tab.webp\",\"brief\":{\"vi\":\"Gi\\u1ea3m ngay khi mua online\"},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 1, NULL, 'delete', 1, 1, '2024-01-04 03:31:21', '2024-01-12 08:08:23', 'laptop-gaming', 0),
 (58, 'product', NULL, 'Phụ kiện & thiết bị', '{\"image\":\"\\/data\\/cms-image\\/thumb\\/icon2.webp\",\"image_background\":null,\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 0, NULL, 'delete', 1, 1, '2024-01-04 03:38:55', '2024-01-04 09:30:57', 'phu-kien-thiet-bi', 0),
-(59, 'product', NULL, 'Camera', '{\"image\":\"\\/data\\/cms-image\\/Camera\\/camera-ip-wifi-than-2mp-uniarch-uho-boa-m2f3-300x300.jpg\",\"image_background\":\"\\/data\\/cms-image\\/banner\\/LOGO.png\",\"brief\":{\"vi\":\"Gi\\u1ea3m ngay khi mua online\"},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 1, 3, 'active', 1, 1, '2024-01-04 03:39:13', '2024-01-30 01:44:26', 'camera', 1),
+(59, 'product', NULL, 'Camera', '{\"image\":\"\\/data\\/cms-image\\/Camera\\/camera-ip-wifi-than-2mp-uniarch-uho-boa-m2f3-300x300.jpg\",\"image_background\":\"\\/data\\/cms-image\\/banner\\/banner_3_tab.webp\",\"brief\":{\"vi\":\"Gi\\u1ea3m ngay khi mua online\"},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 1, 3, 'active', 1, 3, '2024-01-04 03:39:13', '2024-07-18 15:42:28', 'camera', 1),
 (60, 'product', NULL, 'Macbook', '{\"image\":\"\\/data\\/cms-image\\/thumb\\/macbook-image-show-home-1624856863.png\",\"image_background\":\"\\/data\\/cms-image\\/banner\\/banner_1_tab.jpg\",\"brief\":{\"vi\":\"Gi\\u1ea3m ngay khi mua online\"},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 1, NULL, 'delete', 1, 1, '2024-01-04 04:34:19', '2024-01-12 08:08:29', 'macbook', 0),
 (61, 'product', NULL, 'Laptop HP', '{\"image\":\"\\/data\\/cms-image\\/thumb\\/laptop-moi-image-show-home-1624951313.jpg\",\"image_background\":null,\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 0, NULL, 'delete', 1, 1, '2024-01-04 07:17:14', '2024-01-12 08:08:47', 'laptop-hp', 0),
 (62, 'product', NULL, 'Surface', '{\"image\":\"\\/data\\/cms-image\\/thumb\\/surface-image-show-home-1624951565.jpg\",\"image_background\":\"\\/data\\/cms-image\\/banner\\/banner_2_tab.webp\",\"brief\":{\"vi\":\"Gi\\u1ea3m ngay khi mua online\"},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 1, 1, 'delete', 1, 1, '2024-01-04 07:17:54', '2024-01-12 08:08:18', 'surface', 0),
@@ -856,7 +861,7 @@ INSERT INTO `tb_cms_taxonomys` (`id`, `taxonomy`, `parent_id`, `title`, `json_pa
 (71, 'post', 70, 'Laptop mới nhất', '{\"image\":null,\"image_background\":null,\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 0, NULL, 'active', 1, 1, '2024-01-07 13:35:03', '2024-01-07 13:35:15', 'laptop-moi-nhat', 0),
 (72, 'post', 70, 'Điện thoại mới nhất', '{\"image\":null,\"image_background\":null,\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 0, NULL, 'active', 1, 1, '2024-01-07 13:35:44', '2024-01-07 13:35:44', 'dien-thoai-moi-nhat', 0),
 (73, 'product', NULL, 'Linh kiện máy tính', '{\"image\":\"\\/data\\/cms-image\\/Avarta.png\",\"image_background\":\"\\/data\\/cms-image\\/banner\\/banner_1_tab.jpg\",\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 1, 2, 'active', 1, 3, '2024-01-12 08:16:27', '2024-04-03 08:42:53', 'linh-kien-may-tinh', 1),
-(74, 'product', NULL, 'Laptop - Phụ kiện', '{\"image\":\"\\/data\\/cms-image\\/Lap Gaming\\/dell-alienware-m18-r1-gen-13th-1679622998.jpg\",\"image_background\":\"\\/data\\/cms-image\\/banner\\/banner_1.webp\",\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 1, 1, 'active', 1, 3, '2024-01-12 08:20:57', '2024-04-03 08:48:54', 'laptop-phu-kien', 1),
+(74, 'product', NULL, 'Laptop - Phụ kiện', '{\"image\":\"\\/data\\/cms-image\\/Lap Gaming\\/dell-alienware-m18-r1-gen-13th-1679622998.jpg\",\"image_background\":\"\\/data\\/cms-image\\/banner\\/banner_3_tab.webp\",\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 1, 1, 'active', 1, 3, '2024-01-12 08:20:57', '2024-07-18 15:35:00', 'laptop-phu-kien', 0),
 (75, 'product', NULL, 'Máy in', '{\"image\":\"\\/data\\/cms-image\\/M\\u00e1y in\\/Mayin2x-80x80-9.png\",\"image_background\":null,\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 0, 7, 'active', 1, 1, '2024-01-12 08:38:52', '2024-01-12 09:16:58', 'may-in', 0),
 (76, 'product', NULL, 'Linh phụ kiện', '{\"image\":\"\\/data\\/cms-image\\/Linh ph\\u1ee5 ki\\u1ec7n\\/250_45490_vga_asu_gt730sl2gd5brk_a.jpg\",\"image_background\":null,\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 0, 5, 'active', 1, 1, '2024-01-12 08:43:27', '2024-01-12 09:17:41', 'linh-phu-kien', 0),
 (77, 'product', NULL, 'Thiết bị mạng', '{\"image\":\"\\/data\\/cms-image\\/Thi\\u1ebft b\\u1ecb m\\u1ea1ng\\/20774_6254_tp-link-300m-wireless-router-tl-wr841n.jpg\",\"image_background\":null,\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 0, 4, 'active', 1, 1, '2024-01-12 08:51:02', '2024-01-12 09:14:56', 'thiet-bi-mang', 0),
@@ -866,7 +871,7 @@ INSERT INTO `tb_cms_taxonomys` (`id`, `taxonomy`, `parent_id`, `title`, `json_pa
 (81, 'product', 73, 'CPU', '{\"image\":null,\"image_background\":null,\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 0, NULL, 'active', 1, 3, '2024-01-12 09:28:19', '2024-05-17 03:47:32', 'may-van-phong', 1),
 (82, 'product', 73, 'RAM', '{\"image\":null,\"image_background\":null,\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 0, NULL, 'active', 1, 3, '2024-01-12 09:29:09', '2024-05-17 07:09:06', 'may-thiet-ke', 1),
 (83, 'product', 73, 'Mainboard- Bo Mạch Chủ', '{\"image\":null,\"image_background\":null,\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 0, NULL, 'active', 1, 3, '2024-01-12 09:29:33', '2024-04-10 03:31:59', 'may-gaming', 0),
-(84, 'product', NULL, 'Màn hình', '{\"image\":null,\"image_background\":\"\\/data\\/cms-image\\/Camera\\/camera-ip-wifi-than-2mp-uniarch-uho-boa-m2f3-300x300.jpg\",\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 1, 11, 'active', 3, 3, '2024-03-03 04:05:50', '2024-03-03 04:07:23', 'man-hinh', 1),
+(84, 'product', NULL, 'Màn hình', '{\"image\":null,\"image_background\":\"\\/data\\/cms-image\\/Camera\\/camera-ip-wifi-than-2mp-uniarch-uho-boa-m2f3-300x300.jpg\",\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 1, 11, 'active', 3, 3, '2024-03-03 04:05:50', '2024-07-18 15:35:20', 'man-hinh', 0),
 (85, 'product', 81, 'CPU Intel', '{\"image\":\"\\/data\\/cms-image\\/f23f3ced8f38b01d7198a77c048aca67.jpg\",\"image_background\":\"\\/data\\/cms-image\\/f23f3ced8f38b01d7198a77c048aca67.jpg\",\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 1, NULL, 'delete', 3, 3, '2024-05-15 09:35:40', '2024-05-15 09:37:56', 'cpu-intel', 1),
 (86, 'product', 73, 'SSD', '{\"image\":null,\"image_background\":null,\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 0, NULL, 'active', 3, 3, '2024-05-16 01:01:20', '2024-05-16 01:01:20', 'ssd', 1),
 (87, 'product', 73, 'HDD', '{\"image\":null,\"image_background\":null,\"brief\":{\"vi\":null},\"content\":{\"vi\":null},\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 0, NULL, 'active', 3, 3, '2024-05-16 09:44:41', '2024-05-16 09:44:41', 'hdd', 1),
@@ -875,21 +880,21 @@ INSERT INTO `tb_cms_taxonomys` (`id`, `taxonomy`, `parent_id`, `title`, `json_pa
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_components`
+-- Table structure for table `tb_components`
 --
 
 CREATE TABLE `tb_components` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `component_code` varchar(255) DEFAULT NULL,
+  `component_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
-  `title` varchar(255) NOT NULL,
-  `brief` text DEFAULT NULL,
-  `content` longtext DEFAULT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `image_background` varchar(255) DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `brief` text COLLATE utf8mb4_unicode_ci,
+  `content` longtext COLLATE utf8mb4_unicode_ci,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_background` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -897,7 +902,7 @@ CREATE TABLE `tb_components` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_components`
+-- Dumping data for table `tb_components`
 --
 
 INSERT INTO `tb_components` (`id`, `component_code`, `parent_id`, `title`, `brief`, `content`, `json_params`, `image`, `image_background`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -913,18 +918,18 @@ INSERT INTO `tb_components` (`id`, `component_code`, `parent_id`, `title`, `brie
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_component_configs`
+-- Table structure for table `tb_component_configs`
 --
 
 CREATE TABLE `tb_component_configs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
-  `component_code` varchar(255) NOT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `is_config` tinyint(1) NOT NULL DEFAULT 1,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `component_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `is_config` tinyint(1) NOT NULL DEFAULT '1',
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -932,7 +937,7 @@ CREATE TABLE `tb_component_configs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_component_configs`
+-- Dumping data for table `tb_component_configs`
 --
 
 INSERT INTO `tb_component_configs` (`id`, `name`, `description`, `component_code`, `json_params`, `is_config`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -943,21 +948,21 @@ INSERT INTO `tb_component_configs` (`id`, `name`, `description`, `component_code
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_contacts`
+-- Table structure for table `tb_contacts`
 --
 
 CREATE TABLE `tb_contacts` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `is_type` varchar(255) DEFAULT 'contact',
-  `name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `subject` varchar(255) DEFAULT NULL,
-  `content` text DEFAULT NULL,
-  `admin_note` text DEFAULT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `is_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'contact',
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subject` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci,
+  `admin_note` text COLLATE utf8mb4_unicode_ci,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -965,7 +970,7 @@ CREATE TABLE `tb_contacts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_contacts`
+-- Dumping data for table `tb_contacts`
 --
 
 INSERT INTO `tb_contacts` (`id`, `is_type`, `name`, `email`, `phone`, `subject`, `content`, `admin_note`, `json_params`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -980,37 +985,37 @@ INSERT INTO `tb_contacts` (`id`, `is_type`, `name`, `email`, `phone`, `subject`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_logs`
+-- Table structure for table `tb_logs`
 --
 
 CREATE TABLE `tb_logs` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `url_referer` text DEFAULT NULL,
-  `url` text DEFAULT NULL,
-  `method` varchar(255) DEFAULT NULL,
-  `params` text DEFAULT NULL,
-  `logged_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `url_referer` text COLLATE utf8mb4_unicode_ci,
+  `url` text COLLATE utf8mb4_unicode_ci,
+  `method` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `params` text COLLATE utf8mb4_unicode_ci,
+  `logged_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_menus`
+-- Table structure for table `tb_menus`
 --
 
 CREATE TABLE `tb_menus` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
-  `url_link` varchar(255) DEFAULT NULL,
-  `menu_type` varchar(255) DEFAULT NULL,
-  `system_code` varchar(255) DEFAULT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `url_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `menu_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `system_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1018,7 +1023,7 @@ CREATE TABLE `tb_menus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_menus`
+-- Dumping data for table `tb_menus`
 --
 
 INSERT INTO `tb_menus` (`id`, `parent_id`, `name`, `description`, `url_link`, `menu_type`, `system_code`, `json_params`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -1060,16 +1065,16 @@ INSERT INTO `tb_menus` (`id`, `parent_id`, `name`, `description`, `url_link`, `m
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_modules`
+-- Table structure for table `tb_modules`
 --
 
 CREATE TABLE `tb_modules` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `module_code` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
+  `module_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1077,7 +1082,7 @@ CREATE TABLE `tb_modules` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_modules`
+-- Dumping data for table `tb_modules`
 --
 
 INSERT INTO `tb_modules` (`id`, `module_code`, `name`, `description`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -1104,17 +1109,17 @@ INSERT INTO `tb_modules` (`id`, `module_code`, `name`, `description`, `iorder`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_module_functions`
+-- Table structure for table `tb_module_functions`
 --
 
 CREATE TABLE `tb_module_functions` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `module_id` bigint(20) UNSIGNED NOT NULL,
-  `function_code` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
+  `function_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1122,7 +1127,7 @@ CREATE TABLE `tb_module_functions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_module_functions`
+-- Dumping data for table `tb_module_functions`
 --
 
 INSERT INTO `tb_module_functions` (`id`, `module_id`, `function_code`, `name`, `description`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -1221,15 +1226,15 @@ INSERT INTO `tb_module_functions` (`id`, `module_id`, `function_code`, `name`, `
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_options`
+-- Table structure for table `tb_options`
 --
 
 CREATE TABLE `tb_options` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `option_name` varchar(255) NOT NULL,
-  `option_value` longtext NOT NULL,
-  `description` text DEFAULT NULL,
-  `is_system_param` tinyint(1) DEFAULT 1,
+  `option_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `option_value` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `is_system_param` tinyint(1) DEFAULT '1',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1237,7 +1242,7 @@ CREATE TABLE `tb_options` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_options`
+-- Dumping data for table `tb_options`
 --
 
 INSERT INTO `tb_options` (`id`, `option_name`, `option_value`, `description`, `is_system_param`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -1250,22 +1255,22 @@ INSERT INTO `tb_options` (`id`, `option_name`, `option_value`, `description`, `i
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_orders`
+-- Table structure for table `tb_orders`
 --
 
 CREATE TABLE `tb_orders` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `is_type` varchar(255) NOT NULL DEFAULT 'product',
+  `is_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'product',
   `customer_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `image_cv` varchar(255) DEFAULT NULL,
-  `customer_note` text DEFAULT NULL,
-  `admin_note` text DEFAULT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'new',
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_cv` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_note` text COLLATE utf8mb4_unicode_ci,
+  `admin_note` text COLLATE utf8mb4_unicode_ci,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'new',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1273,7 +1278,7 @@ CREATE TABLE `tb_orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_orders`
+-- Dumping data for table `tb_orders`
 --
 
 INSERT INTO `tb_orders` (`id`, `is_type`, `customer_id`, `name`, `email`, `phone`, `address`, `image_cv`, `customer_note`, `admin_note`, `json_params`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -1283,7 +1288,7 @@ INSERT INTO `tb_orders` (`id`, `is_type`, `customer_id`, `name`, `email`, `phone
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_order_details`
+-- Table structure for table `tb_order_details`
 --
 
 CREATE TABLE `tb_order_details` (
@@ -1293,20 +1298,20 @@ CREATE TABLE `tb_order_details` (
   `quantity` int(11) DEFAULT NULL,
   `price` double(20,2) DEFAULT NULL,
   `discount` double(20,2) DEFAULT NULL,
-  `customer_note` text DEFAULT NULL,
-  `admin_note` text DEFAULT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL,
+  `customer_note` text COLLATE utf8mb4_unicode_ci,
+  `admin_note` text COLLATE utf8mb4_unicode_ci,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `name_product` varchar(255) DEFAULT NULL
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name_product` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_order_details`
+-- Dumping data for table `tb_order_details`
 --
 
 INSERT INTO `tb_order_details` (`id`, `order_id`, `item_id`, `quantity`, `price`, `discount`, `customer_note`, `admin_note`, `json_params`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`, `image`, `name_product`) VALUES
@@ -1333,30 +1338,30 @@ INSERT INTO `tb_order_details` (`id`, `order_id`, `item_id`, `quantity`, `price`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_pages`
+-- Table structure for table `tb_pages`
 --
 
 CREATE TABLE `tb_pages` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `keyword` text DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `content` longtext DEFAULT NULL,
-  `route_name` varchar(255) NOT NULL,
-  `alias` varchar(255) NOT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `keyword` text COLLATE utf8mb4_unicode_ci,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `content` longtext COLLATE utf8mb4_unicode_ci,
+  `route_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alias` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `is_page` tinyint(1) DEFAULT 1
+  `is_page` tinyint(1) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_pages`
+-- Dumping data for table `tb_pages`
 --
 
 INSERT INTO `tb_pages` (`id`, `name`, `title`, `keyword`, `description`, `content`, `route_name`, `alias`, `json_params`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`, `is_page`) VALUES
@@ -1374,19 +1379,19 @@ INSERT INTO `tb_pages` (`id`, `name`, `title`, `keyword`, `description`, `conten
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_popups`
+-- Table structure for table `tb_popups`
 --
 
 CREATE TABLE `tb_popups` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `content` text DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `start_time` datetime DEFAULT NULL,
   `end_time` datetime DEFAULT NULL,
   `duration` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1394,7 +1399,7 @@ CREATE TABLE `tb_popups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_popups`
+-- Dumping data for table `tb_popups`
 --
 
 INSERT INTO `tb_popups` (`id`, `title`, `content`, `image`, `json_params`, `start_time`, `end_time`, `duration`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -1404,7 +1409,7 @@ INSERT INTO `tb_popups` (`id`, `title`, `content`, `image`, `json_params`, `star
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_reviews`
+-- Table structure for table `tb_reviews`
 --
 
 CREATE TABLE `tb_reviews` (
@@ -1412,26 +1417,26 @@ CREATE TABLE `tb_reviews` (
   `id_product` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `comment` longtext DEFAULT NULL,
+  `comment` longtext,
   `rating` int(11) DEFAULT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'new',
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_roles`
+-- Table structure for table `tb_roles`
 --
 
 CREATE TABLE `tb_roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
-  `json_access` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `json_access` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1439,7 +1444,7 @@ CREATE TABLE `tb_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_roles`
+-- Dumping data for table `tb_roles`
 --
 
 INSERT INTO `tb_roles` (`id`, `name`, `description`, `json_access`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -1449,18 +1454,18 @@ INSERT INTO `tb_roles` (`id`, `name`, `description`, `json_access`, `iorder`, `s
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_widgets`
+-- Table structure for table `tb_widgets`
 --
 
 CREATE TABLE `tb_widgets` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `widget_code` varchar(255) DEFAULT NULL,
-  `title` varchar(255) NOT NULL,
-  `brief` text DEFAULT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
+  `widget_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `brief` text COLLATE utf8mb4_unicode_ci,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1468,7 +1473,7 @@ CREATE TABLE `tb_widgets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_widgets`
+-- Dumping data for table `tb_widgets`
 --
 
 INSERT INTO `tb_widgets` (`id`, `widget_code`, `title`, `brief`, `json_params`, `image`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -1478,18 +1483,18 @@ INSERT INTO `tb_widgets` (`id`, `widget_code`, `title`, `brief`, `json_params`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tb_widget_configs`
+-- Table structure for table `tb_widget_configs`
 --
 
 CREATE TABLE `tb_widget_configs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
-  `widget_code` varchar(255) NOT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `is_config` tinyint(1) NOT NULL DEFAULT 1,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `widget_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `is_config` tinyint(1) NOT NULL DEFAULT '1',
   `iorder` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1497,7 +1502,7 @@ CREATE TABLE `tb_widget_configs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `tb_widget_configs`
+-- Dumping data for table `tb_widget_configs`
 --
 
 INSERT INTO `tb_widget_configs` (`id`, `name`, `description`, `widget_code`, `json_params`, `is_config`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
@@ -1509,43 +1514,43 @@ INSERT INTO `tb_widget_configs` (`id`, `name`, `description`, `widget_code`, `js
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `affiliate_id` int(11) DEFAULT NULL,
-  `affiliate_code` varchar(255) DEFAULT NULL,
-  `total_score` double NOT NULL DEFAULT 0,
-  `total_money` double NOT NULL DEFAULT 0,
-  `total_payment` double NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `affiliate_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_score` double NOT NULL DEFAULT '0',
+  `total_money` double NOT NULL DEFAULT '0',
+  `total_payment` double NOT NULL DEFAULT '0',
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `user_type` varchar(255) DEFAULT NULL,
-  `email_verified` tinyint(1) NOT NULL DEFAULT 0,
-  `email_verification_code` varchar(255) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'pending',
-  `is_super_user` tinyint(1) NOT NULL DEFAULT 0,
-  `avatar` varchar(255) DEFAULT NULL,
+  `user_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_verified` tinyint(1) NOT NULL DEFAULT '0',
+  `email_verification_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `is_super_user` tinyint(1) NOT NULL DEFAULT '0',
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `birthday` date DEFAULT NULL,
-  `sex` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `count_view_info` int(11) NOT NULL DEFAULT 0,
+  `sex` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `count_view_info` int(11) NOT NULL DEFAULT '0',
   `country_id` int(11) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
   `district_id` int(11) DEFAULT NULL,
-  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `json_profiles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `json_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  `json_profiles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `affiliate_id`, `affiliate_code`, `total_score`, `total_money`, `total_payment`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `user_type`, `email_verified`, `email_verification_code`, `status`, `is_super_user`, `avatar`, `birthday`, `sex`, `phone`, `count_view_info`, `country_id`, `city_id`, `district_id`, `json_params`, `json_profiles`, `admin_updated_id`) VALUES
@@ -1559,11 +1564,11 @@ INSERT INTO `users` (`id`, `affiliate_id`, `affiliate_code`, `total_score`, `tot
 (9, 4, 'mLu1qHUYPF9', 0, 0, 0, 'Tags', 'test2@gmail.com', NULL, '$2y$10$g5hcIFbN9zr37wiikne1CuEmLMUC9JMUDfjvyu1URsUGCTLV5h5FK', NULL, '2022-07-11 18:25:50', '2022-07-11 18:30:37', NULL, 0, NULL, 'active', 0, NULL, NULL, NULL, '1900 1570', 0, NULL, NULL, NULL, NULL, NULL, 1);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `admins`
+-- Indexes for table `admins`
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
@@ -1572,25 +1577,25 @@ ALTER TABLE `admins`
   ADD KEY `admins_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Chỉ mục cho bảng `tb_admin_menus`
+-- Indexes for table `tb_admin_menus`
 --
 ALTER TABLE `tb_admin_menus`
   ADD PRIMARY KEY (`id`),
@@ -1598,7 +1603,7 @@ ALTER TABLE `tb_admin_menus`
   ADD KEY `tb_admin_menus_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_affiliate_historys`
+-- Indexes for table `tb_affiliate_historys`
 --
 ALTER TABLE `tb_affiliate_historys`
   ADD PRIMARY KEY (`id`),
@@ -1606,7 +1611,7 @@ ALTER TABLE `tb_affiliate_historys`
   ADD KEY `tb_affiliate_historys_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_affiliate_payments`
+-- Indexes for table `tb_affiliate_payments`
 --
 ALTER TABLE `tb_affiliate_payments`
   ADD PRIMARY KEY (`id`),
@@ -1614,7 +1619,7 @@ ALTER TABLE `tb_affiliate_payments`
   ADD KEY `tb_affiliate_payments_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_blocks`
+-- Indexes for table `tb_blocks`
 --
 ALTER TABLE `tb_blocks`
   ADD PRIMARY KEY (`id`),
@@ -1622,7 +1627,7 @@ ALTER TABLE `tb_blocks`
   ADD KEY `tb_blocks_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_block_contents`
+-- Indexes for table `tb_block_contents`
 --
 ALTER TABLE `tb_block_contents`
   ADD PRIMARY KEY (`id`),
@@ -1630,7 +1635,7 @@ ALTER TABLE `tb_block_contents`
   ADD KEY `tb_block_contents_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_bookings`
+-- Indexes for table `tb_bookings`
 --
 ALTER TABLE `tb_bookings`
   ADD PRIMARY KEY (`id`),
@@ -1638,7 +1643,7 @@ ALTER TABLE `tb_bookings`
   ADD KEY `tb_bookings_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_branchs`
+-- Indexes for table `tb_branchs`
 --
 ALTER TABLE `tb_branchs`
   ADD PRIMARY KEY (`id`),
@@ -1646,7 +1651,7 @@ ALTER TABLE `tb_branchs`
   ADD KEY `tb_branchs_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_cms_posts`
+-- Indexes for table `tb_cms_posts`
 --
 ALTER TABLE `tb_cms_posts`
   ADD PRIMARY KEY (`id`),
@@ -1654,7 +1659,7 @@ ALTER TABLE `tb_cms_posts`
   ADD KEY `tb_cms_posts_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_cms_taxonomys`
+-- Indexes for table `tb_cms_taxonomys`
 --
 ALTER TABLE `tb_cms_taxonomys`
   ADD PRIMARY KEY (`id`),
@@ -1662,7 +1667,7 @@ ALTER TABLE `tb_cms_taxonomys`
   ADD KEY `tb_cms_taxonomys_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_components`
+-- Indexes for table `tb_components`
 --
 ALTER TABLE `tb_components`
   ADD PRIMARY KEY (`id`),
@@ -1670,7 +1675,7 @@ ALTER TABLE `tb_components`
   ADD KEY `tb_components_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_component_configs`
+-- Indexes for table `tb_component_configs`
 --
 ALTER TABLE `tb_component_configs`
   ADD PRIMARY KEY (`id`),
@@ -1678,7 +1683,7 @@ ALTER TABLE `tb_component_configs`
   ADD KEY `tb_component_configs_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_contacts`
+-- Indexes for table `tb_contacts`
 --
 ALTER TABLE `tb_contacts`
   ADD PRIMARY KEY (`id`),
@@ -1686,13 +1691,13 @@ ALTER TABLE `tb_contacts`
   ADD KEY `tb_contacts_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_logs`
+-- Indexes for table `tb_logs`
 --
 ALTER TABLE `tb_logs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `tb_menus`
+-- Indexes for table `tb_menus`
 --
 ALTER TABLE `tb_menus`
   ADD PRIMARY KEY (`id`),
@@ -1700,7 +1705,7 @@ ALTER TABLE `tb_menus`
   ADD KEY `tb_menus_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_modules`
+-- Indexes for table `tb_modules`
 --
 ALTER TABLE `tb_modules`
   ADD PRIMARY KEY (`id`),
@@ -1709,7 +1714,7 @@ ALTER TABLE `tb_modules`
   ADD KEY `tb_modules_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_module_functions`
+-- Indexes for table `tb_module_functions`
 --
 ALTER TABLE `tb_module_functions`
   ADD PRIMARY KEY (`id`),
@@ -1719,7 +1724,7 @@ ALTER TABLE `tb_module_functions`
   ADD KEY `tb_module_functions_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_options`
+-- Indexes for table `tb_options`
 --
 ALTER TABLE `tb_options`
   ADD PRIMARY KEY (`id`),
@@ -1728,7 +1733,7 @@ ALTER TABLE `tb_options`
   ADD KEY `tb_options_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_orders`
+-- Indexes for table `tb_orders`
 --
 ALTER TABLE `tb_orders`
   ADD PRIMARY KEY (`id`),
@@ -1737,7 +1742,7 @@ ALTER TABLE `tb_orders`
   ADD KEY `tb_orders_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_order_details`
+-- Indexes for table `tb_order_details`
 --
 ALTER TABLE `tb_order_details`
   ADD PRIMARY KEY (`id`),
@@ -1747,7 +1752,7 @@ ALTER TABLE `tb_order_details`
   ADD KEY `tb_order_details_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_pages`
+-- Indexes for table `tb_pages`
 --
 ALTER TABLE `tb_pages`
   ADD PRIMARY KEY (`id`),
@@ -1755,7 +1760,7 @@ ALTER TABLE `tb_pages`
   ADD KEY `tb_pages_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_popups`
+-- Indexes for table `tb_popups`
 --
 ALTER TABLE `tb_popups`
   ADD PRIMARY KEY (`id`),
@@ -1763,13 +1768,13 @@ ALTER TABLE `tb_popups`
   ADD KEY `tb_popups_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_reviews`
+-- Indexes for table `tb_reviews`
 --
 ALTER TABLE `tb_reviews`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `tb_roles`
+-- Indexes for table `tb_roles`
 --
 ALTER TABLE `tb_roles`
   ADD PRIMARY KEY (`id`),
@@ -1777,7 +1782,7 @@ ALTER TABLE `tb_roles`
   ADD KEY `tb_roles_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_widgets`
+-- Indexes for table `tb_widgets`
 --
 ALTER TABLE `tb_widgets`
   ADD PRIMARY KEY (`id`),
@@ -1785,7 +1790,7 @@ ALTER TABLE `tb_widgets`
   ADD KEY `tb_widgets_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `tb_widget_configs`
+-- Indexes for table `tb_widget_configs`
 --
 ALTER TABLE `tb_widget_configs`
   ADD PRIMARY KEY (`id`),
@@ -1793,7 +1798,7 @@ ALTER TABLE `tb_widget_configs`
   ADD KEY `tb_widget_configs_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -1801,357 +1806,357 @@ ALTER TABLE `users`
   ADD KEY `users_admin_updated_id_foreign` (`admin_updated_id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `admins`
+-- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
--- AUTO_INCREMENT cho bảng `tb_admin_menus`
+-- AUTO_INCREMENT for table `tb_admin_menus`
 --
 ALTER TABLE `tb_admin_menus`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
--- AUTO_INCREMENT cho bảng `tb_affiliate_historys`
+-- AUTO_INCREMENT for table `tb_affiliate_historys`
 --
 ALTER TABLE `tb_affiliate_historys`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT cho bảng `tb_affiliate_payments`
+-- AUTO_INCREMENT for table `tb_affiliate_payments`
 --
 ALTER TABLE `tb_affiliate_payments`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `tb_blocks`
+-- AUTO_INCREMENT for table `tb_blocks`
 --
 ALTER TABLE `tb_blocks`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
--- AUTO_INCREMENT cho bảng `tb_block_contents`
+-- AUTO_INCREMENT for table `tb_block_contents`
 --
 ALTER TABLE `tb_block_contents`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=349;
 
 --
--- AUTO_INCREMENT cho bảng `tb_bookings`
+-- AUTO_INCREMENT for table `tb_bookings`
 --
 ALTER TABLE `tb_bookings`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tb_branchs`
+-- AUTO_INCREMENT for table `tb_branchs`
 --
 ALTER TABLE `tb_branchs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT cho bảng `tb_cms_posts`
+-- AUTO_INCREMENT for table `tb_cms_posts`
 --
 ALTER TABLE `tb_cms_posts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=699;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=704;
 
 --
--- AUTO_INCREMENT cho bảng `tb_cms_taxonomys`
+-- AUTO_INCREMENT for table `tb_cms_taxonomys`
 --
 ALTER TABLE `tb_cms_taxonomys`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
--- AUTO_INCREMENT cho bảng `tb_components`
+-- AUTO_INCREMENT for table `tb_components`
 --
 ALTER TABLE `tb_components`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `tb_component_configs`
+-- AUTO_INCREMENT for table `tb_component_configs`
 --
 ALTER TABLE `tb_component_configs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `tb_contacts`
+-- AUTO_INCREMENT for table `tb_contacts`
 --
 ALTER TABLE `tb_contacts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
--- AUTO_INCREMENT cho bảng `tb_logs`
+-- AUTO_INCREMENT for table `tb_logs`
 --
 ALTER TABLE `tb_logs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tb_menus`
+-- AUTO_INCREMENT for table `tb_menus`
 --
 ALTER TABLE `tb_menus`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
--- AUTO_INCREMENT cho bảng `tb_modules`
+-- AUTO_INCREMENT for table `tb_modules`
 --
 ALTER TABLE `tb_modules`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT cho bảng `tb_module_functions`
+-- AUTO_INCREMENT for table `tb_module_functions`
 --
 ALTER TABLE `tb_module_functions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
--- AUTO_INCREMENT cho bảng `tb_options`
+-- AUTO_INCREMENT for table `tb_options`
 --
 ALTER TABLE `tb_options`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `tb_orders`
+-- AUTO_INCREMENT for table `tb_orders`
 --
 ALTER TABLE `tb_orders`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT cho bảng `tb_order_details`
+-- AUTO_INCREMENT for table `tb_order_details`
 --
 ALTER TABLE `tb_order_details`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- AUTO_INCREMENT cho bảng `tb_pages`
+-- AUTO_INCREMENT for table `tb_pages`
 --
 ALTER TABLE `tb_pages`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
--- AUTO_INCREMENT cho bảng `tb_popups`
+-- AUTO_INCREMENT for table `tb_popups`
 --
 ALTER TABLE `tb_popups`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `tb_reviews`
+-- AUTO_INCREMENT for table `tb_reviews`
 --
 ALTER TABLE `tb_reviews`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tb_roles`
+-- AUTO_INCREMENT for table `tb_roles`
 --
 ALTER TABLE `tb_roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `tb_widgets`
+-- AUTO_INCREMENT for table `tb_widgets`
 --
 ALTER TABLE `tb_widgets`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `tb_widget_configs`
+-- AUTO_INCREMENT for table `tb_widget_configs`
 --
 ALTER TABLE `tb_widget_configs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `admins`
+-- Constraints for table `admins`
 --
 ALTER TABLE `admins`
   ADD CONSTRAINT `admins_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `admins_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_admin_menus`
+-- Constraints for table `tb_admin_menus`
 --
 ALTER TABLE `tb_admin_menus`
   ADD CONSTRAINT `tb_admin_menus_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_admin_menus_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_affiliate_historys`
+-- Constraints for table `tb_affiliate_historys`
 --
 ALTER TABLE `tb_affiliate_historys`
   ADD CONSTRAINT `tb_affiliate_historys_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_affiliate_historys_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_affiliate_payments`
+-- Constraints for table `tb_affiliate_payments`
 --
 ALTER TABLE `tb_affiliate_payments`
   ADD CONSTRAINT `tb_affiliate_payments_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_affiliate_payments_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_blocks`
+-- Constraints for table `tb_blocks`
 --
 ALTER TABLE `tb_blocks`
   ADD CONSTRAINT `tb_blocks_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_blocks_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_block_contents`
+-- Constraints for table `tb_block_contents`
 --
 ALTER TABLE `tb_block_contents`
   ADD CONSTRAINT `tb_block_contents_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_block_contents_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_bookings`
+-- Constraints for table `tb_bookings`
 --
 ALTER TABLE `tb_bookings`
   ADD CONSTRAINT `tb_bookings_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_bookings_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_branchs`
+-- Constraints for table `tb_branchs`
 --
 ALTER TABLE `tb_branchs`
   ADD CONSTRAINT `tb_branchs_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_branchs_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_cms_posts`
+-- Constraints for table `tb_cms_posts`
 --
 ALTER TABLE `tb_cms_posts`
   ADD CONSTRAINT `tb_cms_posts_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_cms_posts_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_cms_taxonomys`
+-- Constraints for table `tb_cms_taxonomys`
 --
 ALTER TABLE `tb_cms_taxonomys`
   ADD CONSTRAINT `tb_cms_taxonomys_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_cms_taxonomys_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_components`
+-- Constraints for table `tb_components`
 --
 ALTER TABLE `tb_components`
   ADD CONSTRAINT `tb_components_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_components_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_component_configs`
+-- Constraints for table `tb_component_configs`
 --
 ALTER TABLE `tb_component_configs`
   ADD CONSTRAINT `tb_component_configs_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_component_configs_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_contacts`
+-- Constraints for table `tb_contacts`
 --
 ALTER TABLE `tb_contacts`
   ADD CONSTRAINT `tb_contacts_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_contacts_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_menus`
+-- Constraints for table `tb_menus`
 --
 ALTER TABLE `tb_menus`
   ADD CONSTRAINT `tb_menus_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_menus_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_modules`
+-- Constraints for table `tb_modules`
 --
 ALTER TABLE `tb_modules`
   ADD CONSTRAINT `tb_modules_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_modules_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_module_functions`
+-- Constraints for table `tb_module_functions`
 --
 ALTER TABLE `tb_module_functions`
   ADD CONSTRAINT `tb_module_functions_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_module_functions_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_options`
+-- Constraints for table `tb_options`
 --
 ALTER TABLE `tb_options`
   ADD CONSTRAINT `tb_options_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_options_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_orders`
+-- Constraints for table `tb_orders`
 --
 ALTER TABLE `tb_orders`
   ADD CONSTRAINT `tb_orders_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_orders_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_order_details`
+-- Constraints for table `tb_order_details`
 --
 ALTER TABLE `tb_order_details`
   ADD CONSTRAINT `tb_order_details_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_order_details_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_pages`
+-- Constraints for table `tb_pages`
 --
 ALTER TABLE `tb_pages`
   ADD CONSTRAINT `tb_pages_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_pages_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_popups`
+-- Constraints for table `tb_popups`
 --
 ALTER TABLE `tb_popups`
   ADD CONSTRAINT `tb_popups_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_popups_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_roles`
+-- Constraints for table `tb_roles`
 --
 ALTER TABLE `tb_roles`
   ADD CONSTRAINT `tb_roles_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_roles_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_widgets`
+-- Constraints for table `tb_widgets`
 --
 ALTER TABLE `tb_widgets`
   ADD CONSTRAINT `tb_widgets_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_widgets_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `tb_widget_configs`
+-- Constraints for table `tb_widget_configs`
 --
 ALTER TABLE `tb_widget_configs`
   ADD CONSTRAINT `tb_widget_configs_admin_created_id_foreign` FOREIGN KEY (`admin_created_id`) REFERENCES `admins` (`id`),
   ADD CONSTRAINT `tb_widget_configs_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);
 
 --
--- Các ràng buộc cho bảng `users`
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_admin_updated_id_foreign` FOREIGN KEY (`admin_updated_id`) REFERENCES `admins` (`id`);

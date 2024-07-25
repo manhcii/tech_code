@@ -11,7 +11,7 @@
       <div class="not-dqtab e-tabs ajax-tab-1 ajax" data-section="ajax-tab-1">
         <ul class="nav-tab">
           @foreach ($taxonomys as $item)
-            @if ($item->parent_id == 0 || $item->parent_id == null)
+            {{-- @if ($item->parent_id == 0 || $item->parent_id == null) --}}
               @php
                 $title = $item->json_params->title->{$locale} ?? $item->title;
                 $brief = $item->json_params->brief->{$locale} ?? $item->brief;
@@ -22,12 +22,12 @@
                 <h4>{{ $title }}</h4>
                 <p>{{ $brief }}</p>
               </li>
-            @endif
+            {{-- @endif --}}
           @endforeach
         </ul>
         <div class="tab-container">
           @foreach ($taxonomys as $item)
-            @if ($item->parent_id == 0 || $item->parent_id == null)
+            {{-- @if ($item->parent_id == 0 || $item->parent_id == null) --}}
               @php
                 $image_background = $item->json_params->image_background != '' ? $item->json_params->image_background : null;
                 $alias_category = App\Helpers::generateRoute(App\Consts::TAXONOMY['product'], $title, $item->id);
@@ -112,7 +112,7 @@
                   </div>
                 </div>
               </div>
-            @endif
+            {{-- @endif --}}
           @endforeach
         </div>
       </div>

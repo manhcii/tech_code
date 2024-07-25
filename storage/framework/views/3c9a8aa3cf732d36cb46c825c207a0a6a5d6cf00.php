@@ -26,6 +26,9 @@
 									$title = $item_sub->json_params->title->{$locale} ?? $item_sub->title;
 									$price = $item_sub->json_params->price ?? null;
 									$price_old = $item_sub->json_params->price_old ?? null;
+
+									// $price = is_int($item_sub->json_params->price) ? $item_sub->json_params->price :  null;
+									// $price_old = is_int($item_sub->json_params->price_old) ? $item_sub->json_params->price_old : null;
 									$brief = $item_sub->json_params->brief->{$locale} ?? $item_sub->brief;
 									$image = $item_sub->image_thumb != '' ? $item_sub->image_thumb : ($item_sub->image != '' ? $item_sub->image : null);
 									$date = date('H:i d/m/Y', strtotime($item_sub->created_at));
